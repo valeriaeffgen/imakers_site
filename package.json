@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "og": "node scripts/generate-og.mjs",
-    "instagram": "node tools/instagram/build.mjs && node tools/instagram/render.mjs"
+    "instagram": "node tools/instagram/build.mjs && node tools/instagram/render.mjs && node tools/instagram/pdf.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",

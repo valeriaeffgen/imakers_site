@@ -32,7 +32,7 @@ function quadro(i) {
            id="q${i + 1}" data-quadro="${i + 1}">
     <div class="mosaico" style="left:${BLEED - c * CELL_W}px; top:${-r * CELL_H}px">${mosaico()}</div>
     <div class="corpo">${partes.join('')}</div>
-    <span class="marca">imakers.com.br</span>
+    <span class="marca">imakers.com</span>
   </article>`;
 }
 
@@ -91,6 +91,16 @@ const html = `<!doctype html>
   .logo { display: block; position: relative; width: 274px; padding-top: 72px; color: ${COR.light}; }
   .logo__mark { position: absolute; top: 0; left: 10%; width: 80%; }
   .logo b { display: block; font-size: 84px; font-weight: 500; letter-spacing: -.033em; line-height: 1; }
+
+  /* Impressão: cada quadro vira uma página do tamanho exato do post, sem
+     margem. É daqui que sai o PDF vetorial, com o texto ainda editável. */
+  @page { size: ${POST_W}px ${CELL_H}px; margin: 0; }
+  @media print {
+    body { background: #fff; }
+    .folha { display: block; width: auto; padding: 0; gap: 0; }
+    .post { break-after: page; page-break-after: always; }
+    .post:last-child { break-after: auto; page-break-after: auto; }
+  }
 </style></head>
 <body><div class="folha">
 ${QUADROS.map((_, i) => quadro(i)).join('\n')}

@@ -15,7 +15,7 @@ const OUT = path.join(root, 'public', 'og');
 
 const MAGENTA = '#ec1b8d';
 /** Aparece no rodape da imagem social. Troque junto com o dominio real. */
-const DOMAIN = process.env.SITE_DOMAIN || 'imakers.com.br';
+const DOMAIN = process.env.SITE_DOMAIN || 'imakers.com';
 const FONT = "Figtree Light, Figtree, DejaVu Sans, sans-serif";
 
 /** Caminhos exatos da marca, reaproveitados do componente Squiggle.astro. */

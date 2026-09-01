@@ -5,10 +5,18 @@ com a mesma fonte e as mesmas cores do site.
 
 ```bash
 npx playwright install chromium   # uma vez
-npm run instagram                 # gera e exporta para dist-instagram/
+npm run instagram                 # gera PNG e PDF em dist-instagram/
 ```
 
 Para usar outro navegador: `CHROME=/caminho/para/chrome npm run instagram`.
+
+Saem três coisas: os nove PNG em 1080×1350 prontos para publicar, os mesmos
+nove em PDF vetorial (o texto continua editável em Illustrator, Affinity,
+Inkscape ou Figma) e um PDF único com as nove páginas.
+
+A página do PDF fica com 1350,7 px de altura em vez de 1350: o Chromium
+arredonda ao converter pixels para pontos. Menos de um pixel, sem efeito
+prático, mas convém exportar em 1080×1350 na hora de virar imagem de novo.
 
 ## Geometria
 

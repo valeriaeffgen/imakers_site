@@ -6,7 +6,7 @@
 export const SITE = {
   name: 'IMAKERS',
   legalName: 'IMAKERS',
-  url: (import.meta.env.SITE as string) || 'https://imakers.com.br',
+  url: (import.meta.env.SITE as string) || 'https://imakers.com',
   locale: 'pt-BR',
   /** Promessa institucional. Aparece no title da home e no JSON-LD. */
   promise: 'Transformamos sua presenca digital em negocio.',
@@ -14,7 +14,7 @@ export const SITE = {
   tagline: 'Da atencao a operacao propria.',
   description:
     'A IMAKERS constrói sites, ativos próprios, ferramentas e operação contínua para transformar a audiência que você criou nas redes em negócio.',
-  email: 'contato@imakers.com.br',
+  email: 'contato@imakers.com',
   /** Somente digitos, formato internacional — usado no link do WhatsApp. */
   whatsapp: '',
   areaServed: 'BR',

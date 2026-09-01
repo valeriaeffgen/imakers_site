@@ -51,8 +51,8 @@ nenhuma resposta é enviada ou salva.
 Três coisas precisam ser preenchidas em **`src/config.ts`**:
 
 ```ts
-url:    'https://imakers.com.br',   // domínio real — alimenta canonical, sitemap, RSS e og:image
-email:  'contato@imakers.com.br',   // e-mail de contato exibido no site
+url:    'https://imakers.com',   // domínio real — alimenta canonical, sitemap, RSS e og:image
+email:  'contato@imakers.com',   // e-mail de contato exibido no site
 social: { instagram: '', linkedin: '', youtube: '' },  // vira `sameAs` no JSON-LD
 ```
 
@@ -83,7 +83,7 @@ Em outro host, publique a pasta `dist/`. Duas exigências: servir `/contato` a p
 O domínio também pode vir do ambiente:
 
 ```bash
-SITE_URL=https://imakers.com.br npm run build
+SITE_URL=https://imakers.com npm run build
 ```
 
 ---
