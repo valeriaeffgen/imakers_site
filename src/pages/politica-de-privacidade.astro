@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../config';
+
+const crumbs = [{ name: 'Política de privacidade', href: '/politica-de-privacidade' }];
+const atualizado = '1 de setembro de 2026';
+---
+<Base
+  title="Política de privacidade"
+  description="Como a IMAKERS trata dados pessoais coletados neste site: finalidade, base legal, retenção, compartilhamento e direitos do titular, conforme a LGPD."
+  path="/politica-de-privacidade"
+  breadcrumbs={crumbs}
+>
+  <PageHero
+    eyebrow="Institucional"
+    title="Política de privacidade"
+    lede="Esta política explica quais dados pessoais a IMAKERS coleta neste site, para quê usa, com quem compartilha, por quanto tempo guarda e como você pode exercer seus direitos."
+    crumbs={crumbs}
+  />
+
+  <section class="section section--tight">
+    <div class="wrap-narrow prose">
+      <p class="subtle">Última atualização: {atualizado}</p>
+
+      <h2>1. Quem é o controlador</h2>
+      <p>
+        A IMAKERS é a controladora dos dados pessoais coletados neste site — ou seja, é quem decide a
+        finalidade e os meios do tratamento. Contato para assuntos de privacidade:
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+      <p>
+        Em projetos contratados, a relação pode ser diferente: quando a IMAKERS opera um site ou uma base de
+        dados em nome de um cliente, o cliente é o controlador e a IMAKERS atua como operadora. Essa divisão
+        é definida no contrato de cada projeto.
+      </p>
+
+      <h2>2. Quais dados coletamos</h2>
+      <p>Neste site, apenas o que você informa e o mínimo necessário para o site funcionar.</p>
+      <ul>
+        <li>
+          <strong>Dados que você envia no formulário de contato:</strong> nome, e-mail, WhatsApp, link do seu
+          site ou rede, descrição do que você oferece, o que espera que aconteça depois que alguém encontra
+          você, o momento do seu negócio e, quando houver, a faixa sugerida pela autoleitura.
+        </li>
+        <li>
+          <strong>Dados técnicos de navegação:</strong> gerados automaticamente pelo servidor que hospeda o
+          site, como endereço IP, tipo de navegador e páginas acessadas.
+        </li>
+      </ul>
+      <p>
+        A <a href="/autoleitura">autoleitura</a> roda inteiramente no seu navegador. As respostas não são
+        enviadas para a IMAKERS. Se você optar por levar o resultado para o formulário, apenas a faixa
+        recomendada acompanha o envio — nunca as respostas individuais.
+      </p>
+
+      <h2>3. Para que usamos</h2>
+      <ul>
+        <li>Entender o contexto da sua operação e preparar a conversa inicial.</li>
+        <li>Responder à sua solicitação e dar seguimento a uma eventual proposta.</li>
+        <li>Manter o site seguro, disponível e funcionando corretamente.</li>
+      </ul>
+      <p>
+        Não usamos seus dados para publicidade comportamental, não os vendemos e não os cedemos a terceiros
+        para fins comerciais.
+      </p>
+
+      <h2>4. Base legal</h2>
+      <p>
+        O tratamento dos dados do formulário se apoia no <strong>consentimento</strong> que você fornece ao
+        enviá-lo e nos <strong>procedimentos preliminares de contrato</strong>, a seu pedido. Os dados
+        técnicos de navegação se apoiam no <strong>legítimo interesse</strong> de manter o site seguro e
+        funcional, sempre limitado ao necessário.
+      </p>
+
+      <h2>5. Cookies e medição</h2>
+      <p>
+        Este site não usa cookies de publicidade nem rastreadores de terceiros para perfilamento. As fontes
+        tipográficas são servidas pelo próprio domínio, e não por um provedor externo — o que evita que seu
+        endereço IP seja enviado a terceiros apenas para carregar uma fonte.
+      </p>
+      <p>
+        Caso uma ferramenta de medição de audiência seja adotada no futuro, esta política será atualizada
+        antes da adoção, indicando qual é a ferramenta, o que ela coleta e como recusar.
+      </p>
+
+      <h2>6. Com quem compartilhamos</h2>
+      <p>
+        Apenas com prestadores necessários para a operação do site e do atendimento — como hospedagem e
+        serviço de recebimento de formulários —, sempre limitados à finalidade descrita aqui. Também podemos
+        compartilhar dados quando houver obrigação legal ou requisição de autoridade competente.
+      </p>
+
+      <h2>7. Por quanto tempo guardamos</h2>
+      <p>
+        Mensagens de contato são mantidas enquanto durar a conversa comercial e por um período adicional
+        razoável para registro e eventual retomada. Depois disso, são eliminadas ou anonimizadas. Se você
+        pedir a exclusão antes, atendemos — salvo quando houver obrigação legal de retenção.
+      </p>
+
+      <h2>8. Seus direitos</h2>
+      <p>Conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode solicitar:</p>
+      <ul>
+        <li>confirmação de que tratamos seus dados e acesso a eles;</li>
+        <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+        <li>anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>
+        <li>portabilidade a outro fornecedor, nos termos da regulamentação;</li>
+        <li>informação sobre com quem compartilhamos seus dados;</li>
+        <li>revogação do consentimento, a qualquer momento.</li>
+      </ul>
+      <p>
+        Para exercer qualquer um deles, escreva para <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+        Responderemos no menor prazo possível.
+      </p>
+
+      <h2>9. Segurança</h2>
+      <p>
+        Adotamos medidas técnicas e administrativas para proteger os dados: acesso restrito, transporte
+        criptografado (HTTPS) e retenção limitada. Credenciais de sistemas de clientes são tratadas por
+        canais seguros e nunca solicitadas por e-mail ou armazenadas em planilhas.
+      </p>
+
+      <h2>10. Alterações</h2>
+      <p>
+        Esta política pode ser atualizada para refletir mudanças no site ou na legislação. A data da última
+        atualização fica sempre no topo desta página.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,47 @@
+---
+import Arrow from './Arrow.astro';
+import Squiggle from './Squiggle.astro';
+import { CTA } from '../config';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  micro?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string } | null;
+}
+const {
+  eyebrow = 'A próxima etapa da sua presença',
+  title = 'Seu conteúdo já abriu a conversa. Vamos construir o negócio que vem depois?',
+  text = 'Conte para a IMAKERS o que você já construiu, o que oferece e onde a sua operação trava hoje. Vamos identificar o próximo passo mais claro para transformar atenção em uma estrutura própria.',
+  micro = 'Você não precisa chegar com tudo pronto. Basta ter uma presença, uma oferta ou uma oportunidade que merece ser desenvolvida.',
+  primary = { label: 'Quero começar meu IMAKERS Discovery', href: '/contato' },
+  secondary = CTA.quiz,
+} = Astro.props;
+---
+<section class="band section--plum" data-theme="dark" aria-labelledby="band-title">
+  <Squiggle class="band__deco" animate color="color-mix(in srgb, var(--accent) 28%, transparent)" />
+  <div class="wrap band__inner reveal">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2 id="band-title">{title}</h2>
+    <p class="lede lede--wide">{text}</p>
+    <div class="btn-row band__row">
+      <a href={primary.href} class="btn btn--lg">{primary.label}<Arrow /></a>
+      {secondary && <a href={secondary.href} class="btn btn--lg btn--ghost">{secondary.label}</a>}
+    </div>
+    {micro && <p class="subtle band__micro">{micro}</p>}
+  </div>
+</section>
+
+<style>
+  .band { position: relative; overflow: hidden; padding-block: clamp(4rem, 2.5rem + 7vw, 8rem); }
+  .band__deco {
+    position: absolute; inset-inline: -8%; top: 50%; translate: 0 -50%;
+    width: 116%; height: auto; opacity: 0.55; pointer-events: none;
+  }
+  .band__inner { position: relative; max-width: 52rem; display: grid; gap: var(--sp-5); }
+  .band__inner h2 { font-size: var(--step-4); }
+  .band__row { margin-top: var(--sp-2); }
+  .band__micro { max-width: 46ch; }
+</style>

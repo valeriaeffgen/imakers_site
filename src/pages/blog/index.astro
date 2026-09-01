@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Arrow from '../../components/Arrow.astro';
+import { getCollection } from 'astro:content';
+import { itemListSchema } from '../../data/schema';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const [destaque, ...resto] = posts;
+const categorias = [...new Set(posts.map((p) => p.data.category))];
+const fmt = (d: Date) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+const crumbs = [{ name: 'Blog', href: '/blog' }];
+---
+<Base
+  title="Blog IMAKERS — ideias para transformar atenção em operação"
+  description="Artigos sobre presença digital, ativos próprios, conversão, pagamentos e operação de ecossistemas digitais. Sem fórmula, sem promessa de faturamento garantido."
+  path="/blog"
+  image="/og/blog.png"
+  breadcrumbs={crumbs}
+  schema={[
+    { '@type': 'Blog', name: 'Blog IMAKERS', description: 'Ideias para transformar atenção em operação própria.' },
+    itemListSchema('Artigos do blog IMAKERS', posts.map((p) => ({ name: p.data.title, url: `/blog/${p.id}`, description: p.data.description }))),
+  ]}
+>
+  <PageHero
+    eyebrow="Blog IMAKERS"
+    title="Ideias para transformar atenção em operação própria."
+    lede="Escrevemos sobre o que acontece depois do clique: estrutura, ativos, conversão, pagamentos e operação. Sem fórmula, sem urgência artificial e sem promessa de faturamento garantido."
+    crumbs={crumbs}
+  >
+    <ul role="list" class="cats">
+      {categorias.map((c) => <li class="pill">{c}</li>)}
+    </ul>
+  </PageHero>
+
+  {destaque && (
+    <section class="section section--tight" aria-label="Artigo em destaque">
+      <div class="wrap">
+        <article class="feat card card--link reveal">
+          <div class="feat__meta">
+            <span class="pill pill--accent">{destaque.data.category}</span>
+            <time datetime={destaque.data.date.toISOString()}>{fmt(destaque.data.date)}</time>
+          </div>
+          <h2><a href={`/blog/${destaque.id}`} class="card__stretch">{destaque.data.headline ?? destaque.data.title}</a></h2>
+          <p class="feat__desc">{destaque.data.description}</p>
+          <span class="link-arrow">Ler o artigo<Arrow cls="" /></span>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {resto.length > 0 && (
+    <section class="section section--alt" aria-label="Todos os artigos">
+      <div class="wrap">
+        <h2 class="list-title">Mais artigos</h2>
+        <div class="grid grid-3 reveal-stagger">
+          {resto.map((p) => (
+            <article class="card card--link">
+              <div class="feat__meta">
+                <span class="pill">{p.data.category}</span>
+                <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+              </div>
+              <h3><a href={`/blog/${p.id}`} class="card__stretch">{p.data.headline ?? p.data.title}</a></h3>
+              <p>{p.data.description}</p>
+            </article>
+          ))}
+        </div>
+        <p class="rss">
+          <a href="/rss.xml" class="link-arrow">Assinar por RSS<Arrow cls="" /></a>
+        </p>
+      </div>
+    </section>
+  )}
+
+  <CtaBand
+    eyebrow="Do texto à estrutura"
+    title="Ler ajuda. Construir resolve."
+    text="Se algum destes temas descreve o seu gargalo, o Discovery é a conversa que transforma leitura em plano."
+    primary={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
+  />
+</Base>
+
+<style>
+  .cats { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin-top: var(--sp-3); }
+  .feat { gap: var(--sp-4); }
+  .feat h2 { font-size: var(--step-3); }
+  .feat h2 a, .card h3 a { text-decoration: none; }
+  .feat__desc { font-size: var(--step-1) !important; line-height: 1.5 !important; max-width: 54ch; }
+  .feat__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); font-size: var(--step--2); color: var(--fg-subtle); }
+  .list-title { font-size: var(--step-2); margin-bottom: var(--sp-6); }
+  .rss { margin-top: var(--sp-6); }
+</style>

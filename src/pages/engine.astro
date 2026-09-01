@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { ENGINE_FRENTES, FAIXAS } from '../data/content';
+import { serviceSchema, faqSchema } from '../data/schema';
+
+const crumbs = [{ name: 'Método', href: '/metodo' }, { name: 'Engine', href: '/engine' }];
+
+const metricas = [
+  { g: 'Aquisição', i: 'Visitas, autoleituras concluídas e conversas iniciadas.' },
+  { g: 'Ativação', i: 'Site publicado, primeiro ativo no ar e captura funcionando.' },
+  { g: 'Engine', i: 'Ativos publicados, acessos, cliques, cadastros e conversões.' },
+  { g: 'Recorrência', i: 'Renovação, cancelamentos e expansão da operação.' },
+];
+
+const faq = [
+  {
+    q: 'O Engine é suporte técnico?',
+    a: 'Não. O Engine não é suporte indefinido: é uma operação de ativos próprios e ponte editorial, com entregas definidas por ciclo. Manutenção técnica entra no escopo, mas não é o produto.',
+  },
+  {
+    q: 'A quantidade de ativos é sempre a mesma?',
+    a: 'A quantidade pode variar conforme a complexidade. Um artigo simples, uma landing page, um quiz com lógica e um e-book não consomem a mesma capacidade — por isso o escopo trabalha com categorias de ativos, não com uma contagem única de "posts".',
+  },
+  {
+    q: 'O Engine publica nas minhas redes?',
+    a: 'Nunca. O Engine entrega a ponte editorial: temas, chamadas, CTAs, links e destinos para você publicar no seu estilo. A criação de arte, a publicação e a interação com a comunidade continuam sendo suas.',
+  },
+  {
+    q: 'O que o Engine acompanha em uma operação que vende?',
+    a: 'Nas faixas Commerce e Recurring, o Engine acompanha catálogo, páginas de oferta, pedidos, eventos de pagamento, reembolsos, ciclo de assinaturas, status de acesso e o relatório de conciliação operacional.',
+  },
+  {
+    q: 'Existe um ciclo mínimo?',
+    a: 'Sim. O Engine trabalha com um ciclo inicial de validação, contado a partir da publicação da base própria. É o tempo mínimo para que os ativos comecem a produzir leitura útil.',
+  },
+];
+---
+<Base
+  title="IMAKERS Engine — a operação contínua do seu ecossistema"
+  description="A etapa recorrente do método IMAKERS: ativos próprios, ponte editorial, leitura de dados, manutenção e acompanhamento de pedidos e assinaturas."
+  path="/engine"
+  image="/og/engine.png"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: 'IMAKERS Engine',
+      description:
+        'Operação contínua do ecossistema próprio: ativos editoriais e funcionais, ponte editorial, análise de dados, manutenção e acompanhamento financeiro conforme a faixa.',
+      path: '/engine',
+      serviceType: 'Operação contínua de ecossistema digital próprio',
+      offers: ENGINE_FRENTES.map((f) => f.frente),
+    }),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="Etapa 3 do circuito"
+    title="IMAKERS Engine:<br />fazer o negócio continuar evoluindo."
+    lede="O trabalho não termina quando o site entra no ar. O Engine mantém e desenvolve os ativos próprios, observa o comportamento da operação, acompanha oportunidades e ajusta o que impede a jornada de avançar."
+    crumbs={crumbs}
+    cta={{ label: 'Ativar o IMAKERS Engine', href: '/contato' }}
+    secondary={{ label: 'Ver os ativos próprios', href: '/ativos-proprios' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="frentes">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="O que acontece a cada ciclo"
+        title="Sete frentes com entrega definida."
+        lede="O Engine não é uma mensalidade genérica. Cada frente tem uma entrega-base, para que você saiba exatamente o que está contratando."
+      />
+      <p class="visually-hidden" id="frentes">Frentes de trabalho do Engine</p>
+      <div class="table-scroll reveal efr">
+        <table>
+          <thead><tr><th scope="col">Frente</th><th scope="col">Entrega-base do ciclo</th></tr></thead>
+          <tbody>
+            {ENGINE_FRENTES.map((f) => (
+              <tr><th scope="row">{f.frente}</th><td>{f.entrega}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" data-theme="dark" aria-labelledby="porfaixa">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="O Engine muda com a faixa"
+        title="Mensalidade não significa suporte geral. Significa capacidade operacional delimitada."
+        lede="O que o Engine opera depende do que o seu ecossistema faz. Um blog e uma operação de assinaturas não exigem o mesmo trabalho."
+      />
+      <p class="visually-hidden" id="porfaixa">Escopo do Engine por faixa</p>
+      <div class="grid grid-3 reveal-stagger efaixas">
+        {FAIXAS.map((f) => (
+          <article class="card">
+            <span class="pill pill--accent">Complexidade {f.complexidade}</span>
+            <h3>{f.nome}</h3>
+            <p>{f.engine}</p>
+          </article>
+        ))}
+      </div>
+      <p class="reveal center-link">
+        <a href="/solucoes" class="link-arrow">Comparar as faixas em detalhe<Arrow cls="" /></a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="metricas">
+    <div class="wrap two-col">
+      <div class="two-col__copy">
+        <p class="eyebrow">O que medimos</p>
+        <h2 id="metricas">Nossas métricas não são seguidores nem alcance.</h2>
+        <p class="lede lede--wide">
+          O foco está no ecossistema próprio: o que as pessoas fazem depois do clique. A métrica que conecta
+          tudo é o tempo entre o Discovery e o primeiro ativo publicado.
+        </p>
+        <p class="muted">
+          Um relatório sem execução não é a transformação prometida. Por isso o Engine entrega ativo no ar,
+          não apresentação de slides.
+        </p>
+      </div>
+      <div class="panel reveal">
+        <ul role="list" class="metricas">
+          {metricas.map((m) => (
+            <li>
+              <strong>{m.g}</strong>
+              <span>{m.i}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="efaq">
+    <div class="wrap-narrow prose">
+      <h2 id="efaq">Perguntas frequentes sobre o Engine</h2>
+      {faq.map((f) => (
+        <div>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+      <p>
+        Se a sua operação ainda não passou pelo <a href="/discovery">Discovery</a> ou pelo
+        <a href="/launch"> Launch</a>, o Engine vem depois. Ele opera o que já existe.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Etapa 3"
+    title="Um ecossistema que acumula conhecimento, ativos e possibilidades de receita."
+    text="O Engine é o que impede a sua base própria de virar mais um site parado. Vamos conversar sobre o ciclo que faz sentido para o seu negócio."
+    primary={{ label: 'Ativar o IMAKERS Engine', href: '/contato' }}
+    secondary={{ label: 'Ver o catálogo de ativos', href: '/ativos-proprios' }}
+  />
+</Base>
+
+<style>
+  .efr, .efaixas { margin-top: var(--sp-7); }
+  .center-link { margin-top: var(--sp-6); }
+  .two-col { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: center; }
+  @media (min-width: 62em) { .two-col { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .two-col__copy { display: grid; gap: var(--sp-4); }
+  .panel { padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+  .metricas { list-style: none; padding: 0; display: grid; gap: var(--sp-4); }
+  .metricas li { display: grid; gap: 0.2rem; padding-bottom: var(--sp-4); border-bottom: 1px solid var(--line); }
+  .metricas li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .metricas strong { font-family: var(--font-display); font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  .metricas span { color: var(--fg-muted); font-size: var(--step--1); }
+</style>

@@ -1,0 +1,439 @@
+---
+import Base from '../layouts/Base.astro';
+import Bridge from '../components/Bridge.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import Arrow from '../components/Arrow.astro';
+import Squiggle from '../components/Squiggle.astro';
+import { SINAIS, PILARES, METODO, PERFIS, FRONTEIRA, NECESSIDADES, PROCESSO, FAQ } from '../data/content';
+import { faqSchema, serviceSchema, howToSchema } from '../data/schema';
+import { SITE } from '../config';
+
+const schema = [
+  serviceSchema({
+    name: 'IMAKERS Discovery, Launch e Engine',
+    description:
+      'Circuito de transformação de presença digital em operação própria: leitura estratégica, construção do ecossistema e operação contínua de ativos, ferramentas e dados.',
+    path: '/',
+    serviceType: 'Desenvolvimento de presença digital e operação de ecossistema próprio',
+    offers: ['IMAKERS Discovery', 'IMAKERS Launch', 'IMAKERS Engine', 'Ativos próprios', 'Integração de pagamentos'],
+  }),
+  howToSchema({
+    name: 'Como transformar uma presença digital em negócio',
+    description: 'O circuito da IMAKERS em três etapas: Discovery, Launch e Engine.',
+    steps: METODO.map((m) => ({ name: m.nome, text: `${m.frase} ${m.texto}` })),
+  }),
+  faqSchema(FAQ),
+];
+---
+<Base
+  title={`IMAKERS | ${SITE.promiseAccented}`}
+  description={SITE.description}
+  path="/"
+  image="/og/default.png"
+  schema={schema}
+>
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow">Da atenção à operação própria</p>
+        <h1>
+          Transformamos sua presença digital em <span class="underline-squiggle">negócio</span>.
+        </h1>
+        <p class="lede lede--wide">
+          Você já construiu uma audiência. Agora precisa de um lugar próprio para aprofundar a relação,
+          apresentar suas ofertas, capturar oportunidades e criar uma operação que não dependa apenas do
+          alcance de uma rede social.
+        </p>
+        <div class="btn-row hero__row">
+          <a href="/contato" class="btn btn--lg">Quero começar pelo Discovery<Arrow /></a>
+          <a href="/metodo" class="btn btn--lg btn--ghost">Entender como funciona</a>
+        </div>
+        <p class="subtle hero__micro">
+          Sem terceirizar sua voz. Sem transformar sua rede social em uma linha de produção.
+          <strong>A IMAKERS constrói a estrutura que acontece depois do clique.</strong>
+        </p>
+      </div>
+      <div class="hero__visual">
+        <Bridge />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEMA ================= -->
+  <section class="section section--alt" aria-labelledby="problema">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="O diagnóstico"
+        title="A audiência existe.<br />A operação ainda não."
+        lede="Muita gente produz conteúdo, conversa com o público e gera interesse todos os dias. Mas, quando chega a hora de aprofundar a relação, vender, organizar contatos ou acompanhar uma oportunidade, tudo volta para mensagens dispersas, links soltos e processos manuais."
+      />
+      <p class="sr-title visually-hidden" id="problema">Sinais de que falta uma operação própria</p>
+
+      <ul role="list" class="signals grid grid-4 reveal-stagger">
+        {SINAIS.map((s, i) => (
+          <li class="card signal">
+            <span class="card__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.situacao}</h3>
+            <p><span class="signal__falta">O que falta:</span> {s.falta}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="pull reveal">
+        A IMAKERS existe para construir a camada que falta <em>entre a atenção e o negócio</em>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= DIFERENCIAÇÃO ================= -->
+  <section class="section section--dark" data-theme="dark" aria-labelledby="dif">
+    <div class="wrap dif">
+      <div class="dif__copy">
+        <p class="eyebrow">A fronteira</p>
+        <h2 id="dif">Não somos uma agência de rede social.</h2>
+        <p class="lede lede--wide">
+          A sua rede social tem uma voz, um ritmo e uma relação que foram construídos por você. Essa parte
+          não deve ser terceirizada para uma operação que tenta transformar tudo em volume.
+        </p>
+        <p class="lede lede--wide">
+          A IMAKERS trabalha no outro lado da ponte: cria o site, os ativos próprios, as ferramentas, os
+          caminhos de conversão e a operação que recebe as pessoas que você conduz a partir das suas redes.
+        </p>
+        <p class="dif__quote">Você continua sendo a voz da sua rede.<br />A IMAKERS constrói o negócio por trás dela.</p>
+        <a href="/contato" class="link-arrow">Quero construir o que vem depois do clique<Arrow cls="" /></a>
+      </div>
+
+      <div class="dif__table reveal">
+        <table>
+          <caption>Onde termina o seu trabalho e onde começa o nosso.</caption>
+          <thead>
+            <tr><th scope="col">A IMAKERS não faz</th><th scope="col">A IMAKERS faz</th></tr>
+          </thead>
+          <tbody>
+            {FRONTEIRA.map((f) => (
+              <tr>
+                <td class="no">{f.nao}</td>
+                <td>{f.sim}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= O QUE CONSTRUÍMOS ================= -->
+  <section class="section" aria-labelledby="constroi">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="O que construímos"
+        title="Sua presença digital pode ter uma casa, uma inteligência e um caminho de receita."
+        lede="A IMAKERS combina estratégia, desenvolvimento e operação contínua para transformar uma presença dispersa em um ecossistema próprio."
+      />
+      <p class="visually-hidden" id="constroi">O que a IMAKERS constrói</p>
+
+      <div class="grid grid-2 pilares reveal-stagger">
+        {PILARES.map((p) => (
+          <article class="card card--link pilar">
+            <span class="card__num">{p.n} — {p.kicker}</span>
+            <h3><a href={p.href} class="card__stretch">{p.titulo}</a></h3>
+            <p>{p.texto}</p>
+            <ul role="list" class="tags">
+              {p.entregas.map((e) => <li>{e}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MÉTODO ================= -->
+  <section class="section section--alt" aria-labelledby="metodo">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Método IMAKERS"
+        title="Três etapas para transformar presença em operação."
+        lede="Discovery encontra a oportunidade. Launch coloca a base no ar. Engine mantém o negócio em movimento."
+      />
+      <p class="visually-hidden" id="metodo">Método IMAKERS</p>
+
+      <ol role="list" class="steps grid grid-3 reveal-stagger">
+        {METODO.map((m) => (
+          <li class="card card--link step">
+            <span class="card__num">{m.etapa}</span>
+            <h3><a href={m.href} class="card__stretch">{m.nome}</a></h3>
+            <p class="step__frase">{m.frase}</p>
+            <p>{m.texto}</p>
+            <p class="step__res"><strong>Resultado:</strong> {m.resultado}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="transition reveal">
+        <Squiggle class="transition__sq" animate color="var(--magenta)" />
+        <p>A rede social traz a atenção. A IMAKERS constrói o que acontece depois.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARA QUEM É ================= -->
+  <section class="section" aria-labelledby="perfis">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Para quem é"
+        title="Para quem já tem algo para dizer — e agora precisa de uma estrutura para crescer."
+      />
+      <p class="visually-hidden" id="perfis">Perfis atendidos</p>
+
+      <div class="grid grid-4 reveal-stagger">
+        {PERFIS.map((p) => (
+          <article class="card perfil">
+            <span class="pill pill--accent">{p.faixa}</span>
+            <h3>{p.nome}</h3>
+            <p>{p.dor}</p>
+            <ul role="list" class="tags tags--sm">
+              {p.constroi.slice(0, 4).map((c) => <li>{c}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <p class="reveal center-link">
+        <a href="/para-quem-e" class="link-arrow">Ver o que construímos para cada perfil<Arrow cls="" /></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= PONTE EDITORIAL ================= -->
+  <section class="section section--alt" aria-labelledby="ponte">
+    <div class="wrap ponte">
+      <div>
+        <p class="eyebrow">Ponte editorial</p>
+        <h2 id="ponte">A rede continua sendo sua. A ponte fica mais inteligente.</h2>
+        <p class="lede lede--wide">
+          Você não precisa mudar o jeito que construiu sua presença. A IMAKERS organiza o caminho para que
+          os conteúdos publicados por você levem as pessoas a um lugar próprio, com mais contexto, mais
+          profundidade e uma próxima ação clara.
+        </p>
+        <p class="ponte__quote">Não tiramos sua voz da rede. Damos a ela um lugar para continuar.</p>
+      </div>
+      <ul role="list" class="checklist ponte__list reveal">
+        <li>Destinos próprios para cada tema ou campanha.</li>
+        <li>Chamadas e CTAs alinhados ao objetivo da página.</li>
+        <li>Conteúdos de aprofundamento relacionados ao que foi publicado.</li>
+        <li>Formulários e ferramentas para transformar interesse em contato.</li>
+        <li>Links rastreáveis e leitura do que acontece depois do clique.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= TIPOS DE OPERAÇÃO ================= -->
+  <section class="section" aria-labelledby="operacao">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Tipos de operação"
+        title="Comece simples. Evolua quando o negócio pedir."
+        lede="Nem todo negócio precisa começar com pagamentos, assinaturas ou uma plataforma completa. A estrutura cresce conforme a necessidade real aparece."
+      />
+      <p class="visually-hidden" id="operacao">Tipos de operação que podem ser construídos</p>
+
+      <div class="table-scroll reveal">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Quando você precisa de…</th>
+              <th scope="col">Podemos construir…</th>
+              <th scope="col">Faixa</th>
+            </tr>
+          </thead>
+          <tbody>
+            {NECESSIDADES.map((n) => (
+              <tr>
+                <th scope="row">{n.precisa}</th>
+                <td>{n.constroi}</td>
+                <td><span class="pill">{n.faixa}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="reveal center-link">
+        <a href="/solucoes" class="link-arrow">Descobrir qual estrutura faz sentido para mim<Arrow cls="" /></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= COMO COMEÇAMOS ================= -->
+  <section class="section section--alt" aria-labelledby="comecar">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Como começamos"
+        title="O primeiro passo não é escolher uma ferramenta. É entender a oportunidade."
+        lede="Na conversa inicial, olhamos para a sua presença atual, a audiência que você já construiu, o que você oferece e o que precisa acontecer depois que alguém demonstra interesse."
+      />
+      <p class="visually-hidden" id="comecar">Como começamos</p>
+
+      <ol role="list" class="process reveal-stagger">
+        {PROCESSO.map((p) => (
+          <li class="process__item">
+            <span class="process__dot" aria-hidden="true"></span>
+            <h3>{p.passo}</h3>
+            <p>{p.o}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= PROVA DE LÓGICA ================= -->
+  <section class="section" aria-labelledby="logica">
+    <div class="wrap-narrow logica reveal">
+      <p class="eyebrow">Sem promessas exageradas</p>
+      <h2 id="logica">Cada presença começa de um lugar diferente. A solução também.</h2>
+      <p class="lede lede--wide">
+        Uma marca autoral pode precisar de uma biblioteca, um guia e uma primeira oferta. Um profissional de
+        serviço pode precisar de avaliação, agenda e uma jornada de decisão. Um negócio digital pode precisar
+        de checkout, acesso e cobrança recorrente.
+      </p>
+      <p class="lede lede--wide">
+        Por isso, a IMAKERS não começa vendendo um pacote igual para todo mundo. Começa entendendo o momento
+        e construindo a próxima camada certa.
+      </p>
+      <blockquote class="logica__quote">
+        Não construímos mais uma presença. Construímos a estrutura de negócio que sua presença está pedindo.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section section--alt" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-wrap">
+      <div class="faq-wrap__head">
+        <p class="eyebrow">Perguntas frequentes</p>
+        <h2 id="faq-title">O que costumam nos perguntar antes de começar.</h2>
+        <p class="muted">
+          Não encontrou sua dúvida? <a href="/contato">Fale com a IMAKERS</a> — respondemos com o contexto do
+          seu negócio, não com um script.
+        </p>
+      </div>
+      <Faq items={FAQ} id="faq-list" />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  /* --- Hero --- */
+  .hero { position: relative; padding-block: clamp(3rem, 2rem + 5vw, 6rem) clamp(3.5rem, 2rem + 6vw, 7rem); overflow: hidden; }
+  .hero__glow {
+    position: absolute; top: -45%; right: -10%;
+    inline-size: min(60rem, 110%); aspect-ratio: 1;
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--magenta) 15%, transparent) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero__inner { position: relative; display: grid; gap: clamp(2.5rem, 1rem + 5vw, 4.5rem); align-items: center; }
+  @media (min-width: 66em) { .hero__inner { grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr); } }
+  .hero__copy { display: grid; gap: var(--sp-5); }
+  .hero h1 { font-size: var(--step-5); max-width: 16ch; }
+  .hero__row { margin-top: var(--sp-2); }
+  .hero__micro { max-width: 48ch; line-height: 1.6; }
+  .hero__micro strong { display: block; margin-top: 0.35em; color: var(--fg); }
+
+  /* --- Sinais --- */
+  .signals { margin-top: var(--sp-7); }
+  .signal h3 { font-size: var(--step-0); font-weight: 650; line-height: 1.35; }
+  .signal__falta { color: var(--accent); font-weight: 600; }
+  .pull {
+    margin-top: var(--sp-7);
+    font-family: var(--font-display); font-size: var(--step-2); font-weight: 500;
+    letter-spacing: -0.02em; line-height: 1.35; max-width: 34ch;
+  }
+  .pull em { font-style: normal; color: var(--accent); }
+
+  /* --- Diferenciação --- */
+  .dif { display: grid; gap: clamp(2.5rem, 1rem + 5vw, 4rem); align-items: start; }
+  @media (min-width: 62em) { .dif { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+  .dif__copy { display: grid; gap: var(--sp-4); }
+  .dif__quote {
+    margin-top: var(--sp-3); padding-left: var(--sp-5);
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-display); font-size: var(--step-1); font-weight: 600;
+    letter-spacing: -0.02em; line-height: 1.35;
+  }
+  .dif__table table { background: transparent; }
+  .dif__table { border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--surface); }
+  .dif__table caption { padding: var(--sp-4) var(--sp-5); color: var(--fg-subtle); }
+  .dif__table td.no { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+
+  /* --- Pilares --- */
+  .pilares { margin-top: var(--sp-7); }
+  .pilar h3 a { text-decoration: none; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; padding: 0; margin-top: auto; padding-top: var(--sp-3); }
+  .tags li {
+    padding: 0.28em 0.7em; font-size: var(--step--2); font-weight: 500;
+    color: var(--fg-muted); background: var(--bg-2); border-radius: var(--r-full);
+  }
+  .tags--sm li { font-size: var(--step--2); }
+
+  /* --- Método --- */
+  .steps { margin-top: var(--sp-7); counter-reset: step; }
+  .step__frase { font-family: var(--font-display); font-weight: 650; color: var(--fg); font-size: var(--step-0); }
+  .step__res { margin-top: auto; padding-top: var(--sp-3); border-top: 1px solid var(--line); font-size: var(--step--2); }
+  .step h3 a { text-decoration: none; }
+
+  .transition { margin-top: var(--sp-8); display: grid; justify-items: center; gap: var(--sp-4); text-align: center; }
+  .transition__sq { width: min(22rem, 70%); }
+  .transition p {
+    font-family: var(--font-display); font-size: var(--step-2); font-weight: 600;
+    letter-spacing: -0.025em; line-height: 1.3; max-width: 24ch;
+  }
+
+  /* --- Perfis --- */
+  .perfil h3 { font-size: var(--step-1); }
+  .center-link { margin-top: var(--sp-6); }
+
+  /* --- Ponte --- */
+  .ponte { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: center; }
+  @media (min-width: 62em) { .ponte { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); } }
+  .ponte > div { display: grid; gap: var(--sp-4); }
+  .ponte__quote {
+    font-family: var(--font-display); font-size: var(--step-1); font-weight: 600;
+    letter-spacing: -0.02em; color: var(--accent); line-height: 1.35;
+  }
+  .ponte__list { padding: var(--sp-6); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .ponte__list li { font-size: var(--step-0); }
+
+  /* --- Processo --- */
+  .process { list-style: none; padding: 0; margin-top: var(--sp-7); display: grid; gap: 0; }
+  @media (min-width: 60em) { .process { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .process__item { position: relative; padding: var(--sp-5) var(--sp-5) var(--sp-5) 0; }
+  @media (min-width: 60em) { .process__item { padding: var(--sp-6) var(--sp-4) 0 0; border-top: 2px solid var(--line); } }
+  @media (max-width: 59.99em) { .process__item { padding-left: var(--sp-6); border-left: 2px solid var(--line); } }
+  .process__dot {
+    position: absolute; inline-size: 0.7rem; block-size: 0.7rem; border-radius: 50%;
+    background: var(--accent);
+  }
+  @media (min-width: 60em) { .process__dot { top: -0.35rem; left: 0; } }
+  @media (max-width: 59.99em) { .process__dot { top: 1.65rem; left: -0.42rem; } }
+  .process__item h3 { font-size: var(--step-0); font-weight: 700; }
+  .process__item p { margin-top: 0.4rem; font-size: var(--step--1); color: var(--fg-muted); line-height: 1.55; }
+
+  /* --- Lógica --- */
+  .logica { display: grid; gap: var(--sp-4); }
+  .logica__quote {
+    margin-top: var(--sp-4); padding: var(--sp-5) var(--sp-6);
+    border-left: 3px solid var(--accent); background: var(--bg-2); border-radius: 0 var(--r-md) var(--r-md) 0;
+    font-family: var(--font-display); font-size: var(--step-2); font-weight: 500;
+    letter-spacing: -0.02em; line-height: 1.35;
+  }
+
+  /* --- FAQ --- */
+  .faq-wrap { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: start; }
+  @media (min-width: 62em) { .faq-wrap { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); } }
+  .faq-wrap__head { display: grid; gap: var(--sp-4); position: sticky; top: 7rem; }
+  .faq-wrap__head a { color: var(--accent); }
+</style>

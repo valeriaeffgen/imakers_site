@@ -1,0 +1,77 @@
+---
+import Seo from '../components/Seo.astro';
+import type { Breadcrumb } from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/fonts.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  breadcrumbs?: Breadcrumb[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
+  schema?: Record<string, unknown>[];
+}
+const props = Astro.props;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#202126" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="Blog IMAKERS" href="/rss.xml" />
+
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/figtree-var-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin />
+
+    <Seo {...props} />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <Header />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer />
+
+    <script is:inline>
+      /* Revela blocos na rolagem. Se o usuario pediu menos animacao, nada roda. */
+      (() => {
+        const targets = document.querySelectorAll('.reveal, .reveal-stagger, .squiggle--draw');
+        if (!targets.length) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+          targets.forEach((el) => el.classList.add('is-in'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
+        );
+        targets.forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>

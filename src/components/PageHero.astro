@@ -1,0 +1,56 @@
+---
+import Arrow from './Arrow.astro';
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  crumbs?: { name: string; href: string }[];
+  cta?: { label: string; href: string } | null;
+  secondary?: { label: string; href: string } | null;
+}
+const { eyebrow, title, lede, crumbs = [], cta = null, secondary = null } = Astro.props;
+---
+<section class="phero">
+  <div class="phero__glow" aria-hidden="true"></div>
+  <div class="wrap phero__inner">
+    {crumbs.length > 0 && (
+      <nav class="crumbs" aria-label="Você está aqui">
+        <ol role="list">
+          <li><a href="/">Início</a></li>
+          {crumbs.map((c) => <li><a href={c.href}>{c.name}</a></li>)}
+        </ol>
+      </nav>
+    )}
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 set:html={title} />
+    <p class="lede lede--wide phero__lede">{lede}</p>
+    {(cta || secondary) && (
+      <div class="btn-row phero__row">
+        {cta && <a href={cta.href} class="btn btn--lg">{cta.label}<Arrow /></a>}
+        {secondary && <a href={secondary.href} class="btn btn--lg btn--ghost">{secondary.label}</a>}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .phero { position: relative; padding-block: clamp(3rem, 2rem + 5vw, 6rem) clamp(2.5rem, 1.5rem + 4vw, 4.5rem); overflow: hidden; }
+  .phero__glow {
+    position: absolute; top: -35%; left: 50%; translate: -50% 0;
+    inline-size: min(70rem, 130%); aspect-ratio: 2 / 1;
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--magenta) 13%, transparent) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .phero__inner { position: relative; max-width: 56rem; display: grid; gap: var(--sp-4); }
+  .phero h1 { font-size: var(--step-4); }
+  .phero__lede { font-size: var(--step-1); max-width: 54ch; }
+  .phero__row { margin-top: var(--sp-3); }
+
+  .crumbs { margin-bottom: var(--sp-2); }
+  .crumbs ol { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; font-size: var(--step--2); color: var(--fg-subtle); }
+  .crumbs li + li::before { content: '/'; margin-right: 0.5rem; opacity: 0.5; }
+  .crumbs a { color: inherit; text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); }
+  .crumbs li:last-child a { color: var(--fg-muted); }
+</style>

@@ -1,0 +1,278 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import Squiggle from '../components/Squiggle.astro';
+import { MOMENTOS, PROCESSO } from '../data/content';
+import { SITE } from '../config';
+
+const crumbs = [{ name: 'Contato', href: '/contato' }];
+
+/**
+ * Sem endpoint configurado, o formulario usa Netlify Forms (atributo
+ * data-netlify). Preencha SITE.formEndpoint em src/config.ts para enviar
+ * para Formspree, Basin, n8n ou uma API propria.
+ */
+const usaNetlify = !SITE.formEndpoint;
+const action = SITE.formEndpoint || '/obrigado';
+---
+<Base
+  title="Fale com a IMAKERS — solicite uma conversa de Discovery"
+  description="Conte o que você já construiu, o que oferece e onde a operação trava hoje. Vamos identificar o próximo passo para transformar atenção em uma estrutura própria."
+  path="/contato"
+  image="/og/contato.png"
+  breadcrumbs={crumbs}
+  schema={[
+    {
+      '@type': 'ContactPage',
+      name: 'Contato IMAKERS',
+      description: 'Solicitação de conversa de Discovery.',
+    },
+  ]}
+>
+  <section class="c-hero">
+    <div class="c-hero__glow" aria-hidden="true"></div>
+    <div class="wrap c-grid">
+      <div class="c-copy">
+        <nav class="crumbs" aria-label="Você está aqui">
+          <ol role="list"><li><a href="/">Início</a></li><li><a href="/contato">Contato</a></li></ol>
+        </nav>
+        <p class="eyebrow">A próxima etapa da sua presença</p>
+        <h1>Vamos entender o que pode ser construído.</h1>
+        <p class="lede lede--wide">
+          Conte para a IMAKERS o que você já construiu, o que oferece e onde a sua operação trava hoje. Vamos
+          identificar o próximo passo mais claro para transformar atenção em uma estrutura própria.
+        </p>
+        <p class="c-micro">
+          Você não precisa chegar com tudo pronto. Basta ter uma presença, uma oferta ou uma oportunidade que
+          merece ser desenvolvida.
+        </p>
+
+        <div class="c-steps">
+          <h2 class="c-steps__title">O que acontece depois</h2>
+          <ol role="list">
+            {PROCESSO.map((p) => (
+              <li><strong>{p.passo}</strong><span>{p.o}</span></li>
+            ))}
+          </ol>
+        </div>
+
+        <Squiggle class="c-deco" animate color="color-mix(in srgb, var(--magenta) 32%, transparent)" />
+      </div>
+
+      <div class="c-form-wrap">
+        <form
+          class="c-form"
+          name="discovery"
+          method="POST"
+          action={action}
+          data-form
+          {...usaNetlify ? { 'data-netlify': 'true', 'netlify-honeypot': 'empresa-site' } : {}}
+        >
+          {usaNetlify && <input type="hidden" name="form-name" value="discovery" />}
+          {/* Campo-armadilha invisível: humanos não preenchem, robôs sim. */}
+          <p class="c-hp" aria-hidden="true">
+            <label>Não preencha este campo <input name="empresa-site" tabindex="-1" autocomplete="off" /></label>
+          </p>
+          {/* Preenchidos pela autoleitura, quando a pessoa vem de lá. */}
+          <input type="hidden" name="faixa-sugerida" data-prefill-faixa value="" />
+          <input type="hidden" name="origem" data-prefill-origem value="direto" />
+
+          <p class="c-note" data-quiz-note hidden>
+            <span class="pill pill--accent" data-quiz-note-text></span>
+          </p>
+
+          <div class="field">
+            <label for="nome">Nome <span class="req" aria-hidden="true">*</span></label>
+            <input id="nome" name="nome" type="text" required autocomplete="name" placeholder="Como podemos te chamar" />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="email">E-mail <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="voce@exemplo.com" />
+            </div>
+            <div class="field">
+              <label for="whatsapp">WhatsApp <span class="req" aria-hidden="true">*</span></label>
+              <input id="whatsapp" name="whatsapp" type="tel" required autocomplete="tel" placeholder="(00) 00000-0000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="link">Site ou rede principal</label>
+            <input id="link" name="link" type="text" inputmode="url" placeholder="Cole o link do seu site ou da sua rede principal" />
+            <p class="hint">Opcional, mas ajuda muito: é por onde começamos a leitura.</p>
+          </div>
+
+          <div class="field">
+            <label for="oferta">O que você oferece? <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="oferta" name="oferta" rows="3" required placeholder="Serviço, produto, conhecimento, programa…"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="depois">
+              O que você gostaria que acontecesse depois que alguém encontra você?
+              <span class="req" aria-hidden="true">*</span>
+            </label>
+            <textarea id="depois" name="depois" rows="3" required placeholder="Deixar um contato, agendar, comprar, assinar…"></textarea>
+          </div>
+
+          <fieldset class="field">
+            <legend>Em que momento está? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="c-radios">
+              {MOMENTOS.map((m, i) => (
+                <label class="c-radio">
+                  <input type="radio" name="momento" value={m} required={i === 0} />
+                  <span><span class="c-radio__mark" aria-hidden="true"></span>{m}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <label class="c-consent">
+            <input type="checkbox" name="consentimento" required />
+            <span>
+              Autorizo a IMAKERS a usar estas informações para preparar a conversa inicial, conforme a
+              <a href="/politica-de-privacidade"> política de privacidade</a>.
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn--lg c-submit">
+            Solicitar conversa de Discovery<Arrow />
+          </button>
+
+          <p class="c-support">
+            Suas informações serão usadas apenas para entender o contexto da sua operação e preparar a conversa
+            inicial.
+          </p>
+          <p class="c-error" data-form-error hidden role="alert">
+            Não conseguimos enviar agora. Tente novamente ou fale conosco por outro canal.
+          </p>
+        </form>
+
+        {SITE.email && (
+          <p class="c-alt">
+            Prefere e-mail? <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  (() => {
+    /* Traz o resultado da autoleitura para o formulário, quando existir. */
+    const params = new URLSearchParams(location.search);
+    const faixa = params.get('faixa');
+    const origem = params.get('origem');
+    const NOMES = { base: 'Base', capture: 'Capture', commerce: 'Commerce', recurring: 'Recurring' };
+
+    if (faixa && NOMES[faixa]) {
+      const f = document.querySelector('[data-prefill-faixa]');
+      const o = document.querySelector('[data-prefill-origem]');
+      const note = document.querySelector('[data-quiz-note]');
+      const noteText = document.querySelector('[data-quiz-note-text]');
+      if (f) f.value = faixa;
+      if (o) o.value = origem || 'autoleitura';
+      if (note && noteText) {
+        noteText.textContent = 'Autoleitura concluída — faixa sugerida: IMAKERS ' + NOMES[faixa];
+        note.hidden = false;
+      }
+      const momento = { base: 0, capture: 2, commerce: 3, recurring: 4 }[faixa];
+      const radios = document.querySelectorAll('input[name="momento"]');
+      if (radios[momento]) radios[momento].checked = true;
+    }
+
+    /* Mostra o aviso de erro se o envio falhar, em vez de deixar a pessoa no vazio. */
+    const form = document.querySelector('[data-form]');
+    form?.addEventListener('submit', () => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Preparando o próximo passo…'; }
+      setTimeout(() => {
+        if (btn) { btn.disabled = false; btn.textContent = 'Solicitar conversa de Discovery'; }
+      }, 8000);
+    });
+  })();
+</script>
+
+<style>
+  .c-hero { position: relative; padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) clamp(3rem, 2rem + 5vw, 6rem); overflow: hidden; }
+  .c-hero__glow {
+    position: absolute; top: -40%; right: -5%;
+    inline-size: min(52rem, 110%); aspect-ratio: 1;
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--magenta) 14%, transparent) 0%, transparent 62%);
+  }
+  .c-grid { position: relative; display: grid; gap: clamp(2.5rem, 1.5rem + 5vw, 5rem); align-items: start; }
+  @media (min-width: 64em) { .c-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); } }
+
+  .c-copy { display: grid; gap: var(--sp-4); }
+  .c-copy h1 { font-size: var(--step-4); }
+  .c-micro { font-size: var(--step--1); color: var(--fg-subtle); max-width: 46ch; }
+  .crumbs ol { display: flex; gap: 0.5rem; list-style: none; padding: 0; font-size: var(--step--2); color: var(--fg-subtle); }
+  .crumbs li + li::before { content: '/'; margin-right: 0.5rem; opacity: 0.5; }
+  .crumbs a { color: inherit; text-decoration: none; }
+
+  .c-steps { margin-top: var(--sp-4); padding-top: var(--sp-5); border-top: 1px solid var(--line); }
+  .c-steps__title { font-family: var(--font-display); font-size: var(--step--2); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--sp-4); }
+  .c-steps ol { list-style: none; padding: 0; display: grid; gap: var(--sp-3); }
+  .c-steps li { display: grid; gap: 0.1rem; font-size: var(--step--1); }
+  .c-steps strong { font-family: var(--font-display); font-weight: 650; }
+  .c-steps span { color: var(--fg-muted); }
+  .c-deco { width: min(16rem, 60%); margin-top: var(--sp-6); }
+
+  .c-form-wrap { display: grid; gap: var(--sp-4); }
+  .c-form {
+    display: grid; gap: var(--sp-5);
+    padding: clamp(1.5rem, 1rem + 3vw, 2.75rem);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-xl); box-shadow: var(--shadow-lg);
+  }
+  .c-hp { position: absolute; left: -9999px; }
+  .c-note { margin: 0; }
+
+  .field { display: grid; gap: 0.45rem; border: 0; padding: 0; margin: 0; }
+  .field-row { display: grid; gap: var(--sp-5); }
+  @media (min-width: 34em) { .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .field label, .field legend {
+    font-family: var(--font-display); font-size: var(--step--1); font-weight: 650;
+    letter-spacing: -0.005em; padding: 0;
+  }
+  .req { color: var(--accent); }
+  .hint { font-size: var(--step--2); color: var(--fg-subtle); }
+
+  input[type='text'], input[type='email'], input[type='tel'], textarea {
+    inline-size: 100%; padding: 0.8rem 0.95rem;
+    background: var(--bg); border: 1px solid var(--line-strong); border-radius: var(--r-md);
+    font-size: var(--step-0); line-height: 1.4; resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  }
+  input::placeholder, textarea::placeholder { color: var(--fg-subtle); }
+  input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: var(--ring); background: var(--surface); }
+  input:user-invalid, textarea:user-invalid { border-color: #c0392b; }
+
+  .c-radios { display: grid; gap: 0.4rem; margin-top: 0.3rem; }
+  .c-radio input { position: absolute; opacity: 0; pointer-events: none; }
+  .c-radio > span {
+    display: grid; grid-template-columns: auto 1fr; gap: 0.7rem; align-items: start;
+    padding: 0.7rem 0.9rem; cursor: pointer;
+    border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg);
+    font-size: var(--step--1); line-height: 1.45;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+  .c-radio > span:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .c-radio__mark { margin-top: 0.2em; inline-size: 0.95rem; block-size: 0.95rem; border-radius: 50%; border: 2px solid var(--line-strong); transition: border-color 0.2s, box-shadow 0.2s; }
+  .c-radio input:checked + span { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--bg)); }
+  .c-radio input:checked + span .c-radio__mark { border-color: var(--accent); box-shadow: inset 0 0 0 3px var(--accent); }
+  .c-radio input:focus-visible + span { box-shadow: var(--ring); }
+
+  .c-consent { display: grid; grid-template-columns: auto 1fr; gap: 0.7rem; align-items: start; font-size: var(--step--2); color: var(--fg-muted); line-height: 1.55; }
+  .c-consent input { margin-top: 0.25em; accent-color: var(--magenta); inline-size: 1rem; block-size: 1rem; }
+  .c-consent a { color: var(--accent); }
+
+  .c-submit { justify-self: start; }
+  .c-submit:disabled { opacity: 0.6; cursor: progress; }
+  .c-support { font-size: var(--step--2); color: var(--fg-subtle); line-height: 1.55; }
+  .c-error { font-size: var(--step--1); color: #c0392b; }
+  .c-alt { font-size: var(--step--1); color: var(--fg-muted); text-align: center; }
+  .c-alt a { color: var(--accent); }
+</style>

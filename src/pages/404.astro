@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import Squiggle from '../components/Squiggle.astro';
+import { NAV } from '../config';
+---
+<Base
+  title="Página não encontrada"
+  description="Esta parte da operação ainda está sendo construída — ou mudou de endereço."
+  path="/404"
+  noindex
+>
+  <section class="section nf">
+    <div class="wrap-narrow nf__inner">
+      <Squiggle class="nf__sq" animate color="var(--magenta)" />
+      <p class="eyebrow">Erro 404</p>
+      <h1>Esta parte da operação ainda está sendo construída.</h1>
+      <p class="lede lede--wide">
+        O endereço que você abriu não existe ou mudou de lugar. Abaixo estão os caminhos principais do site.
+      </p>
+      <ul role="list" class="nf__links">
+        {NAV.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href="/contato">Contato</a></li>
+      </ul>
+      <div class="btn-row nf__row">
+        <a href="/" class="btn btn--lg">Voltar para o início<Arrow /></a>
+        <a href="/autoleitura" class="btn btn--lg btn--ghost">Fazer a autoleitura</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { padding-block: clamp(4rem, 2.5rem + 7vw, 8rem); }
+  .nf__inner { display: grid; gap: var(--sp-4); justify-items: center; text-align: center; }
+  .nf__sq { width: min(16rem, 55%); margin-bottom: var(--sp-3); }
+  .nf h1 { font-size: var(--step-3); max-width: 20ch; }
+  .nf .lede { margin-inline: auto; }
+  .nf__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; list-style: none; padding: 0; margin-top: var(--sp-4); }
+  .nf__links a { display: inline-block; padding: 0.45em 1em; border: 1px solid var(--line-strong); border-radius: var(--r-full); font-size: var(--step--1); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .nf__links a:hover { border-color: var(--accent); color: var(--accent); }
+  .nf__row { margin-top: var(--sp-5); justify-content: center; }
+</style>

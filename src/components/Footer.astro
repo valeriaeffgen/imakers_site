@@ -1,0 +1,69 @@
+---
+import Logo from './Logo.astro';
+import Squiggle from './Squiggle.astro';
+import { SITE, FOOTER_NAV, CTA } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="ft" data-theme="dark">
+  <div class="wrap">
+    <div class="ft__top">
+      <div class="ft__brand">
+        <Logo size="1.8rem" />
+        <p class="ft__promise">{SITE.promiseAccented}</p>
+        <p class="ft__frase">A rede social traz a atenção.<br />A IMAKERS constrói o que acontece depois.</p>
+        <a href={CTA.primary.href} class="btn ft__cta">
+          {CTA.primary.label}
+          <svg class="btn__arrow" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+            <path d="M1 5h11M8.5 1.5 12 5 8.5 8.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="ft__cols">
+        {FOOTER_NAV.map((col) => (
+          <nav class="ft__col" aria-label={col.title}>
+            <h2 class="ft__col-title">{col.title}</h2>
+            <ul role="list">
+              {col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+            </ul>
+          </nav>
+        ))}
+      </div>
+    </div>
+
+    <Squiggle class="ft__rule" color="color-mix(in srgb, var(--accent) 55%, transparent)" />
+
+    <div class="ft__bottom">
+      <p>© {year} {SITE.name}. Todos os direitos reservados.</p>
+      <p class="ft__scope">
+        A IMAKERS não opera redes sociais de clientes. Construímos e operamos o ecossistema próprio que recebe essa audiência.
+      </p>
+      {SITE.email && <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>}
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ft { background: var(--night); color: var(--fg); padding-block: clamp(3.5rem, 2rem + 5vw, 6rem) var(--sp-6); }
+  .ft__top { display: grid; gap: var(--sp-8); }
+  @media (min-width: 64em) { .ft__top { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: var(--sp-9); } }
+
+  .ft__brand { display: grid; gap: var(--sp-4); align-content: start; }
+  .ft__promise { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; max-width: 22ch; }
+  .ft__frase { color: var(--fg-subtle); font-size: var(--step--1); line-height: 1.6; }
+  .ft__cta { justify-self: start; margin-top: var(--sp-2); }
+
+  .ft__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-6) var(--sp-5); }
+  @media (min-width: 46em) { .ft__cols { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .ft__col-title { font-family: var(--font-display); font-size: var(--step--2); font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--sp-4); }
+  .ft__col ul { list-style: none; padding: 0; display: grid; gap: 0.65rem; }
+  .ft__col a { color: var(--fg-muted); font-size: var(--step--1); text-decoration: none; transition: color 0.2s; }
+  .ft__col a:hover { color: var(--fg); }
+
+  .ft__rule { width: 100%; height: 1.6rem; margin-block: var(--sp-8) var(--sp-6); opacity: 0.5; }
+
+  .ft__bottom { display: grid; gap: var(--sp-3); font-size: var(--step--2); color: var(--fg-subtle); }
+  @media (min-width: 64em) { .ft__bottom { grid-template-columns: auto 1fr auto; align-items: center; gap: var(--sp-6); } }
+  .ft__scope { max-width: 62ch; line-height: 1.55; }
+  .ft__bottom a { color: var(--fg-muted); }
+</style>

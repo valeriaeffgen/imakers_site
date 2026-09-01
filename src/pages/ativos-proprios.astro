@@ -1,0 +1,157 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { ATIVOS } from '../data/content';
+import { itemListSchema, faqSchema } from '../data/schema';
+
+const crumbs = [{ name: 'O que construímos', href: '/solucoes' }, { name: 'Ativos próprios', href: '/ativos-proprios' }];
+
+const porQue = [
+  { t: 'Não expiram no feed', d: 'Um post vive horas. Um guia bem construído continua sendo encontrado, lido e compartilhado meses depois.' },
+  { t: 'São encontráveis', d: 'Conteúdo em domínio próprio pode ser indexado, buscado e citado. Conteúdo dentro de uma rede pertence à rede.' },
+  { t: 'Capturam contato', d: 'Um ativo próprio pode pedir um cadastro em troca de profundidade — e transformar audiência anônima em base própria.' },
+  { t: 'Acumulam', d: 'Cada ativo novo aumenta o valor dos anteriores: mais entradas, mais links internos, mais caminhos até a oferta.' },
+];
+
+const faq = [
+  {
+    q: 'Qual a diferença entre ativo próprio e post de rede social?',
+    a: 'O post existe dentro de uma plataforma que você não controla, tem vida curta e não gera cadastro. O ativo próprio vive no seu domínio, é encontrável por busca, pode ser atualizado, linkado e usado para capturar contato. A IMAKERS constrói o segundo — o primeiro continua sendo seu.',
+  },
+  {
+    q: 'Vocês escrevem os conteúdos?',
+    a: 'Sim, no escopo do Engine. Produzimos os ativos editoriais e funcionais do ecossistema próprio: artigos, guias, e-books, quizzes, checklists, páginas e newsletters. O que não fazemos é criar arte e publicar nas suas redes.',
+  },
+  {
+    q: 'Quantos ativos entram por ciclo?',
+    a: 'Varia com a complexidade. Um artigo simples, uma landing page, um quiz com lógica e um e-book não consomem a mesma capacidade — por isso o escopo trabalha com categorias de ativos, e não com uma contagem única.',
+  },
+  {
+    q: 'O que é a "ponte editorial"?',
+    a: 'É o material de apoio para você levar a audiência das redes até o site: temas, chamadas, CTAs, links rastreáveis e destinos. Você mantém a autoria e a publicação; a IMAKERS cuida da estrutura que transforma esse interesse em relacionamento.',
+  },
+];
+---
+<Base
+  title="Ativos próprios: blog, quizzes, e-books e guias"
+  description="Conteúdos e ferramentas que continuam trabalhando depois da publicação: artigos, quizzes, e-books, guias e checklists no seu próprio domínio."
+  path="/ativos-proprios"
+  image="/og/ativos-proprios.png"
+  breadcrumbs={crumbs}
+  schema={[
+    itemListSchema('Catálogo de ativos próprios', ATIVOS.map((a) => ({ name: a.cat, url: '/ativos-proprios', description: a.desc }))),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="Ativos próprios"
+    title="Conteúdos que continuam trabalhando<br />depois da publicação."
+    lede="Criamos e organizamos materiais que aprofundam a relação: artigos, guias, e-books, quizzes, avaliações, checklists, bibliotecas e páginas educativas. Tudo no seu domínio, tudo indexável, tudo capaz de capturar contato."
+    crumbs={crumbs}
+    cta={{ label: 'Quero construir meus ativos', href: '/contato' }}
+    secondary={{ label: 'Ver o Engine', href: '/engine' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="porque">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Por que ativo próprio"
+        title="A diferença entre alcance e patrimônio."
+        lede="A palavra “conteúdo”, sozinha, não descreve o que está sendo construído. O que a IMAKERS entrega são ativos editoriais e funcionais do seu ecossistema próprio."
+      />
+      <p class="visually-hidden" id="porque">Por que investir em ativos próprios</p>
+      <div class="grid grid-4 reveal-stagger acards">
+        {porQue.map((p, i) => (
+          <article class="card">
+            <span class="card__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" data-theme="dark" aria-labelledby="catalogo">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Catálogo"
+        title="Seis categorias de ativos."
+        lede="A escolha depende da oportunidade e da jornada do negócio — não de um pacote fixo de entregas mensais."
+      />
+      <p class="visually-hidden" id="catalogo">Catálogo de ativos próprios</p>
+      <div class="grid grid-3 reveal-stagger acards">
+        {ATIVOS.map((a) => (
+          <article class="card">
+            <h3>{a.cat}</h3>
+            <p>{a.desc}</p>
+            <ul role="list" class="tags">{a.ex.map((e) => <li>{e}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="exemplo">
+    <div class="wrap two-col">
+      <div class="two-col__copy">
+        <p class="eyebrow">Um exemplo vivo</p>
+        <h2 id="exemplo">A autoleitura deste site é um ativo próprio.</h2>
+        <p class="lede lede--wide">
+          Ela não é uma demonstração de tecnologia: é exatamente o tipo de ferramenta que construímos para
+          clientes. Um diagnóstico curto que devolve uma resposta útil, qualifica quem está do outro lado e
+          abre uma conversa com contexto.
+        </p>
+        <p class="muted">
+          Um quiz, uma calculadora ou uma avaliação transformam curiosidade em uma resposta personalizada — e
+          em um contato que chega sabendo do que precisa.
+        </p>
+        <div class="btn-row">
+          <a href="/autoleitura" class="btn">Fazer a autoleitura<Arrow /></a>
+          <a href="/blog" class="btn btn--ghost">Ver o blog</a>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <h3 class="panel__title">O que um ativo bem feito entrega</h3>
+        <ul role="list" class="checklist">
+          <li>Uma resposta que a pessoa não conseguiria sozinha.</li>
+          <li>Um motivo legítimo para deixar um contato.</li>
+          <li>Um destino próprio para linkar a partir das redes.</li>
+          <li>Uma página indexável, com título, descrição e dados estruturados.</li>
+          <li>Um caminho claro para o próximo passo da jornada.</li>
+          <li>Dados sobre o que as pessoas realmente procuram.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="afaq">
+    <div class="wrap-narrow prose">
+      <h2 id="afaq">Perguntas frequentes sobre ativos próprios</h2>
+      {faq.map((f) => (<div><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Biblioteca própria"
+    title="Cada ativo publicado aumenta o valor dos anteriores."
+    text="O Engine mantém essa biblioteca crescendo com um ativo de profundidade por ciclo, medido pelo que acontece depois do clique."
+    primary={{ label: 'Quero construir meus ativos', href: '/contato' }}
+    secondary={{ label: 'Conhecer o Engine', href: '/engine' }}
+  />
+</Base>
+
+<style>
+  .acards { margin-top: var(--sp-7); }
+  .acards h3 { font-size: var(--step-1); }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; padding: 0; margin-top: auto; padding-top: var(--sp-3); }
+  .tags li { padding: 0.28em 0.7em; font-size: var(--step--2); font-weight: 500; color: var(--fg-muted); background: var(--bg-2); border-radius: var(--r-full); }
+  .two-col { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: center; }
+  @media (min-width: 62em) { .two-col { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); } }
+  .two-col__copy { display: grid; gap: var(--sp-4); }
+  .panel { padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); display: grid; gap: var(--sp-4); box-shadow: var(--shadow-sm); }
+  .panel__title { font-size: var(--step-1); }
+</style>

@@ -1,0 +1,102 @@
+---
+import Squiggle from './Squiggle.astro';
+
+/**
+ * O diagrama-conceito da IMAKERS: a atencao que o cliente ja construiu de um
+ * lado, o ecossistema proprio do outro, a seta da marca ligando os dois.
+ * E a promessa da empresa desenhada, nao escrita.
+ */
+const origem = ['Instagram', 'YouTube', 'TikTok', 'Indicação', 'Busca'];
+const destino = [
+  { t: 'Site próprio', d: 'A casa que recebe' },
+  { t: 'Ativos próprios', d: 'Blog, guias, quizzes' },
+  { t: 'Ferramentas', d: 'Formulário, checkout, agenda' },
+  { t: 'Dados', d: 'O que acontece depois do clique' },
+];
+---
+<div class="bridge-shell">
+<figure class="bridge" data-theme="dark">
+  <figcaption class="visually-hidden">
+    Diagrama: a atenção vinda das redes sociais do cliente atravessa a ponte construída pela IMAKERS
+    e chega a um ecossistema próprio de site, ativos, ferramentas e dados.
+  </figcaption>
+
+  <div class="bridge__col bridge__col--from">
+    <p class="bridge__label">Continua sendo seu</p>
+    <ul role="list" class="bridge__chips">
+      {origem.map((o) => <li>{o}</li>)}
+    </ul>
+    <p class="bridge__note">Sua voz, seu ritmo, sua comunidade.</p>
+  </div>
+
+  <div class="bridge__link" aria-hidden="true">
+    <Squiggle class="bridge__arrow" animate color="var(--accent)" />
+    <span class="bridge__link-label">IMAKERS</span>
+  </div>
+
+  <div class="bridge__col bridge__col--to">
+    <p class="bridge__label bridge__label--accent">Construímos e operamos</p>
+    <ul role="list" class="bridge__nodes">
+      {destino.map((d) => (
+        <li>
+          <strong>{d.t}</strong>
+          <span>{d.d}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</figure>
+</div>
+
+<style>
+  /* O container e o invólucro: uma query @container so pode estilizar
+     descendentes, nunca o proprio elemento que declara o container. */
+  .bridge-shell { container-type: inline-size; }
+  .bridge {
+    display: grid; gap: var(--sp-5);
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    background: linear-gradient(155deg, #21132a 0%, var(--night) 58%);
+    border: 1px solid #34273c;
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-lg);
+    color: var(--fg);
+    margin: 0;
+  }
+  @container (min-width: 32rem) {
+    .bridge { grid-template-columns: minmax(0, 0.8fr) minmax(3.5rem, 0.5fr) minmax(0, 1.3fr); align-items: start; gap: var(--sp-4); }
+    .bridge__link { align-self: center; }
+  }
+
+  .bridge__label {
+    font-family: var(--font-display); font-size: var(--step--2); font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-subtle);
+    margin-bottom: var(--sp-4); text-wrap: balance;
+  }
+  .bridge__label--accent { color: var(--accent); }
+
+  .bridge__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; }
+  .bridge__chips li {
+    padding: 0.35em 0.75em; font-size: var(--step--2); font-weight: 500;
+    color: var(--fg-muted); border: 1px dashed #40424f; border-radius: var(--r-full);
+  }
+  .bridge__note { margin-top: var(--sp-4); font-size: var(--step--2); color: var(--fg-subtle); line-height: 1.5; }
+
+  .bridge__link { position: relative; display: grid; place-items: center; padding-block: var(--sp-4); }
+  .bridge__arrow { width: 100%; max-width: 12rem; }
+  @container (max-width: 31.99rem) { .bridge__arrow { rotate: 68deg; width: 8rem; } }
+  .bridge__link-label {
+    margin-top: 0.6rem;
+    font-family: var(--font-display); font-size: var(--step--2); font-weight: 700;
+    letter-spacing: 0.22em; text-transform: lowercase; color: var(--fg-subtle);
+  }
+
+  .bridge__nodes { display: grid; gap: 0.5rem; list-style: none; padding: 0; }
+  @container (min-width: 52rem) { .bridge__nodes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .bridge__nodes li {
+    display: grid; gap: 0.15rem;
+    padding: 0.75rem 0.9rem;
+    background: #22232c; border: 1px solid #33353f; border-radius: var(--r-md);
+  }
+  .bridge__nodes strong { font-family: var(--font-display); font-size: var(--step--1); font-weight: 650; }
+  .bridge__nodes span { font-size: var(--step--2); color: var(--fg-subtle); line-height: 1.4; }
+</style>

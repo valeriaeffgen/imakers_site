@@ -1,0 +1,51 @@
+---
+/**
+ * A seta ondulada da marca IMAKERS, isolada como componente.
+ * E o motivo grafico que se repete no site inteiro: logo, divisores de secao,
+ * o diagrama do hero e os marcadores do metodo usam exatamente o mesmo desenho.
+ *
+ * pathLength="100" normaliza o comprimento do traco, entao a animacao de
+ * desenho funciona sem precisar medir o path em JavaScript.
+ */
+interface Props {
+  class?: string;
+  /** Anima o traco sendo desenhado quando o elemento entra na viewport. */
+  animate?: boolean;
+  width?: number | string;
+  color?: string;
+}
+const { class: cls = '', animate = false, width, color = 'currentColor' } = Astro.props;
+const classes = ['squiggle', animate ? 'squiggle--draw' : '', cls].filter(Boolean).join(' ');
+---
+<svg
+  class={classes}
+  viewBox="0 0 100 32"
+  fill="none"
+  width={width}
+  aria-hidden="true"
+  focusable="false"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <g stroke={color} stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      class="squiggle__wave"
+      pathLength="100"
+      d="M3 26C5.5 12 12 6.5 17 9.5s7 15.5 12.5 18C35.5 30 40 12 47 7.5s8 12.5 13.5 16.5C68 29.4 78 20 95 4.5"
+    />
+    <path class="squiggle__head" pathLength="100" d="M75.5 6.5 95 4.5l-6.5 16.5" />
+  </g>
+</svg>
+
+<style>
+  .squiggle { display: block; overflow: visible; }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .squiggle--draw .squiggle__wave,
+    :global(.js) .squiggle--draw .squiggle__head {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+    }
+    :global(.js) .squiggle--draw.is-in .squiggle__wave { animation: squiggle-draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+    :global(.js) .squiggle--draw.is-in .squiggle__head { animation: squiggle-draw 0.45s ease-out 1.05s forwards; }
+    @keyframes squiggle-draw { to { stroke-dashoffset: 0; } }
+  }
+</style>

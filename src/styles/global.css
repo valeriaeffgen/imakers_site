@@ -1,0 +1,311 @@
+/* ==========================================================================
+   IMAKERS — sistema de design
+   Tokens derivados da marca: grafite da tipografia + magenta da seta.
+   Uma unica folha, sem framework: menos CSS entregue, LCP mais rapido.
+   ========================================================================== */
+
+/* --- Reset enxuto ------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, svg, video { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; }
+p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
+:where(ul, ol)[role='list'] { list-style: none; padding: 0; }
+/* `hidden` tem que vencer qualquer display declarado depois. */
+[hidden] { display: none !important; }
+
+/* --- Tokens ------------------------------------------------------------- */
+:root {
+  /* Marca */
+  --magenta: #ec1b8d;
+  --magenta-600: #cf0f79;
+  --magenta-700: #a80c62;
+  --magenta-050: #fdeaf4;
+  --ink: #202126;
+  --ink-800: #34363d;
+  --ink-600: #5c5f6b;
+  --ink-400: #8b8f9c;
+  --night: #131418;
+  --plum: #1d1220;
+
+  /* Superficies (tema claro, padrao) */
+  --bg: #fbf9f8;
+  --bg-2: #f3efed;
+  --surface: #ffffff;
+  --line: #e5dfdc;
+  --line-strong: #d3cbc7;
+  --fg: var(--ink);
+  --fg-muted: var(--ink-600);
+  --fg-subtle: var(--ink-400);
+  --accent: var(--magenta);
+  --accent-contrast: #ffffff;
+
+  /* Tipografia fluida */
+  --font-display: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, monospace;
+
+  --step--2: clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);
+  --step--1: clamp(0.84rem, 0.81rem + 0.15vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.09rem);
+  --step-1:  clamp(1.18rem, 1.11rem + 0.35vw, 1.38rem);
+  --step-2:  clamp(1.42rem, 1.29rem + 0.65vw, 1.86rem);
+  --step-3:  clamp(1.72rem, 1.48rem + 1.15vw, 2.55rem);
+  --step-4:  clamp(2.05rem, 1.66rem + 1.90vw, 3.45rem);
+  --step-5:  clamp(2.45rem, 1.80rem + 3.10vw, 4.60rem);
+
+  /* Ritmo */
+  --sp-1: 0.25rem; --sp-2: 0.5rem;  --sp-3: 0.75rem; --sp-4: 1rem;
+  --sp-5: 1.5rem;  --sp-6: 2rem;    --sp-7: 3rem;    --sp-8: 4rem;
+  --sp-9: 6rem;    --sp-10: 8rem;
+  --wrap: 74rem;
+  --wrap-narrow: 46rem;
+
+  --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 30px; --r-full: 999px;
+  --shadow-sm: 0 1px 2px rgb(32 33 38 / 0.05), 0 1px 3px rgb(32 33 38 / 0.04);
+  --shadow-md: 0 4px 10px -2px rgb(32 33 38 / 0.07), 0 12px 28px -8px rgb(32 33 38 / 0.10);
+  --shadow-lg: 0 10px 24px -6px rgb(32 33 38 / 0.10), 0 30px 60px -20px rgb(32 33 38 / 0.18);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 32%, transparent);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Blocos escuros: as mesmas variaveis, invertidas. Qualquer componente
+   dentro de [data-theme="dark"] se adapta sem CSS extra. */
+[data-theme='dark'] {
+  --bg: var(--night);
+  --bg-2: #1b1c22;
+  --surface: #1e1f26;
+  --line: #2e2f38;
+  --line-strong: #3d3f4a;
+  --fg: #f4f2f1;
+  --fg-muted: #b3b5c0;
+  --fg-subtle: #7f8290;
+  --accent: #ff4fa6;
+  --accent-contrast: #16070f;
+  --shadow-md: 0 4px 10px -2px rgb(0 0 0 / 0.4), 0 12px 28px -8px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 24px -6px rgb(0 0 0 / 0.45), 0 30px 60px -20px rgb(0 0 0 / 0.6);
+}
+
+/* --- Base --------------------------------------------------------------- */
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg);
+  font-variant-ligatures: common-ligatures;
+}
+h1, h2, h3, h4, .display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-4); }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); letter-spacing: -0.012em; }
+p { text-wrap: pretty; }
+a { color: inherit; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 0.22em; }
+a:hover { text-decoration-color: currentColor; }
+strong { font-weight: 650; color: var(--fg); }
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-sm); }
+::selection { background: var(--magenta); color: #fff; }
+
+/* --- Layout ------------------------------------------------------------- */
+.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+.wrap-narrow { width: min(100% - 2.5rem, var(--wrap-narrow)); margin-inline: auto; }
+@media (min-width: 48em) { .wrap, .wrap-narrow { width: min(100% - 4rem, var(--wrap)); } .wrap-narrow { max-width: var(--wrap-narrow); } }
+
+.section { padding-block: clamp(3.5rem, 2rem + 7vw, 7.5rem); position: relative; }
+.section--tight { padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); }
+.section--alt { background: var(--bg-2); }
+.section--dark { background: var(--night); color: var(--fg); }
+.section--plum { background: linear-gradient(165deg, var(--plum) 0%, var(--night) 62%); }
+
+.stack > * + * { margin-block-start: var(--flow, var(--sp-4)); }
+.grid { display: grid; gap: var(--sp-5); }
+/* Itens de grid não devem estourar por causa do conteúdo (tabelas, <pre>). */
+.grid > *, .stack > * { min-width: 0; }
+@media (min-width: 46em) {
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64em) { .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* --- Tipografia de apoio ------------------------------------------------ */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  font-family: var(--font-display);
+  font-size: var(--step--2); font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow::before {
+  content: ''; inline-size: 1.6rem; block-size: 2px; border-radius: 2px;
+  background: currentColor; opacity: 0.55;
+}
+.lede { font-size: var(--step-1); line-height: 1.55; color: var(--fg-muted); max-width: 42ch; }
+.lede--wide { max-width: 60ch; }
+.muted { color: var(--fg-muted); }
+.subtle { color: var(--fg-subtle); font-size: var(--step--1); }
+.mark { color: var(--accent); }
+.section-head { max-width: 56rem; }
+.section-head > * + * { margin-block-start: var(--sp-4); }
+
+/* Sublinhado desenhado a mao, ecoando a seta da marca */
+.underline-squiggle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8.5C18 2.5 30 2 44 6.5s28 5 40 .5 26-4.5 34-1' fill='none' stroke='%23ec1b8d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.34em;
+  padding-bottom: 0.12em;
+}
+
+/* --- Botoes ------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--accent); --btn-fg: var(--accent-contrast); --btn-bd: transparent;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6em;
+  padding: 0.9em 1.5em;
+  font-family: var(--font-display); font-weight: 650; font-size: var(--step--1);
+  letter-spacing: -0.005em; line-height: 1.15;
+  color: var(--btn-fg); background: var(--btn-bg);
+  border: 1px solid var(--btn-bd); border-radius: var(--r-full);
+  text-decoration: none; cursor: pointer;
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease), background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px -6px color-mix(in srgb, var(--btn-bg) 55%, transparent); }
+.btn:active { transform: translateY(0); }
+.btn .btn__arrow { transition: transform 0.28s var(--ease); }
+.btn:hover .btn__arrow { transform: translateX(3px); }
+.btn--lg { padding: 1.05em 1.9em; font-size: var(--step-0); }
+.btn--ghost { --btn-bg: transparent; --btn-fg: var(--fg); --btn-bd: var(--line-strong); }
+.btn--ghost:hover { --btn-bd: var(--fg); box-shadow: none; }
+.btn--ink { --btn-bg: var(--ink); --btn-fg: #fff; }
+[data-theme='dark'] .btn--ink { --btn-bg: #fff; --btn-fg: var(--ink); }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-4); align-items: center; }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: 0.45em;
+  font-family: var(--font-display); font-weight: 650; font-size: var(--step--1);
+  color: var(--accent); text-decoration: none;
+}
+.link-arrow svg { transition: transform 0.28s var(--ease); }
+.link-arrow:hover svg { transform: translateX(4px); }
+.link-arrow::after { content: ''; }
+
+/* --- Cards -------------------------------------------------------------- */
+.card {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  padding: clamp(1.35rem, 1rem + 1.2vw, 2rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.card--link:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: var(--shadow-md); }
+.card h3 { font-size: var(--step-1); }
+.card p { color: var(--fg-muted); font-size: var(--step--1); line-height: 1.6; }
+.card__num {
+  font-family: var(--font-mono); font-size: var(--step--2); font-weight: 600;
+  letter-spacing: 0.1em; color: var(--accent);
+}
+.card__stretch::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  padding: 0.4em 0.9em;
+  font-size: var(--step--2); font-weight: 600; font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  border: 1px solid var(--line-strong); border-radius: var(--r-full);
+  color: var(--fg-muted); background: var(--surface);
+}
+.pill--accent { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
+
+/* --- Tabelas comparativas ----------------------------------------------- */
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+caption { text-align: left; padding: var(--sp-4) var(--sp-5) 0; color: var(--fg-subtle); font-size: var(--step--2); }
+th, td { text-align: left; padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th {
+  font-family: var(--font-display); font-size: var(--step--2); font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--fg-subtle);
+  background: var(--bg-2); white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: 0; }
+tbody th { font-weight: 650; color: var(--fg); }
+td .yes { color: var(--accent); font-weight: 650; }
+td .no { color: var(--fg-subtle); }
+
+/* --- Listas ------------------------------------------------------------- */
+.checklist { list-style: none; padding: 0; display: grid; gap: 0.7rem; }
+.checklist li { display: grid; grid-template-columns: 1.35rem 1fr; gap: 0.7rem; align-items: start; color: var(--fg-muted); font-size: var(--step--1); line-height: 1.55; }
+.checklist li::before {
+  content: ''; margin-top: 0.42em; inline-size: 0.7rem; block-size: 0.7rem;
+  border-radius: 50%; border: 2px solid var(--accent);
+}
+.checklist--x li::before { border-color: var(--line-strong); background: var(--line); }
+
+/* --- Prose (blog e paginas legais) -------------------------------------- */
+.prose { max-width: 42rem; font-size: var(--step-0); }
+.prose > * + * { margin-block-start: 1.15em; }
+.prose h2 { font-size: var(--step-2); margin-block-start: 2.2em; }
+.prose h3 { font-size: var(--step-1); margin-block-start: 1.8em; }
+.prose h2 + p, .prose h3 + p { margin-block-start: 0.7em; }
+.prose ul, .prose ol { padding-left: 1.25em; display: grid; gap: 0.5em; }
+.prose li::marker { color: var(--accent); }
+.prose a { color: var(--accent); font-weight: 550; }
+.prose blockquote {
+  margin-block: 1.8em; padding: var(--sp-5) var(--sp-6);
+  border-left: 3px solid var(--accent); background: var(--bg-2);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-family: var(--font-display); font-size: var(--step-1); font-weight: 500;
+  line-height: 1.4; letter-spacing: -0.015em;
+}
+.prose blockquote p { margin: 0; }
+.prose code { font-family: var(--font-mono); font-size: 0.88em; background: var(--bg-2); padding: 0.15em 0.4em; border-radius: var(--r-sm); }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin-block: 2.5em; }
+.prose table { margin-block: 0; }
+.prose .table-scroll { margin-block: 1.8em; }
+.prose .table-scroll:focus-visible { box-shadow: var(--ring); }
+.prose figure figcaption { font-size: var(--step--2); color: var(--fg-subtle); margin-top: 0.6em; }
+
+/* --- Acessibilidade ----------------------------------------------------- */
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.skip-link {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  padding: 0.75rem 1.25rem; background: var(--ink); color: #fff;
+  border-radius: var(--r-full); font-weight: 600; text-decoration: none;
+  transition: top 0.2s var(--ease);
+}
+.skip-link:focus { top: 1rem; }
+
+/* --- Animacoes de entrada ---------------------------------------------- */
+/* O estado inicial escondido so existe quando ha JavaScript para revela-lo.
+   Sem JS (ou se o script falhar), o conteudo aparece normalmente — o texto
+   nunca fica invisivel para leitores, rastreadores ou navegadores antigos. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  .js .reveal-stagger > * { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+  .js .reveal-stagger.is-in > * { opacity: 1; transform: none; }
+  .js .reveal-stagger.is-in > *:nth-child(2) { transition-delay: 80ms; }
+  .js .reveal-stagger.is-in > *:nth-child(3) { transition-delay: 160ms; }
+  .js .reveal-stagger.is-in > *:nth-child(4) { transition-delay: 240ms; }
+  .js .reveal-stagger.is-in > *:nth-child(5) { transition-delay: 320ms; }
+  .js .reveal-stagger.is-in > *:nth-child(6) { transition-delay: 400ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

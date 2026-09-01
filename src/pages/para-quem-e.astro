@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { PERFIS } from '../data/content';
+import { itemListSchema, faqSchema } from '../data/schema';
+
+const crumbs = [{ name: 'Para quem é', href: '/para-quem-e' }];
+
+const publicos = [
+  { p: 'Especialistas e autônomos', dor: 'Publicam, recebem perguntas e dependem de conversas manuais.', res: 'Ter oferta, site e jornada de contratação.' },
+  { p: 'Criadores e educadores', dor: 'Têm conhecimento e audiência, mas não sabem qual ativo ou produto priorizar.', res: 'Transformar conhecimento em biblioteca e oferta.' },
+  { p: 'Negócios locais', dor: 'Dependem do Instagram e do WhatsApp para gerar movimento.', res: 'Ter páginas, captação, agenda e acompanhamento.' },
+  { p: 'Marcas autorais', dor: 'Têm visão e identidade, mas comunicação e operação estão dispersas.', res: 'Transformar identidade em experiência própria.' },
+];
+
+const naoEPara = [
+  'Quem procura gestão de Instagram, TikTok ou YouTube.',
+  'Quem quer criação de artes e publicação diária nas redes.',
+  'Quem precisa de atendimento de directs e comunidade social.',
+  'Quem ainda não tem uma competência, serviço ou conhecimento real para oferecer.',
+  'Quem espera faturamento garantido por uma fórmula pronta.',
+];
+
+const faq = [
+  {
+    q: 'Preciso ter uma audiência grande?',
+    a: 'Não. O ponto de partida pode ser uma audiência pequena, uma oferta em construção ou uma oportunidade clara. O que precisa existir é algo legítimo para oferecer — a IMAKERS não promete criar um negócio do zero para quem ainda não tem isso.',
+  },
+  {
+    q: 'Sou um negócio local. Faz sentido?',
+    a: 'Sim, quando a dependência do Instagram e do WhatsApp já está limitando o crescimento. A construção costuma começar por páginas, captação, agenda e acompanhamento — a faixa Base ou Capture.',
+  },
+  {
+    q: 'Já tenho site. Ainda faz sentido?',
+    a: 'Faz, se o site existe mas não trabalha pelo negócio: não organiza a oferta, não captura contato, não conduz para um próximo passo e não gera dados. O Discovery avalia se o certo é reconstruir ou evoluir o que já existe.',
+  },
+];
+---
+<Base
+  title="Para quem é a IMAKERS — perfis e momentos de negócio"
+  description="Especialistas, criadores, negócios locais e marcas autorais que já produzem conteúdo e precisam de estrutura própria de oferta, captação e receita."
+  path="/para-quem-e"
+  image="/og/para-quem-e.png"
+  breadcrumbs={crumbs}
+  schema={[
+    itemListSchema('Perfis atendidos pela IMAKERS', PERFIS.map((p) => ({ name: p.nome, url: `/para-quem-e#${p.slug}`, description: p.dor }))),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="Para quem é"
+    title="Para quem já tem algo para dizer — e agora precisa de uma estrutura para crescer."
+    lede="O cliente ideal da IMAKERS tem uma competência, um serviço ou um conhecimento real, algum conteúdo público, vontade de monetizar e disponibilidade para participar das decisões."
+    crumbs={crumbs}
+    cta={{ label: 'Descobrir o meu caminho', href: '/autoleitura' }}
+    secondary={{ label: 'Falar com a IMAKERS', href: '/contato' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="perfis">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Quatro perfis"
+        title="O que construímos para cada situação."
+        lede="Cada perfil começa de um lugar diferente — e por isso a próxima camada certa também é diferente."
+      />
+      <p class="visually-hidden" id="perfis">Perfis atendidos</p>
+      <div class="grid grid-2 reveal-stagger pgrid">
+        {PERFIS.map((p) => (
+          <article class="card perfil" id={p.slug}>
+            <span class="pill pill--accent">Costuma começar em {p.faixa}</span>
+            <h3>{p.nome}</h3>
+            <p>{p.dor}</p>
+            <h4 class="perfil__sub">A IMAKERS pode construir</h4>
+            <ul role="list" class="tags">{p.constroi.map((c) => <li>{c}</li>)}</ul>
+            <a href={`/solucoes#${p.faixa.toLowerCase()}`} class="link-arrow">Ver a faixa {p.faixa}<Arrow cls="" /></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="publicos">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Público prioritário"
+        title="Quem reconhece o problema mais rápido."
+        lede="A promessa da IMAKERS pode ser ampla, mas o foco inicial é quem já produz conteúdo ou tem alguma audiência e ainda não tem um sistema próprio de aquisição e relacionamento."
+      />
+      <p class="visually-hidden" id="publicos">Públicos prioritários</p>
+      <div class="table-scroll reveal ptable">
+        <table>
+          <thead><tr><th scope="col">Público</th><th scope="col">Dor principal</th><th scope="col">Resultado procurado</th></tr></thead>
+          <tbody>
+            {publicos.map((p) => (
+              <tr><th scope="row">{p.p}</th><td>{p.dor}</td><td>{p.res}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="naoe">
+    <div class="wrap two-col">
+      <div class="two-col__copy">
+        <p class="eyebrow">Honestidade de escopo</p>
+        <h2 id="naoe">Para quem a IMAKERS não é.</h2>
+        <p class="lede lede--wide">
+          Dizer não é parte do posicionamento. Se o que você procura está nesta lista, existe gente melhor
+          preparada para isso — e o resultado será melhor para os dois lados.
+        </p>
+        <p class="muted">
+          Você continua sendo a voz da sua rede. A IMAKERS constrói o negócio por trás dela.
+        </p>
+      </div>
+      <div class="panel reveal">
+        <ul role="list" class="checklist checklist--x">
+          {naoEPara.map((n) => <li>{n}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="qfaq">
+    <div class="wrap-narrow prose">
+      <h2 id="qfaq">Perguntas frequentes</h2>
+      {faq.map((f) => (<div><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Seu perfil, seu caminho"
+    title="Descubra em dois minutos qual estrutura a sua presença está pedindo."
+    text="A autoleitura devolve uma recomendação de faixa e os primeiros ativos a construir — sem cadastro obrigatório."
+    primary={{ label: 'Fazer a autoleitura', href: '/autoleitura' }}
+    secondary={{ label: 'Falar com a IMAKERS', href: '/contato' }}
+  />
+</Base>
+
+<style>
+  .pgrid, .ptable { margin-top: var(--sp-7); }
+  .perfil { scroll-margin-top: 7rem; }
+  .perfil h3 { font-size: var(--step-2); }
+  .perfil__sub { font-family: var(--font-display); font-size: var(--step--2); font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase; color: var(--fg-subtle); margin-top: var(--sp-2); }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; padding: 0; }
+  .tags li { padding: 0.28em 0.7em; font-size: var(--step--2); font-weight: 500; color: var(--fg-muted); background: var(--bg-2); border-radius: var(--r-full); }
+  .two-col { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: center; }
+  @media (min-width: 62em) { .two-col { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .two-col__copy { display: grid; gap: var(--sp-4); }
+  .panel { padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+</style>

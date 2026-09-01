@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../config';
+
+const crumbs = [{ name: 'Termos de uso', href: '/termos-de-uso' }];
+---
+<Base
+  title="Termos de uso"
+  description="Condições de uso do site da IMAKERS: natureza do conteúdo publicado, limites das informações comerciais e responsabilidades."
+  path="/termos-de-uso"
+  breadcrumbs={crumbs}
+>
+  <PageHero
+    eyebrow="Institucional"
+    title="Termos de uso"
+    lede="Ao navegar por este site você concorda com as condições abaixo. Elas existem para deixar claro o que este site é — e o que ele não é."
+    crumbs={crumbs}
+  />
+
+  <section class="section section--tight">
+    <div class="wrap-narrow prose">
+      <p class="subtle">Última atualização: 1 de setembro de 2026</p>
+
+      <h2>1. Sobre este site</h2>
+      <p>
+        Este site apresenta os serviços da IMAKERS e publica conteúdo editorial sobre presença digital,
+        ativos próprios, conversão, pagamentos e operação de ecossistemas digitais.
+      </p>
+
+      <h2>2. Natureza do conteúdo</h2>
+      <p>
+        O conteúdo publicado tem finalidade informativa e não constitui aconselhamento jurídico, contábil,
+        fiscal ou financeiro. Decisões sobre regime tributário, emissão de documento fiscal, contratos,
+        obrigações regulatórias e escolha de provedor de pagamento devem ser tomadas com o apoio dos
+        profissionais habilitados de cada área.
+      </p>
+      <p>
+        Referências a provedores de pagamento, ferramentas e serviços de terceiros descrevem características
+        gerais e podem mudar sem aviso. Taxas, prazos, limites e disponibilidade devem ser confirmados
+        diretamente com cada provedor antes de qualquer decisão comercial.
+      </p>
+
+      <h2>3. Informações comerciais</h2>
+      <p>
+        Descrições de escopo, faixas de complexidade e entregas apresentadas aqui são uma referência para
+        orientar a conversa inicial. O escopo efetivo, os prazos e as condições de cada projeto são definidos
+        em proposta e contrato específicos.
+      </p>
+      <p>
+        A IMAKERS não promete faturamento, número de clientes, posição em buscadores ou qualquer resultado
+        comercial garantido.
+      </p>
+
+      <h2>4. Limite de escopo</h2>
+      <p>
+        A IMAKERS não opera redes sociais de clientes: não cria artes, não publica, não responde mensagens
+        diretas e não gerencia comunidade social. O que pode ser incluído é a ponte editorial — temas,
+        chamadas, CTAs, links e destinos para o próprio cliente publicar.
+      </p>
+
+      <h2>5. Propriedade intelectual</h2>
+      <p>
+        Textos, imagens, marca, identidade visual e código deste site pertencem à IMAKERS. Citações com
+        atribuição e link são bem-vindas. Reprodução integral ou uso comercial exigem autorização prévia.
+      </p>
+
+      <h2>6. Disponibilidade</h2>
+      <p>
+        Trabalhamos para manter o site disponível e correto, mas ele pode passar por manutenção, atualização
+        ou indisponibilidade temporária sem aviso prévio.
+      </p>
+
+      <h2>7. Privacidade</h2>
+      <p>
+        O tratamento de dados pessoais está descrito na
+        <a href="/politica-de-privacidade"> política de privacidade</a>.
+      </p>
+
+      <h2>8. Contato</h2>
+      <p>
+        Dúvidas sobre estes termos: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </div>
+  </section>
+</Base>

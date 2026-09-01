@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { serviceSchema, faqSchema } from '../data/schema';
+
+const crumbs = [{ name: 'Método', href: '/metodo' }, { name: 'Discovery', href: '/discovery' }];
+
+const analisa = [
+  { t: 'Presença pública', d: 'O que você já publica, onde é encontrado e que tipo de atenção isso gera hoje.' },
+  { t: 'Público provável', d: 'Quem realmente responde ao que você comunica — e quem deveria responder.' },
+  { t: 'Autoridade', d: 'O que só você pode dizer e que ainda não está organizado em nenhum lugar próprio.' },
+  { t: 'Oferta', d: 'O que pode ser vendido, contratado, agendado ou assinado a partir dessa atenção.' },
+  { t: 'Jornada', d: 'O que acontece hoje entre alguém demonstrar interesse e virar uma oportunidade real.' },
+  { t: 'Oportunidade', d: 'A próxima camada com maior chance de destravar o negócio agora, não em dois anos.' },
+];
+
+const qualifica = [
+  'O que você vende e para quem vende.',
+  'Se existe produto, serviço ou conhecimento pronto para ser oferecido.',
+  'Ticket, volume esperado e necessidade de parcelamento.',
+  'Se haverá recorrência, entrega digital ou física.',
+  'Emissão fiscal, política de reembolso e canal de atendimento.',
+  'Conta bancária e situação cadastral para receber, quando houver venda.',
+];
+
+const faq = [
+  {
+    q: 'O Discovery é um relatório?',
+    a: 'Não. O resultado é um mapa de decisão: público, proposta, oportunidade e prioridade documentados, com uma faixa de complexidade recomendada e um plano de ativação. Um relatório sem execução não é a transformação prometida.',
+  },
+  {
+    q: 'Preciso contratar o Launch depois do Discovery?',
+    a: 'O Discovery termina com uma direção clara e um plano. Seguir para o Launch é uma decisão sua, tomada com escopo e ordem de construção já definidos — não com uma lista aberta de possibilidades.',
+  },
+  {
+    q: 'Quanto tempo leva?',
+    a: 'Depende do tamanho da operação analisada. O Discovery é uma etapa curta e fechada: ela existe para produzir uma decisão, não para se estender indefinidamente.',
+  },
+  {
+    q: 'Serve para quem ainda não tem audiência grande?',
+    a: 'Sim. O ponto de partida pode ser uma audiência pequena, uma oferta em construção ou uma oportunidade clara. O que o Discovery precisa é de algo real para oferecer — competência, serviço ou conhecimento.',
+  },
+];
+---
+<Base
+  title="IMAKERS Discovery — entender antes de construir"
+  description="A primeira etapa do método IMAKERS lê sua presença, público, oferta e jornada — e termina com um mapa de decisão: faixa recomendada e plano de ativação."
+  path="/discovery"
+  image="/og/discovery.png"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: 'IMAKERS Discovery',
+      description:
+        'Etapa de leitura estratégica que mapeia presença, público, oferta, jornada e oportunidade e termina com faixa de complexidade recomendada e plano de ativação.',
+      path: '/discovery',
+      serviceType: 'Consultoria e diagnóstico de presença digital',
+    }),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="Etapa 1 do circuito"
+    title="IMAKERS Discovery:<br />entender antes de construir."
+    lede="Mapeamos o que você já tem, quem você quer alcançar, o que pode oferecer e qual estrutura faz sentido para o momento do seu negócio. O Discovery termina com uma direção clara — não com uma lista de possibilidades."
+    crumbs={crumbs}
+    cta={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
+    secondary={{ label: 'Fazer a autoleitura antes', href: '/autoleitura' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="analisa">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="O que analisamos"
+        title="Seis leituras antes de escrever uma linha de código."
+        lede="O Discovery não começa por ferramenta, template ou tecnologia. Começa pelo que já existe e pelo que ainda não foi transformado em operação."
+      />
+      <p class="visually-hidden" id="analisa">O que o Discovery analisa</p>
+      <div class="grid grid-3 reveal-stagger dcards">
+        {analisa.map((a, i) => (
+          <article class="card">
+            <span class="card__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{a.t}</h3>
+            <p>{a.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="entrega">
+    <div class="wrap two-col">
+      <div class="two-col__copy">
+        <p class="eyebrow">O que você recebe</p>
+        <h2 id="entrega">Um mapa de decisão, não um diagnóstico genérico.</h2>
+        <p class="lede lede--wide">
+          O Discovery precisa terminar em uma escolha. Por isso ele entrega escopo, prioridade e ordem — o
+          suficiente para começar a construir sem descobrir o custo real no meio do caminho.
+        </p>
+        <ul role="list" class="checklist">
+          <li>Público prioritário e proposta de valor documentados.</li>
+          <li>Mapa de oferta, jornada e pontos de conversão.</li>
+          <li>Arquitetura de páginas, CTAs e captura.</li>
+          <li>Faixa de complexidade recomendada — Base, Capture, Commerce ou Recurring.</li>
+          <li>Plano de ativação com a ordem de construção.</li>
+          <li>Riscos, dependências e o que fica fora do escopo.</li>
+        </ul>
+        <a href="/solucoes" class="link-arrow">Entender as faixas de complexidade<Arrow cls="" /></a>
+      </div>
+      <aside class="panel reveal">
+        <h3 class="panel__title">Antes de cotar, precisamos saber</h3>
+        <p class="panel__note">
+          A qualificação evita orçamento improvisado. São perguntas simples, mas mudam completamente a
+          estrutura recomendada.
+        </p>
+        <ul role="list" class="checklist">
+          {qualifica.map((q) => <li>{q}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="depois">
+    <div class="wrap-narrow prose">
+      <p class="eyebrow">Depois do Discovery</p>
+      <h2 id="depois">A decisão que o Discovery produz</h2>
+      <p>
+        Ao final da etapa, existe uma resposta objetiva para três perguntas: <strong>o que construir</strong>,
+        <strong>por que construir</strong> e <strong>em qual ordem</strong>. Essa resposta define a faixa de
+        complexidade do projeto e o conteúdo do <a href="/launch">IMAKERS Launch</a>.
+      </p>
+      <p>
+        Uma marca autoral pode precisar de uma biblioteca de conteúdos, um guia e uma primeira oferta. Um
+        profissional de serviço pode precisar de avaliação inicial, agenda e jornada de decisão. Um negócio
+        digital pode precisar de <a href="/pagamentos">checkout, acesso e cobrança recorrente</a>. A IMAKERS
+        não começa vendendo o mesmo pacote para todo mundo.
+      </p>
+      <blockquote>Discovery encontra a oportunidade. Launch coloca a base no ar. Engine mantém o negócio em movimento.</blockquote>
+      <h2>Perguntas frequentes sobre o Discovery</h2>
+      {faq.map((f) => (
+        <div>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Etapa 1"
+    title="Vamos entender o que pode ser construído."
+    text="Conte o que você já publica, o que oferece e onde a operação trava hoje. O Discovery começa por aí."
+    primary={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
+    secondary={{ label: 'Ver a etapa Launch', href: '/launch' }}
+  />
+</Base>
+
+<style>
+  .dcards { margin-top: var(--sp-7); }
+  .two-col { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: start; }
+  @media (min-width: 62em) { .two-col { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
+  .two-col__copy { display: grid; gap: var(--sp-4); }
+  .panel {
+    padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    display: grid; gap: var(--sp-4); box-shadow: var(--shadow-sm);
+  }
+  .panel__title { font-size: var(--step-1); }
+  .panel__note { font-size: var(--step--1); color: var(--fg-muted); }
+</style>

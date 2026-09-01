@@ -1,0 +1,202 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { FAIXAS, MATRIZ, NECESSIDADES } from '../data/content';
+import { itemListSchema, faqSchema } from '../data/schema';
+
+const crumbs = [{ name: 'O que construímos', href: '/solucoes' }];
+const faq = [
+  {
+    q: 'Como sei qual faixa é a minha?',
+    a: 'Pela pergunta mais simples: o dinheiro entra pelo site? Se não entra, você está em Base ou Capture. Se entra uma vez, Commerce. Se entra todo mês, Recurring. A autoleitura do site faz esse diagnóstico em dois minutos, e o Discovery confirma.',
+  },
+  {
+    q: 'Dá para começar numa faixa e subir depois?',
+    a: 'Sim — é o caminho recomendado. A estrutura cresce conforme a necessidade real aparece. Não faz sentido pagar por checkout e assinatura antes de existir uma oferta validada.',
+  },
+  {
+    q: 'Por que não existe um preço único de site?',
+    a: 'Porque o cliente que quer apenas um blog não pode pagar o mesmo que uma operação que vende produtos, processa pagamentos, controla pedidos, oferece assinaturas e libera acesso a uma área restrita. O trabalho é diferente em ordem de grandeza.',
+  },
+  {
+    q: 'O que é cobrado: projeto ou mensalidade?',
+    a: 'Os dois, com funções distintas. A ativação cobre Discovery, Launch e implantação. A recorrência cobre o Engine: manutenção, ativos próprios, dados e melhorias — dimensionada pela complexidade da faixa.',
+  },
+  {
+    q: 'A IMAKERS fica com o dinheiro das minhas vendas?',
+    a: 'Não. Você abre e mantém a conta no provedor de pagamento no seu CNPJ ou CPF, e recebe diretamente lá. A IMAKERS cobra apenas a própria ativação e o próprio Engine, por cobrança separada.',
+  },
+];
+---
+<Base
+  title="Soluções IMAKERS — Base, Capture, Commerce e Recurring"
+  description="Cinco faixas de complexidade, do blog institucional ao ecossistema com checkout e assinaturas. Compare o que cada faixa inclui antes de decidir."
+  path="/solucoes"
+  image="/og/solucoes.png"
+  breadcrumbs={crumbs}
+  schema={[
+    itemListSchema('Faixas de solução IMAKERS', FAIXAS.map((f) => ({ name: f.nome, url: `/solucoes#${f.slug}`, description: f.resumo }))),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="O que construímos"
+    title="Comece simples.<br />Evolua quando o negócio pedir."
+    lede="A IMAKERS trabalha com faixas de complexidade, não com um preço único para qualquer site. Nem todo negócio precisa começar com pagamentos, assinaturas ou uma plataforma completa."
+    crumbs={crumbs}
+    cta={{ label: 'Descobrir minha faixa em 2 minutos', href: '/autoleitura' }}
+    secondary={{ label: 'Falar com a IMAKERS', href: '/contato' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="faixas">
+    <div class="wrap">
+      <p class="visually-hidden" id="faixas">As faixas de solução</p>
+      <div class="faixas">
+        {FAIXAS.map((f) => (
+          <article class={`faixa ${f.destaque ? 'faixa--destaque' : ''} ${f.futuro ? 'faixa--futuro' : ''} reveal`} id={f.slug}>
+            <header class="faixa__head">
+              <div class="faixa__meta">
+                <span class="faixa__dots" aria-label={`Complexidade ${f.complexidade} de 5`}>
+                  {[1, 2, 3, 4, 5].map((n) => <i class={n <= f.complexidade ? 'on' : ''} aria-hidden="true"></i>)}
+                </span>
+                {f.destaque && <span class="pill pill--accent">Ponto de partida mais comum</span>}
+                {f.futuro && <span class="pill">Fase posterior</span>}
+              </div>
+              <h2>{f.nome}</h2>
+              <p class="faixa__resumo">{f.resumo}</p>
+              <p class="faixa__para">{f.para}</p>
+            </header>
+            <div class="faixa__cols">
+              <div>
+                <h3 class="faixa__sub">A ativação inclui</h3>
+                <ul role="list" class="checklist">{f.inclui.map((i) => <li>{i}</li>)}</ul>
+              </div>
+              <div>
+                <h3 class="faixa__sub">O Engine opera</h3>
+                <p class="faixa__engine">{f.engine}</p>
+                {f.naoInclui.length > 0 && (
+                  <>
+                    <h3 class="faixa__sub faixa__sub--off">Não entra nesta faixa</h3>
+                    <ul role="list" class="checklist checklist--x">{f.naoInclui.map((i) => <li>{i}</li>)}</ul>
+                  </>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="matriz">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Comparativo"
+        title="O que entra em cada faixa."
+        lede="A tabela existe para evitar surpresa de escopo. Um formulário de contato não é um pedido pago — e um pedido pago não é uma assinatura."
+      />
+      <p class="visually-hidden" id="matriz">Matriz de escopo por faixa</p>
+      <div class="table-scroll reveal mtable">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Tema</th>
+              {MATRIZ.colunas.map((c) => <th scope="col">{c}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {MATRIZ.linhas.map((l) => (
+              <tr>
+                <th scope="row">{l.tema}</th>
+                {l.v.map((v) => (
+                  <td class={v === 'Sim' ? 'yes' : v === 'Não' || v === 'Nunca' ? 'no' : ''}>{v}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="subtle mnote">
+        Em nenhuma faixa a IMAKERS opera Instagram, TikTok, YouTube, LinkedIn ou outra rede sua. O máximo
+        incluído é a <a href="/metodo">ponte editorial</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="precisa">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Do outro lado"
+        title="Comece pela necessidade, não pela ferramenta."
+        lede="Se você sabe o que precisa acontecer, a faixa se define sozinha."
+      />
+      <p class="visually-hidden" id="precisa">Necessidade e faixa correspondente</p>
+      <div class="grid grid-3 reveal-stagger ncards">
+        {NECESSIDADES.map((n) => (
+          <article class="card">
+            <span class="card__num">Quando você precisa de</span>
+            <h3>{n.precisa}</h3>
+            <p>{n.constroi}</p>
+            <p class="pill pill--accent ncards__pill">{n.faixa}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="sfaq">
+    <div class="wrap-narrow prose">
+      <h2 id="sfaq">Perguntas frequentes sobre as faixas</h2>
+      {faq.map((f) => (<div><h3>{f.q}</h3><p>{f.a}</p></div>))}
+      <p>
+        Ainda em dúvida? A <a href="/autoleitura">autoleitura</a> devolve uma recomendação de faixa em dois
+        minutos, sem cadastro obrigatório.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Escolher a faixa certa"
+    title="A faixa certa é a que o seu negócio consegue sustentar agora."
+    text="Construir uma estrutura maior do que a operação suporta é o erro mais caro. O Discovery existe para evitar exatamente isso."
+    primary={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
+  />
+</Base>
+
+<style>
+  .faixas { display: grid; gap: var(--sp-5); }
+  .faixa {
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    display: grid; gap: var(--sp-5); scroll-margin-top: 7rem;
+  }
+  .faixa--destaque { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: var(--shadow-md); }
+  .faixa--futuro { background: var(--bg-2); border-style: dashed; }
+  .faixa__head { display: grid; gap: var(--sp-3); }
+  .faixa__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+  .faixa__dots { display: inline-flex; gap: 4px; }
+  .faixa__dots i { inline-size: 8px; block-size: 8px; border-radius: 50%; background: var(--line-strong); }
+  .faixa__dots i.on { background: var(--accent); }
+  .faixa h2 { font-size: var(--step-2); }
+  .faixa__resumo { font-family: var(--font-display); font-size: var(--step-1); font-weight: 550; letter-spacing: -0.015em; line-height: 1.35; max-width: 46ch; }
+  .faixa__para { color: var(--fg-muted); font-size: var(--step--1); }
+  .faixa__cols { display: grid; gap: var(--sp-5); padding-top: var(--sp-5); border-top: 1px solid var(--line); }
+  @media (min-width: 52em) { .faixa__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-7); } }
+  .faixa__sub {
+    font-family: var(--font-display); font-size: var(--step--2); font-weight: 700;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--sp-3);
+  }
+  .faixa__sub--off { color: var(--fg-subtle); margin-top: var(--sp-5); }
+  .faixa__engine { color: var(--fg-muted); font-size: var(--step--1); line-height: 1.6; }
+
+  .mtable { margin-top: var(--sp-7); }
+  .mtable td { white-space: nowrap; }
+  .mnote { margin-top: var(--sp-4); }
+  .mnote a { color: var(--accent); }
+  .ncards { margin-top: var(--sp-7); }
+  .ncards h3 { font-size: var(--step-1); }
+  .ncards__pill { align-self: start; margin-top: auto; }
+</style>

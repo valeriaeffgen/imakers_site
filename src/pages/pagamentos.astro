@@ -1,0 +1,230 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { FLUXO_VENDA, PROVEDORES } from '../data/content';
+import { faqSchema, howToSchema } from '../data/schema';
+
+const crumbs = [{ name: 'O que construímos', href: '/solucoes' }, { name: 'Pagamentos', href: '/pagamentos' }];
+
+const raci = [
+  { a: 'Definir oferta e preço', c: 'Responsável', i: 'Consultada', p: 'Informado' },
+  { a: 'Abrir conta de pagamento', c: 'Responsável', i: 'Consultada', p: 'Executa' },
+  { a: 'Integrar checkout', c: 'Consultado', i: 'Responsável', p: 'Consultado' },
+  { a: 'Processar pagamento', c: 'Informado', i: 'Informada', p: 'Responsável' },
+  { a: 'Confirmar evento técnico', c: 'Informado', i: 'Responsável', p: 'Consultado' },
+  { a: 'Entregar produto ou serviço', c: 'Responsável', i: 'Consultada', p: 'Informado' },
+  { a: 'Aprovar reembolso', c: 'Responsável', i: 'Consultada', p: 'Executa' },
+  { a: 'Emitir documento fiscal', c: 'Responsável', i: 'Apoio técnico', p: 'Informado' },
+  { a: 'Conciliar painel e sistema', c: 'Consultado', i: 'Responsável', p: 'Consultado' },
+];
+
+const principios = [
+  {
+    t: 'O dinheiro é seu, na sua conta',
+    d: 'Cada cliente abre e mantém a conta no provedor em seu próprio CNPJ ou CPF. A IMAKERS integra usando credenciais protegidas no back-end, mas não recebe o dinheiro dos seus compradores, não mistura receitas e não desconta a própria remuneração das suas vendas.',
+  },
+  {
+    t: 'A página de sucesso não confirma nada',
+    d: 'Confirmação real vem do status do provedor e do evento recebido no back-end — nunca do fato de o navegador ter voltado para uma URL. Produto, acesso ou serviço só são liberados a partir do estado confirmado.',
+  },
+  {
+    t: 'Webhook precisa ser idempotente',
+    d: 'Um evento pode chegar mais de uma vez, fora de ordem ou depois de uma falha. O endpoint valida a assinatura, verifica se já processou aquele identificador, persiste o evento, responde rápido e processa de forma assíncrona.',
+  },
+  {
+    t: 'Venda, pagamento, recebimento e repasse são coisas diferentes',
+    d: 'Misturar esses conceitos produz relatório errado. Uma venda parcelada pode estar paga pelo comprador e ser recebida em datas futuras. Um Pix pode ser aprovado rápido e ainda exigir reconciliação com o extrato.',
+  },
+  {
+    t: 'Nunca guardamos dados de cartão',
+    d: 'Usamos checkout hospedado, tokenização ou os componentes oficiais do provedor. Número completo de cartão, código de segurança e dados equivalentes não são armazenados no banco do projeto.',
+  },
+  {
+    t: 'A conciliação mostra as diferenças',
+    d: 'Se o sistema, o painel do provedor e o extrato bancário não batem, o relatório mostra a divergência em vez de escondê-la para o painel parecer conciliado.',
+  },
+];
+
+const faq = [
+  {
+    q: 'A IMAKERS recebe o dinheiro das minhas vendas?',
+    a: 'Não. Você recebe diretamente na sua conta do provedor, aberta no seu nome. A IMAKERS cobra apenas a própria ativação e o próprio Engine, por cobrança separada. Essa separação reduz risco operacional e evita que a IMAKERS seja tratada como recebedora ou intermediadora financeira.',
+  },
+  {
+    q: 'Quem paga as taxas do meio de pagamento?',
+    a: 'Você, como custo de venda. As taxas pertencem à relação entre você e o provedor e não são absorvidas na mensalidade da IMAKERS. Nós ajudamos a configurar e a monitorar o fluxo, e registramos a taxa efetiva informada pelo provedor no relatório de conciliação.',
+  },
+  {
+    q: 'Qual provedor vocês recomendam?',
+    a: 'Para a maior parte dos negócios brasileiros, Asaas como integração padrão — ele combina Pix, boleto, cartão, recorrência, checkout e webhooks em uma operação direta. Mercado Pago é o caminho para implantação rápida com checkout conhecido, e Stripe entra quando a assinatura ou a operação internacional justificam. A escolha final é sua e consta em contrato.',
+  },
+  {
+    q: 'Vocês emitem minhas notas fiscais?',
+    a: 'Não. A natureza fiscal da venda e a emissão de NF-e ou NFS-e são responsabilidade sua e do seu contador. A IMAKERS pode configurar campos e integração conforme o escopo contratado, e guardar a referência do documento — mas integração fiscal é um módulo separado, aprovado pelo seu contador.',
+  },
+  {
+    q: 'O que acontece em um chargeback?',
+    a: 'Você responde pela política comercial, pela entrega e pelo relacionamento com o comprador. A IMAKERS fornece a interface e o fluxo técnico, registra quem autorizou cada ação e atualiza pedido, acesso e relatório. A entrega pode ser congelada conforme o previsto em contrato.',
+  },
+  {
+    q: 'Dá para fazer split de pagamento entre vários vendedores?',
+    a: 'Isso é a faixa Platform, e não é recomendada para o começo. Split não é só um botão: exige revisão de contrato, responsabilidade por chargebacks, cadastro e verificação de recebedores, titularidade do dinheiro, emissão fiscal e proteção de dados. Só deve ser lançado após validação jurídica, contábil e comercial específica.',
+  },
+];
+---
+<Base
+  title="Pagamentos no site: checkout, pedidos e assinaturas"
+  description="Checkout no provedor escolhido por você, webhooks idempotentes, estados de pedido e assinatura e conciliação entre sistema, provedor e extrato."
+  path="/pagamentos"
+  image="/og/pagamentos.png"
+  breadcrumbs={crumbs}
+  schema={[
+    howToSchema({
+      name: 'Fluxo completo de uma venda pelo site',
+      description: 'Os oito momentos de uma venda, do anúncio da oferta à conciliação financeira.',
+      steps: FLUXO_VENDA.map((f) => ({ name: f.momento, text: `${f.acao} Responsável: ${f.dono}.` })),
+    }),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="Pagamentos"
+    title="Vender pelo site é mais<br />do que colocar um botão."
+    lede="Quando dinheiro entra pelo site, a estrutura precisa dar conta de pedido, evento, entrega, reembolso, contestação e conciliação. A IMAKERS constrói essa camada — com o recebimento sempre na sua conta."
+    crumbs={crumbs}
+    cta={{ label: 'Falar sobre a minha operação', href: '/contato' }}
+    secondary={{ label: 'Ver as faixas Commerce e Recurring', href: '/solucoes#commerce' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="principios">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Como trabalhamos"
+        title="Seis princípios que não são negociáveis."
+        lede="São eles que separam uma operação que parece funcionar de uma operação em que você pode confiar no relatório."
+      />
+      <p class="visually-hidden" id="principios">Princípios de integração de pagamentos</p>
+      <div class="grid grid-3 reveal-stagger pcards">
+        {principios.map((p, i) => (
+          <article class="card">
+            <span class="card__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" data-theme="dark" aria-labelledby="fluxo">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="O fluxo de uma venda"
+        title="Oito momentos — e um responsável para cada um."
+        lede="Dividir a venda em momentos evita que o site e o controle financeiro dependam apenas de uma página de sucesso."
+      />
+      <p class="visually-hidden" id="fluxo">Fluxo completo de uma venda</p>
+      <ol role="list" class="fluxo reveal-stagger">
+        {FLUXO_VENDA.map((f) => (
+          <li class="fluxo__item">
+            <span class="fluxo__momento">{f.momento}</span>
+            <p class="fluxo__acao">{f.acao}</p>
+            <span class="pill fluxo__dono">{f.dono}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="provedores">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Provedores"
+        title="Não existe um provedor melhor para todo mundo."
+        lede="A recomendação é orientada pelo tipo de operação — e o contrato deixa claro que você escolhe ou aprova o provedor, mantém a titularidade da conta e arca com as taxas e políticas dele."
+      />
+      <p class="visually-hidden" id="provedores">Comparativo de provedores de pagamento</p>
+      <div class="grid grid-2 reveal-stagger prov">
+        {PROVEDORES.map((p) => (
+          <article class="card">
+            <span class="card__num">{p.papel}</span>
+            <h3>{p.nome}</h3>
+            <p><strong>Melhor uso:</strong> {p.uso}</p>
+            <p><strong>Pontos fortes:</strong> {p.fortes}</p>
+            <p class="prov__cuidado"><strong>Cuidados:</strong> {p.cuidados}</p>
+          </article>
+        ))}
+      </div>
+      <p class="subtle mnote">
+        Taxas, prazos de liberação, antecipação, parcelamento e disponibilidade de meios variam por conta e
+        por contrato. Confirme as condições com o provedor antes de prometer qualquer meio de pagamento na
+        sua página de oferta.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="raci">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Responsabilidades"
+        title="Quem responde por quê."
+        lede="Papéis claros evitam a pior conversa possível: a que acontece depois que algo deu errado."
+      />
+      <p class="visually-hidden" id="raci">Matriz de responsabilidades</p>
+      <div class="table-scroll reveal rtable">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Atividade</th><th scope="col">Você</th><th scope="col">IMAKERS</th><th scope="col">Provedor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {raci.map((r) => (
+              <tr><th scope="row">{r.a}</th><td>{r.c}</td><td>{r.i}</td><td>{r.p}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="subtle mnote">
+        A definição da natureza fiscal da venda, a emissão de documento fiscal e a apuração continuam com você
+        e com o seu contador. Veja também a <a href="/politica-de-privacidade">política de privacidade</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="pfaq">
+    <div class="wrap-narrow prose">
+      <h2 id="pfaq">Perguntas frequentes sobre pagamentos</h2>
+      {faq.map((f) => (<div><h3>{f.q}</h3><p>{f.a}</p></div>))}
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Commerce e Recurring"
+    title="Antes de vender pelo site, vale saber o que precisa existir por trás."
+    text="Conte o que você vende, para quem, com qual ticket e se haverá recorrência. A partir daí definimos a faixa e a arquitetura de pagamento certa."
+    primary={{ label: 'Falar sobre a minha operação', href: '/contato' }}
+    secondary={{ label: 'Comparar as faixas', href: '/solucoes' }}
+  />
+</Base>
+
+<style>
+  .pcards, .prov, .rtable { margin-top: var(--sp-7); }
+  .pcards h3, .prov h3 { font-size: var(--step-1); }
+  .prov__cuidado { color: var(--fg-subtle); }
+  .fluxo { list-style: none; padding: 0; margin-top: var(--sp-7); display: grid; gap: var(--sp-3); }
+  @media (min-width: 52em) { .fluxo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); } }
+  @media (min-width: 76em) { .fluxo { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .fluxo__item {
+    display: grid; gap: var(--sp-2); align-content: start;
+    padding: var(--sp-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  }
+  .fluxo__momento { font-family: var(--font-mono); font-size: var(--step--2); font-weight: 600; letter-spacing: 0.06em; color: var(--accent); }
+  .fluxo__acao { font-size: var(--step--1); color: var(--fg-muted); line-height: 1.5; }
+  .fluxo__dono { justify-self: start; margin-top: var(--sp-2); }
+  .mnote { margin-top: var(--sp-4); max-width: 70ch; }
+  .mnote a { color: var(--accent); }
+</style>

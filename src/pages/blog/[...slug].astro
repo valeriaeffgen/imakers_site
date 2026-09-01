@@ -1,0 +1,171 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Arrow from '../../components/Arrow.astro';
+import Squiggle from '../../components/Squiggle.astro';
+import Faq from '../../components/Faq.astro';
+import { getCollection, render } from 'astro:content';
+import { faqSchema } from '../../data/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const ordenados = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return ordenados.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      // Leituras relacionadas: os dois artigos seguintes, em círculo.
+      relacionados: [ordenados[(i + 1) % ordenados.length], ordenados[(i + 2) % ordenados.length]].filter(
+        (p) => p && p.id !== post.id
+      ),
+    },
+  }));
+}
+
+const { post, relacionados } = Astro.props;
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+const d = post.data;
+
+const fmt = (date: Date) => date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+const minutos = d.readingTime ?? Math.max(3, Math.round((remarkPluginFrontmatter?.words ?? 900) / 200));
+const sumario = headings.filter((h) => h.depth === 2);
+---
+<Base
+  title={d.title}
+  description={d.description}
+  path={`/blog/${post.id}`}
+  image={d.og}
+  type="article"
+  publishedTime={d.date.toISOString()}
+  modifiedTime={(d.updated ?? d.date).toISOString()}
+  tags={d.tags}
+  breadcrumbs={[{ name: 'Blog', href: '/blog' }, { name: d.title, href: `/blog/${post.id}` }]}
+  schema={d.faq.length ? [faqSchema(d.faq)] : []}
+>
+  <article class="post">
+    <header class="post__head">
+      <div class="post__glow" aria-hidden="true"></div>
+      <div class="wrap-narrow post__head-inner">
+        <nav class="crumbs" aria-label="Você está aqui">
+          <ol role="list">
+            <li><a href="/">Início</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ol>
+        </nav>
+        <p class="eyebrow">{d.category}</p>
+        <h1>{d.headline ?? d.title}</h1>
+        <p class="lede lede--wide">{d.description}</p>
+        <div class="post__meta">
+          <time datetime={d.date.toISOString()}>{fmt(d.date)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{minutos} min de leitura</span>
+          {d.updated && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>Atualizado em {fmt(d.updated)}</span>
+            </>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap post__body">
+      {sumario.length > 2 && (
+        <aside class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title" class="toc__title">Neste artigo</h2>
+          <nav>
+            <ol role="list">
+              {sumario.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+            </ol>
+          </nav>
+        </aside>
+      )}
+
+      <div class="prose post__prose">
+        <Content />
+
+        {d.tags.length > 0 && (
+          <ul role="list" class="post__tags">
+            {d.tags.map((t) => <li>{t}</li>)}
+          </ul>
+        )}
+      </div>
+    </div>
+
+    {d.faq.length > 0 && (
+      <section class="section section--alt" aria-labelledby="pfaq">
+        <div class="wrap-narrow">
+          <p class="eyebrow">Perguntas frequentes</p>
+          <h2 id="pfaq" class="post__faq-title">Sobre este tema</h2>
+          <Faq items={d.faq} id={`faq-${post.id}`} />
+        </div>
+      </section>
+    )}
+
+    {relacionados.length > 0 && (
+      <section class="section" aria-labelledby="rel">
+        <div class="wrap">
+          <h2 id="rel" class="rel__title">Continue lendo</h2>
+          <div class="grid grid-2">
+            {relacionados.map((p) => (
+              <article class="card card--link">
+                <span class="pill">{p.data.category}</span>
+                <h3><a href={`/blog/${p.id}`} class="card__stretch">{p.data.headline ?? p.data.title}</a></h3>
+                <p>{p.data.description}</p>
+              </article>
+            ))}
+          </div>
+          <p class="rel__back">
+            <a href="/blog" class="link-arrow">Ver todos os artigos<Arrow cls="" /></a>
+          </p>
+        </div>
+      </section>
+    )}
+  </article>
+
+  <CtaBand
+    eyebrow="Do texto à estrutura"
+    title="Se este texto descreve o seu gargalo, existe uma conversa para isso."
+    text="O Discovery transforma leitura em plano: escopo, arquitetura, prioridade e ordem de construção."
+    primary={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
+    secondary={{ label: 'Fazer a autoleitura', href: '/autoleitura' }}
+  />
+</Base>
+
+<style>
+  .post__head { position: relative; padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) var(--sp-6); overflow: hidden; }
+  .post__glow {
+    position: absolute; top: -60%; left: 50%; translate: -50% 0;
+    inline-size: min(56rem, 130%); aspect-ratio: 2/1;
+    background: radial-gradient(ellipse at center, color-mix(in srgb, var(--magenta) 12%, transparent) 0%, transparent 68%);
+  }
+  .post__head-inner { position: relative; display: grid; gap: var(--sp-4); }
+  .post__head h1 { font-size: var(--step-4); }
+  .post__meta { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: var(--step--2); color: var(--fg-subtle); }
+  .crumbs ol { display: flex; gap: 0.5rem; list-style: none; padding: 0; font-size: var(--step--2); color: var(--fg-subtle); }
+  .crumbs li + li::before { content: '/'; margin-right: 0.5rem; opacity: 0.5; }
+  .crumbs a { color: inherit; text-decoration: none; }
+
+  .post__body { display: grid; gap: var(--sp-7); padding-block: var(--sp-6) clamp(3rem, 2rem + 4vw, 5rem); }
+  .post__body > * { min-width: 0; }
+  @media (min-width: 68em) {
+    .post__body { grid-template-columns: 15rem minmax(0, 1fr); gap: var(--sp-9); }
+    .toc { position: sticky; top: 7rem; align-self: start; }
+  }
+  .toc { padding: var(--sp-5); background: var(--bg-2); border-radius: var(--r-lg); }
+  .toc__title { font-family: var(--font-display); font-size: var(--step--2); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--sp-4); }
+  .toc ol { list-style: none; padding: 0; counter-reset: toc; display: grid; gap: 0.6rem; }
+  .toc li { counter-increment: toc; }
+  .toc a { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.3rem; font-size: var(--step--2); color: var(--fg-muted); text-decoration: none; line-height: 1.4; }
+  .toc a::before { content: counter(toc, decimal-leading-zero); font-family: var(--font-mono); color: var(--fg-subtle); }
+  .toc a:hover { color: var(--accent); }
+
+  .post__prose { margin-inline: 0; }
+  .post__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin-top: var(--sp-7) !important; padding-top: var(--sp-5); border-top: 1px solid var(--line); }
+  .post__tags li { padding: 0.3em 0.8em; font-size: var(--step--2); color: var(--fg-muted); background: var(--bg-2); border-radius: var(--r-full); }
+
+  .post__faq-title { font-size: var(--step-2); margin-block: var(--sp-3) var(--sp-6); }
+  .rel__title { font-size: var(--step-2); margin-bottom: var(--sp-6); }
+  .rel__back { margin-top: var(--sp-6); }
+  .card h3 a { text-decoration: none; }
+</style>

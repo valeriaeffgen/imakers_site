@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import Squiggle from '../components/Squiggle.astro';
+import { METODO, PROCESSO, FRONTEIRA } from '../data/content';
+import { howToSchema, itemListSchema } from '../data/schema';
+
+const crumbs = [{ name: 'Método', href: '/metodo' }];
+---
+<Base
+  title="Método IMAKERS: Discovery, Launch e Engine"
+  description="O circuito da IMAKERS em três etapas: Discovery encontra a oportunidade, Launch coloca a base própria no ar e Engine mantém o ecossistema em movimento."
+  path="/metodo"
+  image="/og/metodo.png"
+  breadcrumbs={crumbs}
+  schema={[
+    howToSchema({
+      name: 'Método IMAKERS',
+      description: 'Circuito de três etapas para transformar presença digital em operação própria.',
+      steps: METODO.map((m) => ({ name: m.nome, text: `${m.frase} ${m.texto} ${m.fecho}` })),
+    }),
+    itemListSchema('Etapas do método IMAKERS', METODO.map((m) => ({ name: m.nome, url: m.href, description: m.frase }))),
+  ]}
+>
+  <PageHero
+    eyebrow="Método IMAKERS"
+    title="Três etapas para transformar presença em operação."
+    lede="Discovery encontra a oportunidade. Launch coloca a base no ar. Engine mantém o negócio em movimento. O cliente compra um circuito simples — não um pacote genérico."
+    crumbs={crumbs}
+    cta={{ label: 'Começar pelo Discovery', href: '/contato' }}
+    secondary={{ label: 'Fazer a autoleitura', href: '/autoleitura' }}
+  />
+
+  <section class="section section--tight" aria-label="Etapas do método">
+    <div class="wrap">
+      <ol role="list" class="etapas">
+        {METODO.map((m, i) => (
+          <li class="etapa reveal">
+            <div class="etapa__aside">
+              <span class="etapa__n">{String(i + 1).padStart(2, '0')}</span>
+              <span class="etapa__line" aria-hidden="true"></span>
+            </div>
+            <div class="etapa__body">
+              <p class="eyebrow">{m.etapa}</p>
+              <h2><a href={m.href}>{m.nome}</a></h2>
+              <p class="etapa__frase">{m.frase}</p>
+              <p class="lede lede--wide">{m.texto}</p>
+              <p class="muted">{m.fecho}</p>
+              <ul role="list" class="checklist etapa__list">
+                {m.entregas.map((e) => <li>{e}</li>)}
+              </ul>
+              <p class="etapa__res"><strong>Resultado:</strong> {m.resultado}</p>
+              <a href={m.href} class="link-arrow">Ver a etapa {m.nome.replace('IMAKERS ', '')} em detalhe<Arrow cls="" /></a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="fluxo">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Como começamos"
+        title="O primeiro passo não é escolher uma ferramenta. É entender a oportunidade."
+        lede="Cada projeto passa pelo mesmo caminho, na mesma ordem. Sem etapa pulada e sem escopo aberto."
+      />
+      <p class="visually-hidden" id="fluxo">Processo de implantação</p>
+      <ol role="list" class="fluxo reveal-stagger">
+        {PROCESSO.map((p) => (
+          <li class="card fluxo__item">
+            <span class="card__num">{p.passo}</span>
+            <p>{p.o}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--dark" data-theme="dark" aria-labelledby="limite">
+    <div class="wrap limite">
+      <div>
+        <p class="eyebrow">Limite de escopo</p>
+        <h2 id="limite">A fronteira faz parte do método.</h2>
+        <p class="lede lede--wide">
+          Em nenhuma etapa a IMAKERS opera Instagram, TikTok, YouTube, LinkedIn ou outra rede sua. O máximo
+          incluído é a ponte editorial: temas, chamadas, CTAs, links e destinos para você publicar no seu estilo.
+        </p>
+        <Squiggle class="limite__sq" animate color="var(--accent)" />
+      </div>
+      <div class="table-scroll reveal">
+        <table>
+          <thead><tr><th scope="col">Não fazemos</th><th scope="col">Fazemos</th></tr></thead>
+          <tbody>
+            {FRONTEIRA.map((f) => (
+              <tr><td class="no">{f.nao}</td><td>{f.sim}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Comece pelo começo"
+    title="O Discovery é a porta de entrada."
+    text="Uma conversa para entender contexto, oferta e objetivo — e sair com uma direção clara sobre o que construir primeiro."
+    primary={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
+  />
+</Base>
+
+<style>
+  .etapas { list-style: none; padding: 0; display: grid; gap: clamp(3rem, 2rem + 4vw, 5rem); }
+  .etapa { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--sp-5); }
+  @media (min-width: 46em) { .etapa { gap: var(--sp-7); } }
+  .etapa__aside { display: grid; justify-items: center; gap: var(--sp-3); }
+  .etapa__n {
+    font-family: var(--font-display); font-size: var(--step-2); font-weight: 800;
+    color: var(--accent); line-height: 1;
+  }
+  .etapa__line { inline-size: 2px; block-size: 100%; background: linear-gradient(var(--line), transparent); border-radius: 2px; }
+  .etapa__body { display: grid; gap: var(--sp-4); max-width: 46rem; }
+  .etapa__body h2 { font-size: var(--step-3); }
+  .etapa__body h2 a { text-decoration: none; }
+  .etapa__body h2 a:hover { color: var(--accent); }
+  .etapa__frase { font-family: var(--font-display); font-size: var(--step-1); font-weight: 650; letter-spacing: -0.02em; }
+  .etapa__list { margin-top: var(--sp-2); }
+  .etapa__res {
+    padding: var(--sp-4) var(--sp-5); background: var(--bg-2); border-radius: var(--r-md);
+    border-left: 3px solid var(--accent); font-size: var(--step--1);
+  }
+
+  .fluxo { list-style: none; padding: 0; margin-top: var(--sp-7); display: grid; gap: var(--sp-4); }
+  @media (min-width: 52em) { .fluxo { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .fluxo__item { gap: var(--sp-2); }
+
+  .limite { display: grid; gap: clamp(2rem, 1rem + 4vw, 3.5rem); align-items: start; }
+  @media (min-width: 62em) { .limite { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+  .limite > div:first-child { display: grid; gap: var(--sp-4); }
+  .limite__sq { width: min(18rem, 80%); margin-top: var(--sp-3); }
+  .limite td.no { color: var(--fg-subtle); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--accent) 60%, transparent); }
+</style>

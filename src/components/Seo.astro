@@ -1,0 +1,164 @@
+---
+import { SITE } from '../config';
+
+/**
+ * Bloco unico de SEO da pagina.
+ * Cuida de: title, description, canonical, robots, Open Graph, Twitter Card,
+ * imagem social e o grafo JSON-LD. Toda pagina passa por aqui.
+ */
+export interface Breadcrumb { name: string; href: string }
+
+interface Props {
+  title: string;
+  description: string;
+  /** Caminho comecando com barra. Vira o canonical absoluto. */
+  path: string;
+  /** Caminho da imagem social (1200x630). Gerada em scripts/generate-og.mjs. */
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  breadcrumbs?: Breadcrumb[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+  /** Nos JSON-LD adicionais especificos da pagina (Service, FAQPage, etc.). */
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  path,
+  image = '/og/default.png',
+  type = 'website',
+  noindex = false,
+  breadcrumbs = [],
+  publishedTime,
+  modifiedTime,
+  author = 'IMAKERS',
+  tags = [],
+  schema = [],
+} = Astro.props;
+
+const base = new URL(SITE.url);
+const canonical = new URL(path === '/' ? '/' : path.replace(/\/$/, ''), base).href;
+const ogImage = new URL(image, base).href;
+const fullTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
+
+/* ---- JSON-LD ---------------------------------------------------------- */
+const orgId = `${base.origin}/#organization`;
+const siteId = `${base.origin}/#website`;
+
+const socialProfiles = Object.values(SITE.social).filter(Boolean);
+
+const organization = {
+  '@type': 'Organization',
+  '@id': orgId,
+  name: SITE.name,
+  legalName: SITE.legalName,
+  url: base.origin,
+  slogan: SITE.promiseAccented,
+  description: SITE.description,
+  foundingDate: SITE.founded,
+  logo: { '@type': 'ImageObject', url: new URL('/og/logo.png', base).href, width: 512, height: 512 },
+  image: ogImage,
+  ...(socialProfiles.length ? { sameAs: socialProfiles } : {}),
+  ...(SITE.email ? { email: SITE.email } : {}),
+  areaServed: { '@type': 'Country', name: 'Brasil' },
+  knowsLanguage: 'pt-BR',
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: SITE.email,
+      availableLanguage: ['Portuguese'],
+      areaServed: 'BR',
+    },
+  ],
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': siteId,
+  url: base.origin,
+  name: SITE.name,
+  description: SITE.description,
+  inLanguage: 'pt-BR',
+  publisher: { '@id': orgId },
+};
+
+const webpage: Record<string, unknown> = {
+  '@type': type === 'article' ? 'Article' : 'WebPage',
+  '@id': `${canonical}#page`,
+  url: canonical,
+  name: fullTitle,
+  headline: title,
+  description,
+  inLanguage: 'pt-BR',
+  isPartOf: { '@id': siteId },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+};
+if (type === 'article') {
+  webpage.author = { '@type': 'Organization', name: author, url: base.origin };
+  webpage.publisher = { '@id': orgId };
+  webpage.image = [ogImage];
+  if (publishedTime) webpage.datePublished = publishedTime;
+  webpage.dateModified = modifiedTime ?? publishedTime;
+  if (tags.length) webpage.keywords = tags.join(', ');
+  webpage.mainEntityOfPage = { '@type': 'WebPage', '@id': canonical };
+}
+
+const crumbs = breadcrumbs.length
+  ? [
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonical}#breadcrumb`,
+        itemListElement: [{ name: 'Início', href: '/' }, ...breadcrumbs].map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: c.name,
+          item: new URL(c.href, base).href,
+        })),
+      },
+    ]
+  : [];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [organization, website, webpage, ...crumbs, ...schema],
+};
+---
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta
+  name="robots"
+  content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+/>
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${title} — ${SITE.name}`} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{type === 'article' && (modifiedTime ?? publishedTime) && (
+  <meta property="article:modified_time" content={modifiedTime ?? publishedTime} />
+)}
+{type === 'article' && tags.map((t) => <meta property="article:tag" content={t} />)}
+
+{SITE.googleSiteVerification && <meta name="google-site-verification" content={SITE.googleSiteVerification} />}
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

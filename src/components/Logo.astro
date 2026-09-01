@@ -1,0 +1,55 @@
+---
+import Squiggle from './Squiggle.astro';
+
+/**
+ * Logo IMAKERS.
+ * A palavra e texto real (nao imagem): fica nitida em qualquer tamanho, herda
+ * a cor do contexto — o mesmo componente serve fundo claro e escuro — e o nome
+ * da marca continua legivel para leitores de tela e para o Google.
+ */
+interface Props {
+  class?: string;
+  /** Altura da palavra, em qualquer unidade CSS. */
+  size?: string;
+  /** Usa a marca como link para a home. */
+  href?: string | null;
+}
+const { class: cls = '', size = '1.6rem', href = '/' } = Astro.props;
+const Tag = href ? 'a' : 'span';
+---
+<Tag
+  class={`logo ${cls}`}
+  {...href ? { href, 'aria-label': 'IMAKERS — página inicial' } : {}}
+  style={`--logo-size:${size}`}
+>
+  <Squiggle class="logo__mark" color="var(--magenta)" />
+  <span class="logo__word">imakers</span>
+</Tag>
+
+<style>
+  .logo {
+    position: relative;
+    display: inline-block;
+    padding-top: calc(var(--logo-size) * 0.78);
+    text-decoration: none;
+    color: var(--fg);
+    line-height: 1;
+  }
+  .logo__word {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--logo-size);
+    font-weight: 500;
+    letter-spacing: -0.028em;
+    line-height: 1;
+  }
+  .logo__mark {
+    position: absolute;
+    top: 0;
+    left: 19%;
+    width: 60%;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: 20% 80%;
+  }
+  a.logo:hover .logo__mark { transform: translate(2px, -2px) rotate(-1.5deg); }
+</style>

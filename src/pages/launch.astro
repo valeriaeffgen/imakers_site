@@ -1,0 +1,187 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { serviceSchema, faqSchema, howToSchema } from '../data/schema';
+
+const crumbs = [{ name: 'Método', href: '/metodo' }, { name: 'Launch', href: '/launch' }];
+
+const entregas = [
+  { t: 'Discovery aplicado', c: 'Público, proposta, oportunidade e prioridade documentados.' },
+  { t: 'Arquitetura', c: 'Páginas, CTAs, captura e jornada definidos.' },
+  { t: 'Publicação', c: 'Site ou landing page no ar, testado e medido.' },
+  { t: 'Primeiro ativo próprio', c: 'Um artigo, guia, quiz ou e-book curto publicado.' },
+  { t: 'Conversão', c: 'Formulário, agenda, página de contato ou fluxo equivalente funcionando.' },
+  { t: 'Mensuração', c: 'Eventos básicos e indicadores essenciais configurados.' },
+  { t: 'Ponte editorial', c: 'Temas, chamadas, links e destinos prontos para você usar na rede.' },
+  { t: 'Handover', c: 'Treinamento curto e checklist de continuidade.' },
+];
+
+const fases = [
+  { n: 'Fase C', t: 'Provisionamento', d: 'Você cria e verifica as contas necessárias e fornece as credenciais por canal seguro. A IMAKERS não pede chaves por e-mail nem guarda credenciais em planilha.' },
+  { n: 'Fase D', t: 'Construção', d: 'Páginas, produtos, formulários, webhooks, estados, regras de acesso, políticas, analytics e relatórios. Testes em ambiente de homologação ou com credenciais de teste.' },
+  { n: 'Fase E', t: 'Homologação', d: 'Matriz de teste com pagamento aprovado e recusado, Pix pendente, boleto vencido, cartão parcelado, reembolso, webhook duplicado e inválido, assinatura renovada, falha e cancelamento.' },
+  { n: 'Fase F', t: 'Produção assistida', d: 'Publicação acompanhada de perto: revisão do primeiro pedido real, validação de repasse, conferência de relatório e janela limitada de correções. Você aprova formalmente o início da operação.' },
+];
+
+const foraDoEscopo = [
+  'Criação de artes para redes sociais',
+  'Operação de redes e publicação diária',
+  'Atendimento social e resposta a directs',
+  'Gestão de anúncios',
+  'Gravação ou edição de vídeos',
+  'Funcionalidades especiais e integrações fora do padrão',
+  'Produção ilimitada de conteúdo',
+];
+
+const faq = [
+  {
+    q: 'O que significa "publicado" no fim do Launch?',
+    a: 'Significa uma operação no ar, testada e capaz de receber pessoas: site ou landing page publicados, um ativo próprio disponível, um caminho de conversão funcionando e a mensuração ligada. Não é uma entrega de arquivos.',
+  },
+  {
+    q: 'O Launch já inclui pagamentos?',
+    a: 'Só nas faixas Commerce, Recurring e Platform. Nas faixas Base e Capture não há checkout, pedido, cobrança nem conciliação — um formulário de contato não deve ser confundido com um pedido pago.',
+  },
+  {
+    q: 'Quem fica com as contas e as credenciais?',
+    a: 'Você. Cada conta de provedor é aberta e mantida no seu CNPJ ou CPF. A IMAKERS integra usando credenciais protegidas no back-end, mas o dinheiro, o relacionamento financeiro e o histórico de recebimentos são seus.',
+  },
+  {
+    q: 'Existe ajuste depois da publicação?',
+    a: 'Sim, dentro de uma janela limitada de correções acordada no escopo. Depois dela, a evolução contínua passa a acontecer no Engine.',
+  },
+];
+---
+<Base
+  title="IMAKERS Launch — colocar a estrutura para funcionar"
+  description="A segunda etapa do método IMAKERS constrói o que o Discovery definiu: site, páginas, ativos, ferramentas e conversão — publicado, testado e medido."
+  path="/launch"
+  image="/og/launch.png"
+  breadcrumbs={crumbs}
+  schema={[
+    serviceSchema({
+      name: 'IMAKERS Launch',
+      description:
+        'Construção e publicação do ecossistema próprio: site, páginas de oferta, ativos, formulários, integrações, mensuração e ponte editorial.',
+      path: '/launch',
+      serviceType: 'Desenvolvimento e implantação de site e operação digital',
+      offers: ['Site e landing pages', 'Primeiro ativo próprio', 'Fluxo de conversão', 'Mensuração', 'Integração de pagamentos'],
+    }),
+    howToSchema({
+      name: 'Fases de implantação do IMAKERS Launch',
+      description: 'Do provisionamento à produção assistida.',
+      steps: fases.map((f) => ({ name: `${f.n} — ${f.t}`, text: f.d })),
+    }),
+    faqSchema(faq),
+  ]}
+>
+  <PageHero
+    eyebrow="Etapa 2 do circuito"
+    title="IMAKERS Launch:<br />colocar a estrutura para funcionar."
+    lede="Construímos o ecossistema definido no Discovery — site, páginas, ativos, ferramentas, integrações e caminhos de conversão. O Launch termina com uma operação publicada, testada e pronta para receber a audiência que você já está construindo."
+    crumbs={crumbs}
+    cta={{ label: 'Quero ativar minha base própria', href: '/contato' }}
+    secondary={{ label: 'Ver as faixas de complexidade', href: '/solucoes' }}
+  />
+
+  <section class="section section--tight" aria-labelledby="criterios">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Critérios de conclusão"
+        title="O Launch acaba quando cada item está no ar — não quando o prazo termina."
+        lede="A ativação deve ser percebida como uma transformação fechada. Ela começa com clareza e termina com uma base própria funcionando."
+      />
+      <p class="visually-hidden" id="criterios">Critérios de conclusão do Launch</p>
+      <div class="table-scroll reveal lcrit">
+        <table>
+          <thead><tr><th scope="col">Entrega</th><th scope="col">Critério de conclusão</th></tr></thead>
+          <tbody>
+            {entregas.map((e) => (
+              <tr><th scope="row">{e.t}</th><td>{e.c}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="fases">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Como a implantação acontece"
+        title="Quatro fases, com homologação antes da produção."
+        lede="Nenhuma operação vai ao ar sem passar por uma matriz de testes. É o que separa um site publicado de uma operação confiável."
+      />
+      <p class="visually-hidden" id="fases">Fases de implantação</p>
+      <ol role="list" class="grid grid-4 reveal-stagger lfases">
+        {fases.map((f) => (
+          <li class="card">
+            <span class="card__num">{f.n}</span>
+            <h3>{f.t}</h3>
+            <p>{f.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="fora">
+    <div class="wrap two-col">
+      <div class="two-col__copy">
+        <p class="eyebrow">Transparência de escopo</p>
+        <h2 id="fora">O que não entra na ativação padrão.</h2>
+        <p class="lede lede--wide">
+          Escopo aberto é o que transforma um projeto bom em um projeto sem fim. O que está fora da ativação
+          padrão pode ser contratado como módulo adicional — com prazo e orçamento próprios.
+        </p>
+        <a href="/solucoes" class="link-arrow">Ver o que cada faixa inclui<Arrow cls="" /></a>
+      </div>
+      <div class="panel reveal">
+        <h3 class="panel__title">Fora da ativação padrão</h3>
+        <ul role="list" class="checklist checklist--x">
+          {foraDoEscopo.map((f) => <li>{f}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="lfaq">
+    <div class="wrap-narrow prose">
+      <h2 id="lfaq">Perguntas frequentes sobre o Launch</h2>
+      {faq.map((f) => (
+        <div>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+      <p>
+        Depois da publicação, a operação continua no <a href="/engine">IMAKERS Engine</a> — a etapa que
+        mantém os ativos, os dados e as oportunidades em movimento.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Etapa 2"
+    title="Sua base própria pode entrar no ar."
+    text="Se o Discovery já apontou a direção, o Launch é a construção. Vamos conversar sobre o escopo do seu projeto."
+    primary={{ label: 'Falar sobre o meu Launch', href: '/contato' }}
+    secondary={{ label: 'Conhecer o Engine', href: '/engine' }}
+  />
+</Base>
+
+<style>
+  .lcrit, .lfases { margin-top: var(--sp-7); }
+  .two-col { display: grid; gap: clamp(2rem, 1rem + 4vw, 4rem); align-items: start; }
+  @media (min-width: 62em) { .two-col { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
+  .two-col__copy { display: grid; gap: var(--sp-4); }
+  .panel {
+    padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    display: grid; gap: var(--sp-4); box-shadow: var(--shadow-sm);
+  }
+  .panel__title { font-size: var(--step-1); }
+</style>
