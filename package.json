@@ -10,12 +10,16 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "og": "node scripts/generate-og.mjs"
+    "og": "node scripts/generate-og.mjs",
+    "instagram": "node tools/instagram/build.mjs && node tools/instagram/render.mjs"
   },
   "dependencies": {
     "astro": "^5.0.0",
     "@astrojs/sitemap": "^3.2.0",
     "@astrojs/rss": "^4.0.0",
     "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.49.0"
   }
 }

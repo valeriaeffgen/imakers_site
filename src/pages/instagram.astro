@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import Squiggle from '../components/Squiggle.astro';
+import Arrow from '../components/Arrow.astro';
+import { SITE } from '../config';
+
+/**
+ * Página de link na bio.
+ * Recebe quem vem do perfil do Instagram e oferece poucos caminhos, em ordem
+ * de compromisso: entender, se diagnosticar, conversar.
+ *
+ * Fora do índice de propósito: o conteúdo é curto e repete o da home, então
+ * indexá-la só criaria concorrência entre páginas próprias.
+ */
+const CAMINHOS = [
+  {
+    href: '/autoleitura',
+    kicker: 'Comece por aqui',
+    titulo: 'Descubra qual estrutura sua presença está pedindo',
+    texto: 'Seis perguntas, dois minutos, uma recomendação clara. Roda no seu navegador — nada é enviado.',
+    destaque: true,
+  },
+  {
+    href: '/metodo',
+    kicker: 'O método',
+    titulo: 'Discovery, Launch e Engine',
+    texto: 'As três etapas que transformam uma presença dispersa em operação própria.',
+  },
+  {
+    href: '/solucoes',
+    kicker: 'O que construímos',
+    titulo: 'Do blog à operação com assinaturas',
+    texto: 'Cinco faixas de complexidade. Comece simples e evolua quando o negócio pedir.',
+  },
+  {
+    href: '/blog',
+    kicker: 'Para ler',
+    titulo: 'O que acontece depois do clique',
+    texto: 'Artigos sobre estrutura, ativos próprios, conversão e pagamentos.',
+  },
+  {
+    href: '/contato',
+    kicker: 'Quando fizer sentido',
+    titulo: 'Falar com a IMAKERS',
+    texto: 'Conte o que você já construiu e onde a operação trava hoje.',
+  },
+];
+---
+<Base
+  title="IMAKERS — links"
+  description="Os caminhos principais da IMAKERS para quem chega pelo Instagram: autoleitura, método, soluções, blog e contato."
+  path="/instagram"
+  noindex
+  bare
+>
+  <section class="bio">
+    <div class="bio__glow" aria-hidden="true"></div>
+    <div class="bio__inner">
+      <header class="bio__head">
+        <Logo size="2.4rem" href={null} />
+        <h1 class="bio__promessa">{SITE.promiseAccented}</h1>
+        <p class="bio__frase">
+          A rede social traz a atenção.<br />
+          A IMAKERS constrói o que acontece depois.
+        </p>
+      </header>
+
+      <nav class="bio__links" aria-label="Caminhos principais">
+        <ul role="list">
+          {CAMINHOS.map((c) => (
+            <li>
+              <a href={c.href} class={`cam ${c.destaque ? 'cam--destaque' : ''}`}>
+                <span class="cam__kicker">{c.kicker}</span>
+                <span class="cam__titulo">{c.titulo}</span>
+                <span class="cam__texto">{c.texto}</span>
+                <span class="cam__seta" aria-hidden="true"><Arrow cls="" size={16} /></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <Squiggle class="bio__sq" animate color="color-mix(in srgb, var(--magenta) 45%, transparent)" />
+
+      <footer class="bio__pe">
+        <p>Não operamos redes sociais. Construímos e operamos o ecossistema próprio que recebe essa audiência.</p>
+        {SITE.email && <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>}
+        <p><a href="/">imakers.com.br</a> · <a href="/politica-de-privacidade">Privacidade</a></p>
+      </footer>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .bio {
+    position: relative;
+    min-height: 100dvh;
+    display: grid;
+    align-content: start;
+    padding-block: clamp(2.5rem, 1.5rem + 5vw, 4.5rem) var(--sp-8);
+    overflow: hidden;
+  }
+  .bio__glow {
+    position: absolute; top: -30%; left: 50%; translate: -50% 0;
+    inline-size: min(40rem, 130%); aspect-ratio: 1;
+    background: radial-gradient(circle at center, color-mix(in srgb, var(--magenta) 15%, transparent) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  /* Coluna estreita: quem chega aqui está no celular, vindo da bio. */
+  .bio__inner { position: relative; width: min(100% - 2.5rem, 30rem); margin-inline: auto; display: grid; gap: var(--sp-7); }
+
+  .bio__head { display: grid; justify-items: center; gap: var(--sp-4); text-align: center; }
+  .bio__promessa {
+    font-family: var(--font-display); font-size: var(--step-1); font-weight: 650;
+    margin: 0;
+    letter-spacing: -0.025em; line-height: 1.25; max-width: 20ch;
+  }
+  .bio__frase { font-size: var(--step--1); color: var(--fg-muted); line-height: 1.55; }
+
+  .bio__links ul { display: grid; gap: 0.7rem; }
+  .cam {
+    position: relative;
+    display: grid; gap: 0.2rem;
+    padding: 1.1rem 3rem 1.1rem 1.25rem;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    text-decoration: none;
+    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .cam:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); box-shadow: var(--shadow-md); }
+  .cam--destaque { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+  .cam__kicker {
+    font-family: var(--font-display); font-size: var(--step--2); font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+  }
+  .cam__titulo { font-family: var(--font-display); font-size: var(--step-0); font-weight: 650; letter-spacing: -0.015em; line-height: 1.25; }
+  .cam__texto { font-size: var(--step--2); color: var(--fg-muted); line-height: 1.5; margin-top: 0.15rem; }
+  .cam__seta {
+    position: absolute; right: 1.15rem; top: 50%; translate: 0 -50%;
+    color: var(--fg-subtle); transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+  }
+  .cam:hover .cam__seta { transform: translate(3px, -50%); color: var(--accent); }
+
+  .bio__sq { width: min(14rem, 55%); justify-self: center; }
+
+  .bio__pe { display: grid; gap: 0.6rem; text-align: center; font-size: var(--step--2); color: var(--fg-subtle); line-height: 1.5; }
+  .bio__pe a { color: var(--fg-muted); }
+</style>

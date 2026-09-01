@@ -15,7 +15,9 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'pt-BR', locales: { 'pt-BR': 'pt-BR' } },
-      filter: (page) => !page.includes('/obrigado'),
+      // Páginas noindex não entram no sitemap: listar o que se pede para não
+      // indexar é um sinal contraditório para o rastreador.
+      filter: (page) => !['/obrigado', '/instagram'].some((r) => page.includes(r)),
       serialize(item) {
         const path = new URL(item.url).pathname.replace(/\/$/, '');
         if (path === '') item.priority = 1.0;

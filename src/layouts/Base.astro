@@ -18,8 +18,11 @@ interface Props {
   modifiedTime?: string;
   tags?: string[];
   schema?: Record<string, unknown>[];
+  /** Sem cabeçalho e sem rodapé — para páginas de destino focadas, como o
+   *  link na bio, onde a navegação completa competiria com a única escolha. */
+  bare?: boolean;
 }
-const props = Astro.props;
+const { bare = false, ...props } = Astro.props;
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -44,11 +47,11 @@ const props = Astro.props;
 
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <Header />
+    {!bare && <Header />}
     <main id="conteudo">
       <slot />
     </main>
-    <Footer />
+    {!bare && <Footer />}
 
     <script is:inline>
       /* Revela blocos na rolagem. Se o usuario pediu menos animacao, nada roda. */
