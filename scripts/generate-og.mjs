@@ -106,14 +106,24 @@ function ogSvg({ title, kicker }) {
 }
 
 /* ---------- Icones ------------------------------------------------------ */
+/* Os icones usam o MESMO desenho do favicon.svg: uma versao simplificada da
+   seta, com curvas mais abertas, que aguenta tamanhos pequenos. A seta do
+   logo tem curvas fechadas demais — no tamanho de icone o traco preenche a
+   onda e ela vira uma mancha.
+   Fundo branco: a seta magenta se sustenta sozinha e o icone nao vira um
+   bloco escuro na barra de abas nem na tela inicial. */
+const ICONE_ONDA = 'M9 45C13 25 24 24 30 38c4 9 10 4 22-21';
+const ICONE_PONTA = 'M39 19 52 17l-3 13';
+
 function iconSvg(size, { maskable = false } = {}) {
-  const pad = maskable ? size * 0.21 : size * 0.14;
-  const w = size - pad * 2;
+  // Icone maskable: o sistema recorta em circulo, entao o desenho recua para
+  // caber na area central segura.
+  const escala = (size / 64) * (maskable ? 0.72 : 1);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-    <rect width="${size}" height="${size}" rx="${maskable ? 0 : size * 0.22}" fill="#202126"/>
-    <g transform="translate(${pad} ${size / 2 - (w * 0.32) / 2}) scale(${w / 100})" fill="none" stroke="${MAGENTA}"
-       stroke-width="${(size * 0.095) / (w / 100)}" stroke-linecap="round" stroke-linejoin="round">
-      <path d="${WAVE}"/><path d="${HEAD}"/>
+    <rect width="${size}" height="${size}" rx="${maskable ? 0 : size * 0.22}" fill="#ffffff"/>
+    <g transform="translate(${size / 2} ${size / 2}) scale(${escala}) translate(-32 -32)"
+       fill="none" stroke="${MAGENTA}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="${ICONE_ONDA}"/><path d="${ICONE_PONTA}"/>
     </g>
   </svg>`;
 }
