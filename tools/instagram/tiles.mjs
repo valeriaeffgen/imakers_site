@@ -42,48 +42,50 @@ export const seta = (stroke = 3) => `
   </svg>`;
 
 /* ---------- Os nove quadros, em ordem de LEITURA ----------
-   Nenhum quadro vende nada. A linha de cima é o que acontece hoje, a do meio
-   nomeia o problema e a de baixo mostra o que está sendo perdido. As frases
-   vêm da copy do site. */
+   A arte é a pergunta. Nenhum quadro afirma, nenhum vende, nenhum explica:
+   cada um nomeia uma coisa que a pessoa já sente e ainda não sabe dizer.
+   A linha de apoio é um fato, nunca uma resposta nem uma oferta.
+
+   linha de cima ... o atrito de toda semana
+   linha do meio ... o risco de depender de uma conta que não é sua
+   linha de baixo .. o que não se acumulou em anos publicando          */
 export const QUADROS = [
   {
-    kicker: 'O que acontece hoje',
-    h: 'O conteúdo gera<br>interesse, mas a<br>conversa se perde.',
-    p: 'Tudo volta para mensagem dispersa, link solto e processo manual.',
+    h: 'Quantas vezes<br>você explicou a<br>mesma coisa<br>esta semana?',
+    p: 'Cada resposta no direct depende de você estar disponível.',
   },
   {
-    kicker: 'O que acontece hoje',
-    h: 'Os contatos chegam,<br>mas não formam<br>uma base.',
-    p: 'Amanhã o ciclo recomeça do zero, com outra pessoa e a mesma explicação.',
+    h: 'Quantas conversas<br>deste mês não<br>existem mais em<br>lugar nenhum?',
+    p: 'Nenhuma delas deixou rastro que possa ser reaproveitado.',
   },
   {
-    kicker: 'O que acontece hoje',
-    h: 'A oferta existe,<br>mas não está<br>organizada.',
-    p: 'Cada pessoa precisa perguntar tudo antes de decidir.',
+    h: 'Se alguém se<br>interessar às 23h,<br>para onde essa<br>pessoa vai?',
+    p: 'O interesse não espera o seu horário de atendimento.',
   },
 
-  { banda: 'meio', h: 'O problema não é<br>falta de alcance.', p: 'É que o clique não tem para onde ir.' },
+  {
+    banda: 'meio',
+    h: 'E se você precisasse<br>ficar um mês fora?',
+    p: 'A audiência é sua. O alcance é da plataforma.',
+  },
   { banda: 'meio', logo: true, p: 'da atenção à operação própria' },
   {
     banda: 'meio',
-    h: 'Se você parar de<br>publicar, o alcance<br>para junto.',
-    p: 'A audiência é sua. O alcance é da plataforma.',
+    h: 'Se sua conta sumisse,<br>o que sobraria?',
+    p: 'Conteúdo dentro de uma rede pertence à rede.',
   },
 
   {
-    kicker: 'O que poderia ser seu',
-    h: 'Um post<br>vive horas.',
-    p: 'Um guia bem construído é encontrado por meses.',
+    h: 'O que você publicou<br>no mês passado ainda<br>trabalha por você?',
+    p: 'Um post vive horas. O feed é uma linha do tempo.',
   },
   {
-    kicker: 'O que poderia ser seu',
-    h: 'Alcance é aluguel.<br>Ativo é patrimônio.',
-    p: 'Cada ativo novo aumenta o valor dos anteriores.',
+    h: 'Quem procura pelo<br>que você resolve<br>consegue te<br>encontrar?',
+    p: 'O seu carrossel não aparece na busca.',
   },
   {
-    kicker: 'O que poderia ser seu',
-    h: 'Conteúdo dentro<br>de uma rede<br>pertence à rede.',
-    p: 'O feed é uma linha do tempo. Um lugar próprio é um arquivo.',
+    h: 'Depois de anos<br>publicando, o que<br>sobrou que é seu?',
+    p: 'Alcance é aluguel. Ativo é patrimônio.',
   },
 ];
 

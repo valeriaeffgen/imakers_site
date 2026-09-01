@@ -1,51 +1,50 @@
 /** As nove legendas, em ordem de leitura da grade.
  *
- *  Princípio: falar sem vender. Cada legenda desenvolve uma dor, um risco ou
- *  uma oportunidade perdida, e fecha com uma pergunta ou uma constatação que
- *  dá vontade de saber mais. Nenhuma chama para ação: o link da bio já está
- *  no perfil e não precisa ser repetido em todo post.
+ *  Divisão de trabalho: a arte pergunta, a legenda explica. A pergunta do
+ *  quadro nomeia o que a pessoa sente e não sabe dizer; a legenda aterrissa
+ *  isso numa cena concreta, mostra o mecanismo por trás e fecha com uma
+ *  constatação seca. Nenhuma repete a pergunta e nenhuma chama para ação:
+ *  o link da bio já está no perfil.
  *
- *  As frases vêm da copy do site. */
+ *  As frases de apoio vêm da copy do site. */
 export const LEGENDAS = [
   {
-    titulo: 'O conteúdo gera interesse, mas a conversa se perde',
-    texto: `Você publica. As pessoas respondem. Alguém pergunta o preço no direct. Você explica. A conversa esfria.
+    titulo: 'Quantas vezes você explicou a mesma coisa esta semana?',
+    texto: `Preço. Prazo. O que está incluso. Como funciona. Se atende o caso dela.
 
-No dia seguinte o ciclo recomeça do zero, com outra pessoa e a mesma explicação.
+São sempre as mesmas cinco perguntas, e você responde cada uma como se fosse a primeira vez.
 
-Cada uma dessas etapas depende de você estar disponível. Nenhuma delas deixa rastro que possa ser reaproveitado.
+Não é falta de organização sua. É que a resposta não mora em lugar nenhum: ela só existe enquanto você digita.
 
-Quantas conversas você teve este mês que não existem mais em lugar nenhum?`,
+Uma explicação escrita uma vez responde por você mil vezes. Uma explicação no direct responde uma.`,
   },
   {
-    titulo: 'Os contatos chegam, mas não formam uma base',
-    texto: `Um comentário. Um direct. Um "me manda mais informação".
+    titulo: 'Quantas conversas deste mês não existem mais em lugar nenhum?',
+    texto: `Alguém comentou. Alguém chamou no direct. Alguém disse "me manda mais informação".
 
-Todos são interesse real. E todos moram no mesmo lugar: dentro de uma plataforma que você não controla, misturados com o resto.
+Todos eram interesse real. E todos estão soterrados numa caixa de mensagens, misturados com o resto, sem nome, sem contexto e sem como recuperar.
 
-Quem demonstrou interesse há três meses provavelmente continua interessado. Você só não tem como saber quem era.
+Quem se interessou há três meses provavelmente continua interessado. Você só não tem mais como saber quem era.
 
 Uma base própria não é uma lista de e-mails. É a diferença entre lembrar e recomeçar.`,
   },
   {
-    titulo: 'A oferta existe, mas não está organizada',
-    texto: `Você sabe exatamente o que faz, para quem e por quanto.
+    titulo: 'Se alguém se interessar às 23h, para onde essa pessoa vai?',
+    texto: `O interesse não tem horário comercial. Ele acontece no ônibus, na fila, antes de dormir.
 
-Quem chega até você não sabe. E precisa perguntar tudo antes de decidir: o que está incluso, como funciona, quanto custa, quanto tempo leva.
+Nesse momento a pessoa procura o seu perfil, não encontra uma explicação organizada, manda mensagem e espera. Amanhã, quando você responder, o impulso já passou.
 
-Cada dúvida que não foi respondida antes da conversa é uma pessoa que desiste em silêncio, sem nunca aparecer no seu direct.
-
-Quantas dessas você nunca chegou a conhecer?`,
+A diferença entre um negócio que trabalha 24 horas e um que trabalha quando você está acordada não é esforço. É estrutura.`,
   },
   {
-    titulo: 'O problema não é falta de alcance',
-    texto: `É que o clique não tem para onde ir.
+    titulo: 'E se você precisasse ficar um mês fora?',
+    texto: `Uma viagem. Uma cirurgia. Um luto. Um filho.
 
-Alguém vê seu conteúdo, se interessa, procura seu perfil, não encontra uma explicação organizada, manda mensagem, recebe resposta quando você tem tempo. E decide, ou esquece.
+Duas semanas sem publicar e o alcance cai. Um mês e você virou desconhecida para o seu próprio público.
 
-Mais alcance só coloca mais gente nesse mesmo caminho.
+Isso não é falha sua: é como a plataforma funciona. Ela empresta atenção enquanto você alimenta e retoma quando você para.
 
-O gargalo não está na entrada.`,
+A audiência é sua. O alcance é da plataforma. A diferença entre as duas coisas só aparece quando você precisa parar.`,
   },
   {
     titulo: 'IMAKERS',
@@ -56,43 +55,41 @@ Você continua sendo a voz da sua rede.
 Da atenção à operação própria.`,
   },
   {
-    titulo: 'Se você parar de publicar, o alcance para junto',
-    texto: `Duas semanas sem postar e o alcance cai. Um mês e você virou desconhecida para o seu próprio público.
+    titulo: 'Se sua conta sumisse, o que sobraria?',
+    texto: `Conta bloqueada por engano. Hackeada. Derrubada por denúncia em massa. Suspensa por uma regra que mudou.
 
-Isso não é falha sua. É como a plataforma funciona: empresta atenção enquanto você alimenta e retoma quando você para.
+Quem já passou por isso descobre no mesmo dia o tamanho da dependência: seguidores, conversas, histórico e portfólio estavam todos no mesmo lugar. E esse lugar não era seu.
 
-A audiência é sua. O alcance é da plataforma.
-
-O que aconteceria com o seu negócio se você precisasse ficar um mês fora?`,
+Conteúdo dentro de uma rede pertence à rede. Você produz, ela distribui, e o que fica registrado fica lá.`,
   },
   {
-    titulo: 'Um post vive horas',
-    texto: `Um post bem escrito entrega alcance por algumas horas. Depois desce no feed e some.
+    titulo: 'O que você publicou no mês passado ainda trabalha por você?',
+    texto: `Provavelmente não. O post entregou alcance por algumas horas, desceu no feed e sumiu.
 
-Um guia bem construído sobre o mesmo assunto continua sendo encontrado, lido e compartilhado meses depois. Por gente que nem sabia que você existia.
+Um material bem construído sobre exatamente o mesmo assunto continuaria sendo encontrado, lido e compartilhado agora. Por gente que nem sabia que você existia.
 
-O mesmo esforço. Uma diferença de meses.
+O mesmo esforço, uma diferença de meses.
 
-O que você escreveu no mês passado ainda está trabalhando por você?`,
+O feed é uma linha do tempo. Um lugar próprio é um arquivo.`,
   },
   {
-    titulo: 'Alcance é aluguel. Ativo é patrimônio',
-    texto: `Alcance e patrimônio não são a mesma coisa.
+    titulo: 'Quem procura pelo que você resolve consegue te encontrar?',
+    texto: `Todo dia alguém digita no buscador exatamente o problema que você resolve.
 
-O alcance é decidido pelo algoritmo, dura horas e para quando você para. O ativo próprio vive no seu domínio, aparece em buscas, pode ser atualizado e continua trazendo gente sozinho.
+Essa pessoa não está no seu perfil. Não te segue, não te conhece, e não vai encontrar o seu carrossel: carrossel não aparece na busca.
 
-Dez posts somam dez picos. Dez bons materiais somam uma biblioteca.
+Ela vai encontrar quem escreveu sobre o assunto em um lugar próprio, com endereço, título e texto que o buscador consegue ler.
 
-Depois de anos publicando, o que sobrou que é seu?`,
+É a audiência mais qualificada que existe, e a única que não depende de você publicar todo dia.`,
   },
   {
-    titulo: 'Conteúdo dentro de uma rede pertence à rede',
-    texto: `Você produz, a plataforma distribui, e o que fica registrado fica lá.
+    titulo: 'Depois de anos publicando, o que sobrou que é seu?',
+    texto: `Faça a conta do que já foi produzido: centenas de posts, milhares de horas, uma audiência construída do zero.
 
-Quem procura no Google pelo problema que você resolve não encontra o seu carrossel. Encontra quem escreveu sobre isso em um lugar próprio.
+Agora liste o que continua trabalhando hoje.
 
-O feed é uma linha do tempo. Um lugar próprio é um arquivo.
+Alcance e patrimônio não são a mesma coisa. O alcance é decidido pelo algoritmo, dura horas e para quando você para. O ativo próprio vive no seu domínio, aparece em buscas e continua trazendo gente sozinho.
 
-Um some. O outro acumula.`,
+Dez posts somam dez picos. Dez bons materiais somam uma biblioteca.`,
   },
 ];
