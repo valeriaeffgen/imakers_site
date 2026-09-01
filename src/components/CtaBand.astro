@@ -21,8 +21,8 @@ const {
 } = Astro.props;
 ---
 <section class="band section--plum" data-theme="dark" aria-labelledby="band-title">
-  <Squiggle class="band__deco" animate color="color-mix(in srgb, var(--accent) 28%, transparent)" />
   <div class="wrap band__inner reveal">
+    <Squiggle class="band__deco" animate color="var(--accent)" />
     <p class="eyebrow">{eyebrow}</p>
     <h2 id="band-title">{title}</h2>
     <p class="lede lede--wide">{text}</p>
@@ -35,10 +35,19 @@ const {
 </section>
 
 <style>
-  .band { position: relative; overflow: hidden; padding-block: clamp(4rem, 2.5rem + 7vw, 8rem); }
+  /* Menos ar embaixo: a faixa e o rodape sao ambos escuros e se fundem, entao
+     o espaco que sobrava entre os dois lia como vazio, nao como respiro. */
+  .band {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4rem, 2.5rem + 7vw, 8rem) clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  /* Assinatura, nao papel de parede: a seta entra em tamanho humano antes do
+     eyebrow. Sempre inteira, nunca cortada pela borda e nunca por cima do
+     texto — em qualquer largura de tela. */
   .band__deco {
-    position: absolute; inset-inline: -8%; top: 50%; translate: 0 -50%;
-    width: 116%; height: auto; opacity: 0.55; pointer-events: none;
+    width: 8.5rem;
+    margin-bottom: calc(var(--sp-2) * -1);
   }
   .band__inner { position: relative; max-width: 52rem; display: grid; gap: var(--sp-5); }
   .band__inner h2 { font-size: var(--step-4); }

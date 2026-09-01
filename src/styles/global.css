@@ -75,6 +75,10 @@ p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
 /* Blocos escuros: as mesmas variaveis, invertidas. Qualquer componente
    dentro de [data-theme="dark"] se adapta sem CSS extra. */
 [data-theme='dark'] {
+  /* Pintar a cor aqui e nao so redefinir as variaveis: um filho sem `color`
+     proprio herda a cor JA CALCULADA do body (o grafite do tema claro), e nao
+     o novo valor de --fg. Sem esta linha, titulos ficam grafite sobre escuro. */
+  color: var(--fg);
   --bg: var(--night);
   --bg-2: #1b1c22;
   --surface: #1e1f26;

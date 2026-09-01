@@ -30,6 +30,11 @@ const Tag = href ? 'a' : 'span';
   .logo {
     position: relative;
     display: inline-block;
+    /* A seta e posicionada em % da largura da marca, entao a marca precisa
+       ter a largura da palavra. Como filho de um grid ou flex o `inline-block`
+       e convertido em `block` e esticaria — `max-content` impede isso. */
+    width: max-content;
+    max-width: 100%;
     padding-top: calc(var(--logo-size) * 0.78);
     text-decoration: none;
     color: var(--fg);
@@ -43,6 +48,8 @@ const Tag = href ? 'a' : 'span';
     letter-spacing: -0.028em;
     line-height: 1;
   }
+  /* Proporcoes medidas na logo original: a seta ocupa 60% da largura da
+     palavra e comeca a 19% dela. */
   .logo__mark {
     position: absolute;
     top: 0;

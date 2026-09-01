@@ -14,11 +14,15 @@ interface Props {
   width?: number | string;
   color?: string;
 }
-const { class: cls = '', animate = false, width, color = 'currentColor' } = Astro.props;
+/* `...rest` carrega o atributo de escopo que o Astro passa do componente pai.
+   Sem espalha-lo no <svg>, nenhuma regra do pai (posicao, largura, opacidade)
+   casa com este elemento — ele fica em fluxo e com largura automatica. */
+const { class: cls = '', animate = false, width, color = 'currentColor', ...rest } = Astro.props;
 const classes = ['squiggle', animate ? 'squiggle--draw' : '', cls].filter(Boolean).join(' ');
 ---
 <svg
   class={classes}
+  {...rest}
   viewBox="0 0 100 32"
   fill="none"
   width={width}
