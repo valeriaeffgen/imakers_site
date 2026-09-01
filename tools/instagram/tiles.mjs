@@ -79,7 +79,7 @@ export const QUADROS = [
   },
   {
     banda: 'meio',
-    h: 'Se sua conta sumisse,<br>o que sobraria da sua marca pessoal?',
+    h: 'Se sua conta sumisse,<br>o que sobraria da<br>sua marca pessoal?',
     p: 'Conteúdo solto dentro de uma rede pertence à rede.',
   },
 
