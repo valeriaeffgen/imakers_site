@@ -7,7 +7,7 @@ export const LEGENDAS = [
 
 Essa parte não deveria ser terceirizada para uma operação que tenta transformar tudo em volume.
 
-A IMAKERS trabalha do outro lado da ponte — o site, os ativos próprios, as ferramentas e a operação que recebe as pessoas que você conduz.
+A IMAKERS trabalha do outro lado da ponte: o site, os ativos próprios, as ferramentas e a operação que recebe as pessoas que você conduz.
 
 Você continua sendo a voz da sua rede. A gente constrói o negócio por trás dela.`,
   },
@@ -35,7 +35,7 @@ Ninguém precisa terceirizar essa relação. O que falta construir é a estrutur
 
 O que ela não faz é organizar a sua oferta, capturar um contato, processar um pagamento, liberar um acesso ou te contar o que aconteceu depois do clique.
 
-A rede é a porta de entrada. O negócio acontece em outro lugar — e esse lugar precisa ser seu.`,
+A rede é a porta de entrada. O negócio acontece em outro lugar, e esse lugar precisa ser seu.`,
   },
   {
     titulo: 'IMAKERS',
@@ -67,7 +67,7 @@ A diferença entre um site que existe e um site que trabalha está no que ele fa
     titulo: 'Ativos próprios e captura',
     texto: `Um post vive horas. Um guia bem construído é encontrado por meses.
 
-Ativos próprios — artigos, guias, quizzes, checklists, formulários — vivem no seu domínio, aparecem em buscas, podem ser atualizados e transformam audiência anônima em base própria.
+Ativos próprios como artigos, guias, quizzes, checklists e formulários vivem no seu domínio, aparecem em buscas, podem ser atualizados e transformam audiência anônima em base própria.
 
 Cada ativo novo aumenta o valor dos anteriores. Alcance é aluguel; ativo é patrimônio.`,
   },
