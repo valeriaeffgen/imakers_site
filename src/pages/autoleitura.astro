@@ -147,106 +147,107 @@ const faq = [
     primary={{ label: 'Solicitar conversa de Discovery', href: '/contato' }}
     secondary={{ label: 'Comparar as faixas', href: '/solucoes' }}
   />
+
+  <script is:inline define:vars={{ RESULTADOS, TOTAL: PERGUNTAS.length }}>
+    (() => {
+      const root = document.querySelector('[data-quiz]');
+      if (!root) return;
+      const form = root.querySelector('[data-quiz-form]');
+      const steps = [...root.querySelectorAll('.quiz__step')];
+      const fill = root.querySelector('[data-quiz-fill]');
+      const current = root.querySelector('[data-quiz-current]');
+      const bar = root.querySelector('[data-quiz-bar]');
+      const result = root.querySelector('[data-quiz-result]');
+      const FAIXAS = ['base', 'capture', 'commerce', 'recurring'];
+
+      let idx = 0;
+      const respostas = new Array(steps.length).fill(null);
+
+      const setProgress = () => {
+        const pct = Math.round((idx / TOTAL) * 100);
+        fill.style.width = pct + '%';
+        current.textContent = String(Math.min(idx + 1, TOTAL));
+      };
+
+      const show = (n) => {
+        steps.forEach((s, i) => (s.hidden = i !== n));
+        idx = n;
+        setProgress();
+        const legend = steps[n].querySelector('.quiz__legend-t');
+        if (legend) legend.setAttribute('tabindex', '-1'), legend.focus({ preventScroll: true });
+        const top = root.getBoundingClientRect().top + window.scrollY - 110;
+        window.scrollTo({ top, behavior: 'smooth' });
+      };
+
+      const somar = () => {
+        const total = { base: 0, capture: 0, commerce: 0, recurring: 0 };
+        respostas.forEach((p) => {
+          if (!p) return;
+          for (const k of FAIXAS) total[k] += p[k] || 0;
+        });
+        return total;
+      };
+
+      const finalizar = () => {
+        const total = somar();
+        const max = Math.max(...FAIXAS.map((f) => total[f]));
+        // Empate: vence a faixa mais simples — nunca recomendamos mais estrutura
+        // do que o negócio demonstrou precisar.
+        const vencedora = FAIXAS.find((f) => total[f] === max);
+        const r = RESULTADOS[vencedora];
+
+        result.querySelector('[data-result-nome]').textContent = r.nome;
+        result.querySelector('[data-result-frase]').textContent = r.frase;
+        result.querySelector('[data-result-diag]').textContent = r.diagnostico;
+        result.querySelector('[data-result-primeiros]').innerHTML = r.primeiros
+          .map((p) => '<li>' + p + '</li>')
+          .join('');
+        result.querySelector('[data-result-faixa]').href = r.href;
+        result.querySelector('[data-result-cta]').href =
+          '/contato?faixa=' + vencedora + '&origem=autoleitura';
+
+        const somaTotal = FAIXAS.reduce((a, f) => a + total[f], 0) || 1;
+        result.querySelector('[data-result-scores]').innerHTML = FAIXAS.map((f) => {
+          const pct = Math.round((total[f] / somaTotal) * 100);
+          return (
+            '<div class="quiz__score' + (f === vencedora ? ' is-top' : '') + '">' +
+            '<span class="quiz__score-name">' + RESULTADOS[f].nome.replace('IMAKERS ', '') + '</span>' +
+            '<span class="quiz__score-track"><span class="quiz__score-fill" style="width:' + pct + '%"></span></span>' +
+            '<span class="quiz__score-pct">' + pct + '%</span></div>'
+          );
+        }).join('');
+
+        form.hidden = true;
+        bar.hidden = true;
+        result.hidden = false;
+        fill.style.width = '100%';
+        window.scrollTo({ top: root.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
+      };
+
+      form.addEventListener('change', (e) => {
+        const input = e.target;
+        if (input.type !== 'radio') return;
+        respostas[idx] = JSON.parse(input.dataset.pontos);
+        setTimeout(() => (idx < steps.length - 1 ? show(idx + 1) : finalizar()), 220);
+      });
+
+      root.addEventListener('click', (e) => {
+        if (e.target.closest('[data-quiz-prev]')) show(idx - 1);
+        if (e.target.closest('[data-quiz-redo]')) {
+          form.reset();
+          respostas.fill(null);
+          form.hidden = false;
+          bar.hidden = false;
+          result.hidden = true;
+          show(0);
+        }
+      });
+
+      setProgress();
+    })();
+  </script>
 </Base>
 
-<script is:inline define:vars={{ RESULTADOS, TOTAL: PERGUNTAS.length }}>
-  (() => {
-    const root = document.querySelector('[data-quiz]');
-    if (!root) return;
-    const form = root.querySelector('[data-quiz-form]');
-    const steps = [...root.querySelectorAll('.quiz__step')];
-    const fill = root.querySelector('[data-quiz-fill]');
-    const current = root.querySelector('[data-quiz-current]');
-    const bar = root.querySelector('[data-quiz-bar]');
-    const result = root.querySelector('[data-quiz-result]');
-    const FAIXAS = ['base', 'capture', 'commerce', 'recurring'];
-
-    let idx = 0;
-    const respostas = new Array(steps.length).fill(null);
-
-    const setProgress = () => {
-      const pct = Math.round((idx / TOTAL) * 100);
-      fill.style.width = pct + '%';
-      current.textContent = String(Math.min(idx + 1, TOTAL));
-    };
-
-    const show = (n) => {
-      steps.forEach((s, i) => (s.hidden = i !== n));
-      idx = n;
-      setProgress();
-      const legend = steps[n].querySelector('.quiz__legend-t');
-      if (legend) legend.setAttribute('tabindex', '-1'), legend.focus({ preventScroll: true });
-      const top = root.getBoundingClientRect().top + window.scrollY - 110;
-      window.scrollTo({ top, behavior: 'smooth' });
-    };
-
-    const somar = () => {
-      const total = { base: 0, capture: 0, commerce: 0, recurring: 0 };
-      respostas.forEach((p) => {
-        if (!p) return;
-        for (const k of FAIXAS) total[k] += p[k] || 0;
-      });
-      return total;
-    };
-
-    const finalizar = () => {
-      const total = somar();
-      const max = Math.max(...FAIXAS.map((f) => total[f]));
-      // Empate: vence a faixa mais simples — nunca recomendamos mais estrutura
-      // do que o negócio demonstrou precisar.
-      const vencedora = FAIXAS.find((f) => total[f] === max);
-      const r = RESULTADOS[vencedora];
-
-      result.querySelector('[data-result-nome]').textContent = r.nome;
-      result.querySelector('[data-result-frase]').textContent = r.frase;
-      result.querySelector('[data-result-diag]').textContent = r.diagnostico;
-      result.querySelector('[data-result-primeiros]').innerHTML = r.primeiros
-        .map((p) => '<li>' + p + '</li>')
-        .join('');
-      result.querySelector('[data-result-faixa]').href = r.href;
-      result.querySelector('[data-result-cta]').href =
-        '/contato?faixa=' + vencedora + '&origem=autoleitura';
-
-      const somaTotal = FAIXAS.reduce((a, f) => a + total[f], 0) || 1;
-      result.querySelector('[data-result-scores]').innerHTML = FAIXAS.map((f) => {
-        const pct = Math.round((total[f] / somaTotal) * 100);
-        return (
-          '<div class="quiz__score' + (f === vencedora ? ' is-top' : '') + '">' +
-          '<span class="quiz__score-name">' + RESULTADOS[f].nome.replace('IMAKERS ', '') + '</span>' +
-          '<span class="quiz__score-track"><span class="quiz__score-fill" style="width:' + pct + '%"></span></span>' +
-          '<span class="quiz__score-pct">' + pct + '%</span></div>'
-        );
-      }).join('');
-
-      form.hidden = true;
-      bar.hidden = true;
-      result.hidden = false;
-      fill.style.width = '100%';
-      window.scrollTo({ top: root.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
-    };
-
-    form.addEventListener('change', (e) => {
-      const input = e.target;
-      if (input.type !== 'radio') return;
-      respostas[idx] = JSON.parse(input.dataset.pontos);
-      setTimeout(() => (idx < steps.length - 1 ? show(idx + 1) : finalizar()), 220);
-    });
-
-    root.addEventListener('click', (e) => {
-      if (e.target.closest('[data-quiz-prev]')) show(idx - 1);
-      if (e.target.closest('[data-quiz-redo]')) {
-        form.reset();
-        respostas.fill(null);
-        form.hidden = false;
-        bar.hidden = false;
-        result.hidden = true;
-        show(0);
-      }
-    });
-
-    setProgress();
-  })();
-</script>
 
 <style>
   .q-hero { position: relative; padding-block: clamp(3rem, 2rem + 5vw, 5.5rem) var(--sp-6); overflow: hidden; }

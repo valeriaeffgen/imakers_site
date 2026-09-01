@@ -157,43 +157,44 @@ const action = SITE.formEndpoint || '/obrigado';
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      /* Traz o resultado da autoleitura para o formulário, quando existir. */
+      const params = new URLSearchParams(location.search);
+      const faixa = params.get('faixa');
+      const origem = params.get('origem');
+      const NOMES = { base: 'Base', capture: 'Capture', commerce: 'Commerce', recurring: 'Recurring' };
+
+      if (faixa && NOMES[faixa]) {
+        const f = document.querySelector('[data-prefill-faixa]');
+        const o = document.querySelector('[data-prefill-origem]');
+        const note = document.querySelector('[data-quiz-note]');
+        const noteText = document.querySelector('[data-quiz-note-text]');
+        if (f) f.value = faixa;
+        if (o) o.value = origem || 'autoleitura';
+        if (note && noteText) {
+          noteText.textContent = 'Autoleitura concluída — faixa sugerida: IMAKERS ' + NOMES[faixa];
+          note.hidden = false;
+        }
+        const momento = { base: 0, capture: 2, commerce: 3, recurring: 4 }[faixa];
+        const radios = document.querySelectorAll('input[name="momento"]');
+        if (radios[momento]) radios[momento].checked = true;
+      }
+
+      /* Mostra o aviso de erro se o envio falhar, em vez de deixar a pessoa no vazio. */
+      const form = document.querySelector('[data-form]');
+      form?.addEventListener('submit', () => {
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; btn.textContent = 'Preparando o próximo passo…'; }
+        setTimeout(() => {
+          if (btn) { btn.disabled = false; btn.textContent = 'Solicitar conversa de Discovery'; }
+        }, 8000);
+      });
+    })();
+  </script>
 </Base>
 
-<script is:inline>
-  (() => {
-    /* Traz o resultado da autoleitura para o formulário, quando existir. */
-    const params = new URLSearchParams(location.search);
-    const faixa = params.get('faixa');
-    const origem = params.get('origem');
-    const NOMES = { base: 'Base', capture: 'Capture', commerce: 'Commerce', recurring: 'Recurring' };
-
-    if (faixa && NOMES[faixa]) {
-      const f = document.querySelector('[data-prefill-faixa]');
-      const o = document.querySelector('[data-prefill-origem]');
-      const note = document.querySelector('[data-quiz-note]');
-      const noteText = document.querySelector('[data-quiz-note-text]');
-      if (f) f.value = faixa;
-      if (o) o.value = origem || 'autoleitura';
-      if (note && noteText) {
-        noteText.textContent = 'Autoleitura concluída — faixa sugerida: IMAKERS ' + NOMES[faixa];
-        note.hidden = false;
-      }
-      const momento = { base: 0, capture: 2, commerce: 3, recurring: 4 }[faixa];
-      const radios = document.querySelectorAll('input[name="momento"]');
-      if (radios[momento]) radios[momento].checked = true;
-    }
-
-    /* Mostra o aviso de erro se o envio falhar, em vez de deixar a pessoa no vazio. */
-    const form = document.querySelector('[data-form]');
-    form?.addEventListener('submit', () => {
-      const btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.disabled = true; btn.textContent = 'Preparando o próximo passo…'; }
-      setTimeout(() => {
-        if (btn) { btn.disabled = false; btn.textContent = 'Solicitar conversa de Discovery'; }
-      }, 8000);
-    });
-  })();
-</script>
 
 <style>
   .c-hero { position: relative; padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) clamp(3rem, 2rem + 5vw, 6rem); overflow: hidden; }
