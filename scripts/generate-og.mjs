@@ -59,11 +59,11 @@ function squiggle({ x, y, w, color = MAGENTA, stroke = 3, opacity = 1 }) {
 }
 
 function wordmark({ x, y, size, color = '#ffffff', markColor = MAGENTA }) {
-  // Proporcoes medidas na logo original: a seta ocupa 60% da largura da palavra,
-  // comeca a 20% dela e o vale da onda para logo acima da altura-x.
+  // Mesmas proporcoes do componente Logo.astro: a seta ocupa 80% da largura da
+  // palavra, centrada sobre ela e apoiada logo acima das letras.
   const wordW = size * 3.5;
-  const markW = wordW * 0.6;
-  return `${squiggle({ x: x + wordW * 0.19, y: y - size * 1.24, w: markW, color: markColor, stroke: size * 0.1 })}
+  const markW = wordW * 0.8;
+  return `${squiggle({ x: x + wordW * 0.1, y: y - size * 1.62, w: markW, color: markColor, stroke: size * 0.1 })}
     <text x="${x}" y="${y}" font-family="${FONT}" font-size="${size}" font-weight="500"
       letter-spacing="${-size * 0.028}" fill="${color}">imakers</text>`;
 }

@@ -14,8 +14,8 @@
       stroke-width="0.8064516129032258" stroke-linecap="round" stroke-linejoin="round" opacity="0.14">
       <path d="M3 26C5.5 12 12 6.5 17 9.5s7 15.5 12.5 18C35.5 30 40 12 47 7.5s8 12.5 13.5 16.5C68 29.4 78 20 95 4.5"/><path d="M75.5 6.5 95 4.5l-6.5 16.5"/>
     </g>
-  <g transform="translate(106.61 75.84) scale(0.714)" fill="none" stroke="#ec1b8d"
-      stroke-width="4.761904761904763" stroke-linecap="round" stroke-linejoin="round" opacity="1">
+  <g transform="translate(95.9 62.919999999999995) scale(0.9520000000000001)" fill="none" stroke="#ec1b8d"
+      stroke-width="3.5714285714285716" stroke-linecap="round" stroke-linejoin="round" opacity="1">
       <path d="M3 26C5.5 12 12 6.5 17 9.5s7 15.5 12.5 18C35.5 30 40 12 47 7.5s8 12.5 13.5 16.5C68 29.4 78 20 95 4.5"/><path d="M75.5 6.5 95 4.5l-6.5 16.5"/>
     </g>
     <text x="84" y="118" font-family="Figtree Light, Figtree, DejaVu Sans, sans-serif" font-size="34" font-weight="500"
