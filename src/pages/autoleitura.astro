@@ -14,11 +14,11 @@ const faq = [
   },
   {
     q: 'Meus dados ficam salvos?',
-    a: 'Não. A autoleitura roda inteiramente no seu navegador: nenhuma resposta é enviada para a IMAKERS. Se você quiser continuar a conversa, o resultado pode ser levado para o formulário de contato — e só nesse momento algo é enviado.',
+    a: 'Não. A autoleitura roda inteiramente no seu navegador: nenhuma resposta é enviada para a IMAKERS. Se você quiser continuar a conversa, o resultado pode ser levado para o formulário de contato e só nesse momento algo é enviado.',
   },
   {
     q: 'E se o resultado não parecer o meu caso?',
-    a: 'Provavelmente sua operação está entre duas faixas — o que é comum. Leve o resultado para a conversa: entender por que ele não encaixa costuma ser a informação mais útil do Discovery.',
+    a: 'Provavelmente sua operação está entre duas faixas, o que é comum. Leve o resultado para a conversa: entender por que ele não encaixa costuma ser a informação mais útil do Discovery.',
   },
 ];
 ---
@@ -111,7 +111,7 @@ const faq = [
           <div class="quiz__noscript">
             <h2>A autoleitura precisa de JavaScript</h2>
             <p>
-              Ela roda inteiramente no seu navegador — por isso depende de JavaScript ativo. Se preferir, o
+              Ela roda inteiramente no seu navegador, por isso depende de JavaScript ativo. Se preferir, o
               mesmo diagnóstico pode ser feito em conversa: descreva o que você já construiu e o que precisa
               acontecer depois que alguém encontra você.
             </p>
@@ -191,7 +191,7 @@ const faq = [
       const finalizar = () => {
         const total = somar();
         const max = Math.max(...FAIXAS.map((f) => total[f]));
-        // Empate: vence a faixa mais simples — nunca recomendamos mais estrutura
+        // Empate: vence a faixa mais simples. Nós nunca recomendamos mais estrutura
         // do que o negócio demonstrou precisar.
         const vencedora = FAIXAS.find((f) => total[f] === max);
         const r = RESULTADOS[vencedora];
