@@ -1,82 +1,98 @@
-/** As nove legendas, em ordem de leitura da grade. Tom: estratégico, adulto,
- *  sem fórmula, sem urgência artificial e sem promessa de faturamento. */
+/** As nove legendas, em ordem de leitura da grade.
+ *
+ *  Princípio: falar sem vender. Cada legenda desenvolve uma dor, um risco ou
+ *  uma oportunidade perdida, e fecha com uma pergunta ou uma constatação que
+ *  dá vontade de saber mais. Nenhuma chama para ação: o link da bio já está
+ *  no perfil e não precisa ser repetido em todo post.
+ *
+ *  As frases vêm da copy do site. */
 export const LEGENDAS = [
   {
-    titulo: 'Instagram, YouTube, TikTok',
-    texto: `Sua rede tem uma voz que foi construída por você: o jeito de falar, o ritmo, a relação com quem acompanha.
+    titulo: 'O conteúdo gera interesse, mas a conversa se perde',
+    texto: `Você publica. As pessoas respondem. Alguém pergunta o preço no direct. Você explica. A conversa esfria.
 
-Essa parte não deveria ser terceirizada para uma operação que tenta transformar tudo em volume.
+No dia seguinte o ciclo recomeça do zero, com outra pessoa e a mesma explicação.
 
-A IMAKERS trabalha do outro lado da ponte: o site, os ativos próprios, as ferramentas e a operação que recebe as pessoas que você conduz.
+Cada uma dessas etapas depende de você estar disponível. Nenhuma delas deixa rastro que possa ser reaproveitado.
 
-Você continua sendo a voz da sua rede. A gente constrói o negócio por trás dela.`,
+Quantas conversas você teve este mês que não existem mais em lugar nenhum?`,
   },
   {
-    titulo: 'Indicação e busca',
-    texto: `Nem toda atenção vem do feed.
+    titulo: 'Os contatos chegam, mas não formam uma base',
+    texto: `Um comentário. Um direct. Um "me manda mais informação".
 
-Boa parte chega por indicação de quem já foi bem atendido, ou por alguém procurando exatamente o que você resolve. É a atenção mais qualificada que existe.
+Todos são interesse real. E todos moram no mesmo lugar: dentro de uma plataforma que você não controla, misturados com o resto.
 
-E é também a que mais se perde, quando não há um lugar próprio para receber: a pessoa chega, não encontra o que precisa e vai embora sem deixar rastro.
+Quem demonstrou interesse há três meses provavelmente continua interessado. Você só não tem como saber quem era.
 
-O que acontece depois que alguém encontra você?`,
+Uma base própria não é uma lista de e-mails. É a diferença entre lembrar e recomeçar.`,
   },
   {
-    titulo: 'A audiência que você construiu',
-    texto: `Audiência não é número. É a confiança de quem decidiu acompanhar o que você faz.
+    titulo: 'A oferta existe, mas não está organizada',
+    texto: `Você sabe exatamente o que faz, para quem e por quanto.
 
-Ela não precisa ser grande para virar negócio. Precisa de um destino: um lugar onde a conversa continue, a oferta esteja clara e o próximo passo seja simples.
+Quem chega até você não sabe. E precisa perguntar tudo antes de decidir: o que está incluso, como funciona, quanto custa, quanto tempo leva.
 
-Ninguém precisa terceirizar essa relação. O que falta construir é a estrutura que a recebe.`,
+Cada dúvida que não foi respondida antes da conversa é uma pessoa que desiste em silêncio, sem nunca aparecer no seu direct.
+
+Quantas dessas você nunca chegou a conhecer?`,
   },
   {
-    titulo: 'A rede social traz a atenção',
-    texto: `Esse é o trabalho que a rede faz bem: colocar você na frente das pessoas certas.
+    titulo: 'O problema não é falta de alcance',
+    texto: `É que o clique não tem para onde ir.
 
-O que ela não faz é organizar a sua oferta, capturar um contato, processar um pagamento, liberar um acesso ou te contar o que aconteceu depois do clique.
+Alguém vê seu conteúdo, se interessa, procura seu perfil, não encontra uma explicação organizada, manda mensagem, recebe resposta quando você tem tempo. E decide, ou esquece.
 
-A rede é a porta de entrada. O negócio acontece em outro lugar, e esse lugar precisa ser seu.`,
+Mais alcance só coloca mais gente nesse mesmo caminho.
+
+O gargalo não está na entrada.`,
   },
   {
     titulo: 'IMAKERS',
-    texto: `Transformamos sua presença digital em negócio.
+    texto: `A rede social traz a atenção. O que acontece depois é uma estrutura, e estrutura não se improvisa no direct.
 
-A IMAKERS constrói e opera o ecossistema próprio que recebe a audiência que você conduz: site, conteúdos de profundidade, ferramentas, caminhos de conversão e a operação contínua que mantém tudo isso vivo.
+Você continua sendo a voz da sua rede.
 
-Não operamos redes sociais. Não criamos artes, não publicamos por você e não respondemos directs. Construímos o que vem depois delas.
-
-Da atenção à operação própria. O primeiro passo está no link da bio.`,
+Da atenção à operação própria.`,
   },
   {
-    titulo: 'A IMAKERS constrói o que acontece depois',
-    texto: `Depois do clique, alguém precisa entender o que você faz, decidir, deixar um contato, comprar ou assinar.
+    titulo: 'Se você parar de publicar, o alcance para junto',
+    texto: `Duas semanas sem postar e o alcance cai. Um mês e você virou desconhecida para o seu próprio público.
 
-Cada uma dessas etapas é uma construção, não um acaso. E quando ela não existe, tudo volta para mensagem solta, link perdido e processo manual.
+Isso não é falha sua. É como a plataforma funciona: empresta atenção enquanto você alimenta e retoma quando você para.
 
-É essa a camada que a gente constrói: a que falta entre a atenção e o negócio.`,
+A audiência é sua. O alcance é da plataforma.
+
+O que aconteceria com o seu negócio se você precisasse ficar um mês fora?`,
   },
   {
-    titulo: 'Site e páginas que trabalham',
-    texto: `Um site não precisa ser um cartão de visitas.
+    titulo: 'Um post vive horas',
+    texto: `Um post bem escrito entrega alcance por algumas horas. Depois desce no feed e some.
 
-Ele pode apresentar a sua história, organizar as suas ofertas, responder as dúvidas que hoje chegam por mensagem e conduzir cada pessoa para o próximo passo.
+Um guia bem construído sobre o mesmo assunto continua sendo encontrado, lido e compartilhado meses depois. Por gente que nem sabia que você existia.
 
-A diferença entre um site que existe e um site que trabalha está no que ele faz quando você não está olhando.`,
+O mesmo esforço. Uma diferença de meses.
+
+O que você escreveu no mês passado ainda está trabalhando por você?`,
   },
   {
-    titulo: 'Ativos próprios e captura',
-    texto: `Um post vive horas. Um guia bem construído é encontrado por meses.
+    titulo: 'Alcance é aluguel. Ativo é patrimônio',
+    texto: `Alcance e patrimônio não são a mesma coisa.
 
-Ativos próprios como artigos, guias, quizzes, checklists e formulários vivem no seu domínio, aparecem em buscas, podem ser atualizados e transformam audiência anônima em base própria.
+O alcance é decidido pelo algoritmo, dura horas e para quando você para. O ativo próprio vive no seu domínio, aparece em buscas, pode ser atualizado e continua trazendo gente sozinho.
 
-Cada ativo novo aumenta o valor dos anteriores. Alcance é aluguel; ativo é patrimônio.`,
+Dez posts somam dez picos. Dez bons materiais somam uma biblioteca.
+
+Depois de anos publicando, o que sobrou que é seu?`,
   },
   {
-    titulo: 'Venda, assinatura e dados',
-    texto: `Quando o dinheiro entra pelo site, a estrutura precisa dar conta de pedido, pagamento confirmado, entrega, reembolso e conciliação.
+    titulo: 'Conteúdo dentro de uma rede pertence à rede',
+    texto: `Você produz, a plataforma distribui, e o que fica registrado fica lá.
 
-E o recebimento fica sempre na sua conta, no seu nome: a IMAKERS constrói e acompanha a integração, mas não intermedeia o seu dinheiro.
+Quem procura no Google pelo problema que você resolve não encontra o seu carrossel. Encontra quem escreveu sobre isso em um lugar próprio.
 
-Vender pelo site é mais do que colocar um botão.`,
+O feed é uma linha do tempo. Um lugar próprio é um arquivo.
+
+Um some. O outro acumula.`,
   },
 ];

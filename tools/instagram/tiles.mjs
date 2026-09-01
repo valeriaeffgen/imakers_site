@@ -41,19 +41,50 @@ export const seta = (stroke = 3) => `
     </g>
   </svg>`;
 
-/* ---------- Os nove quadros, em ordem de LEITURA ---------- */
+/* ---------- Os nove quadros, em ordem de LEITURA ----------
+   Nenhum quadro vende nada. A linha de cima é o que acontece hoje, a do meio
+   nomeia o problema e a de baixo mostra o que está sendo perdido. As frases
+   vêm da copy do site. */
 export const QUADROS = [
-  { kicker: 'Continua sendo seu', h: 'Instagram,<br>YouTube,<br>TikTok', p: 'Sua voz, seu ritmo, sua comunidade.' },
-  { kicker: 'Continua sendo seu', h: 'Indicação<br>e busca', p: 'As pessoas que já chegam até você.' },
-  { kicker: 'Continua sendo seu', h: 'A audiência<br>que você<br>construiu', p: 'Ninguém precisa terceirizar isso.' },
+  {
+    kicker: 'O que acontece hoje',
+    h: 'O conteúdo gera<br>interesse, mas a<br>conversa se perde.',
+    p: 'Tudo volta para mensagem dispersa, link solto e processo manual.',
+  },
+  {
+    kicker: 'O que acontece hoje',
+    h: 'Os contatos chegam,<br>mas não formam<br>uma base.',
+    p: 'Amanhã o ciclo recomeça do zero, com outra pessoa e a mesma explicação.',
+  },
+  {
+    kicker: 'O que acontece hoje',
+    h: 'A oferta existe,<br>mas não está<br>organizada.',
+    p: 'Cada pessoa precisa perguntar tudo antes de decidir.',
+  },
 
-  { banda: 'meio', h: 'A rede social<br>traz a atenção.', p: 'Isso continua sendo seu.' },
+  { banda: 'meio', h: 'O problema não é<br>falta de alcance.', p: 'É que o clique não tem para onde ir.' },
   { banda: 'meio', logo: true, p: 'da atenção à operação própria' },
-  { banda: 'meio', h: 'A IMAKERS constrói<br>o que acontece<br>depois.', p: 'O destino, não o feed.' },
+  {
+    banda: 'meio',
+    h: 'Se você parar de<br>publicar, o alcance<br>para junto.',
+    p: 'A audiência é sua. O alcance é da plataforma.',
+  },
 
-  { kicker: 'Construímos e operamos', h: 'Site e páginas<br>que trabalham', p: 'A casa que recebe quem você conduz.' },
-  { kicker: 'Construímos e operamos', h: 'Ativos próprios<br>e captura', p: 'Blog, guias, quizzes e formulários.' },
-  { kicker: 'Construímos e operamos', h: 'Venda, assinatura<br>e dados', p: 'Checkout, acesso e conciliação.' },
+  {
+    kicker: 'O que poderia ser seu',
+    h: 'Um post<br>vive horas.',
+    p: 'Um guia bem construído é encontrado por meses.',
+  },
+  {
+    kicker: 'O que poderia ser seu',
+    h: 'Alcance é aluguel.<br>Ativo é patrimônio.',
+    p: 'Cada ativo novo aumenta o valor dos anteriores.',
+  },
+  {
+    kicker: 'O que poderia ser seu',
+    h: 'Conteúdo dentro<br>de uma rede<br>pertence à rede.',
+    p: 'O feed é uma linha do tempo. Um lugar próprio é um arquivo.',
+  },
 ];
 
 /* ---------- A camada do mosaico (3036 × 4050) ---------- */
