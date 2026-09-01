@@ -13,6 +13,7 @@ function quadro(i) {
   const r = Math.floor(i / 3);
   const c = i % 3;
   const meio = q.banda === 'meio';
+  const marca = Boolean(q.logo);
 
   const partes = [];
   if (q.kicker) partes.push(`<p class="kicker">${q.kicker}</p>`);
@@ -24,10 +25,10 @@ function quadro(i) {
      texto na base, as de baixo encostam no topo. A marca vai sempre para a
      ponta oposta ao texto, então nunca se cruzam. */
   const alinha = r === 0 ? 'base' : 'topo';
-  const marca = r === 0 ? 'topo' : 'base';
+  const marcaPos = r === 0 ? 'topo' : 'base';
 
   return `
-  <article class="post ${meio ? 'post--meio' : ''}" data-alinha="${alinha}" data-marca="${marca}"
+  <article class="post ${meio ? 'post--meio' : ''} ${marca ? 'post--marca' : ''}" data-alinha="${alinha}" data-marca="${marcaPos}"
            id="q${i + 1}" data-quadro="${i + 1}">
     <div class="mosaico" style="left:${BLEED - c * CELL_W}px; top:${-r * CELL_H}px">${mosaico()}</div>
     <div class="corpo">${partes.join('')}</div>
@@ -71,6 +72,11 @@ const html = `<!doctype html>
   .apoio { font-size: 32px; line-height: 1.4; color: ${COR.inkSoft}; max-width: 22ch; }
 
   .post--meio h2 { color: ${COR.light}; font-size: 78px; }
+  /* O quadro da marca empilha logo, frase e apoio, então tudo aperta um pouco
+     para o conjunto terminar acima da seta. */
+  .post--marca h2 { font-size: 62px; }
+  .post--marca .corpo { gap: 20px; }
+  .post--marca .apoio { max-width: none; }
   .post--meio .apoio { color: ${COR.lightSoft}; }
 
   /* A marca, pequena e constante: no feed cada quadro aparece sozinho. */
@@ -82,9 +88,9 @@ const html = `<!doctype html>
   .post[data-marca='base'] .marca { bottom: 104px; }
   .post--meio .marca { color: ${COR.lightSoft}; }
 
-  .logo { display: block; position: relative; width: 470px; padding-top: 92px; color: ${COR.light}; }
+  .logo { display: block; position: relative; width: 274px; padding-top: 72px; color: ${COR.light}; }
   .logo__mark { position: absolute; top: 0; left: 10%; width: 80%; }
-  .logo b { display: block; font-size: 118px; font-weight: 500; letter-spacing: -.033em; line-height: 1; }
+  .logo b { display: block; font-size: 84px; font-weight: 500; letter-spacing: -.033em; line-height: 1; }
 </style></head>
 <body><div class="folha">
 ${QUADROS.map((_, i) => quadro(i)).join('\n')}

@@ -47,12 +47,14 @@ Isso não é falha sua: é como a plataforma funciona. Ela empresta atenção en
 A audiência é sua. O alcance é da plataforma. A diferença entre as duas coisas só aparece quando você precisa parar.`,
   },
   {
-    titulo: 'IMAKERS',
-    texto: `A rede social traz a atenção. O que acontece depois é uma estrutura, e estrutura não se improvisa no direct.
+    titulo: 'Existe um lugar que é só seu',
+    texto: `Um lugar que é seu não depende de algoritmo para ser visto, não some se uma conta for bloqueada e não para quando você para.
 
-Você continua sendo a voz da sua rede.
+Ele responde às mesmas perguntas que você responde no direct, só que às três da manhã. Guarda quem demonstrou interesse. Aparece para quem procura pelo problema que você resolve.
 
-Da atenção à operação própria.`,
+A rede social traz a atenção. O que acontece depois é uma estrutura, e estrutura não se improvisa no direct.
+
+Você continua sendo a voz da sua rede.`,
   },
   {
     titulo: 'Se sua conta sumisse, o que sobraria?',

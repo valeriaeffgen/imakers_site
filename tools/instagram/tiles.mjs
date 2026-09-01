@@ -68,7 +68,15 @@ export const QUADROS = [
     h: 'E se você precisasse<br>ficar um mês fora?',
     p: 'A audiência é sua. O alcance é da plataforma.',
   },
-  { banda: 'meio', logo: true, p: 'da atenção à operação própria' },
+  {
+    /* A dobradiça da grade. Fica entre as duas perguntas de risco e responde
+       as duas: o quadro da marca precisa dizer que existe saída, porque marca
+       ainda desconhecida não sustenta um quadro só com o logo. */
+    banda: 'meio',
+    logo: true,
+    h: 'Existe um lugar<br>que é só seu.',
+    p: 'E ele continua trabalhando quando você não está.',
+  },
   {
     banda: 'meio',
     h: 'Se sua conta sumisse,<br>o que sobraria?',
