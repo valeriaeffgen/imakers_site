@@ -14,12 +14,12 @@
       stroke-width="0.8064516129032258" stroke-linecap="round" stroke-linejoin="round" opacity="0.14">
       <path d="M3 26C5.5 12 12 6.5 17 9.5s7 15.5 12.5 18C35.5 30 40 12 47 7.5s8 12.5 13.5 16.5C68 29.4 78 20 95 4.5"/><path d="M75.5 6.5 95 4.5l-6.5 16.5"/>
     </g>
-  <g transform="translate(95.9 62.919999999999995) scale(0.9520000000000001)" fill="none" stroke="#ec1b8d"
-      stroke-width="3.5714285714285716" stroke-linecap="round" stroke-linejoin="round" opacity="1">
+  <g transform="translate(92.8672 62.919999999999995) scale(0.709376)" fill="none" stroke="#ec1b8d"
+      stroke-width="4.792944785276074" stroke-linecap="round" stroke-linejoin="round" opacity="1">
       <path d="M3 26C5.5 12 12 6.5 17 9.5s7 15.5 12.5 18C35.5 30 40 12 47 7.5s8 12.5 13.5 16.5C68 29.4 78 20 95 4.5"/><path d="M75.5 6.5 95 4.5l-6.5 16.5"/>
     </g>
     <text x="84" y="118" font-family="Figtree Light, Figtree, DejaVu Sans, sans-serif" font-size="34" font-weight="500"
-      letter-spacing="-0.9520000000000001" fill="#ffffff">imakers</text>
+      letter-spacing="-0.9520000000000001" fill="#ffffff">vocire</text>
   <text x="84" y="297.1" font-family="Figtree Light, Figtree, DejaVu Sans, sans-serif" font-size="23" font-weight="bold"
       letter-spacing="3.6" fill="#ec1b8d">DA ATENÇÃO À OPERAÇÃO PRÓPRIA</text>
   <text x="84" y="373" font-family="Figtree Light, Figtree, DejaVu Sans, sans-serif" font-size="66" font-weight="bold"
@@ -28,5 +28,5 @@
           letter-spacing="-1.584" fill="#f7f5f4">digital em negócio.</text>
   <rect x="84" y="516" width="76" height="5" rx="2.5" fill="#ec1b8d"/>
   <text x="180" y="525" font-family="Figtree Light, Figtree, DejaVu Sans, sans-serif" font-size="24" font-weight="500"
-    fill="#8b8f9c">imakers.com</text>
+    fill="#8b8f9c">vocire.com</text>
 </svg>

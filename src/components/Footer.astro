@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
       <div class="ft__brand">
         <Logo size="1.8rem" />
         <p class="ft__promise">{SITE.promiseAccented}</p>
-        <p class="ft__frase">A rede social traz a atenção.<br />A IMAKERS constrói o que acontece depois.</p>
+        <p class="ft__frase">A rede social traz a atenção.<br />A VOCIRE constrói o que acontece depois.</p>
         <a href={CTA.primary.href} class="btn ft__cta">
           {CTA.primary.label}
           <svg class="btn__arrow" width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
@@ -35,7 +35,7 @@ const year = new Date().getFullYear();
     <div class="ft__bottom">
       <p>© {year} {SITE.name}. Todos os direitos reservados.</p>
       <p class="ft__scope">
-        A IMAKERS não opera redes sociais de clientes. Construímos e operamos o ecossistema próprio que recebe essa audiência.
+        A VOCIRE não opera redes sociais de clientes. Construímos e operamos o ecossistema próprio que recebe essa audiência.
       </p>
       {SITE.email && <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>}
     </div>
@@ -59,7 +59,7 @@ const year = new Date().getFullYear();
   .ft__col a { color: var(--fg-muted); font-size: var(--step--1); text-decoration: none; transition: color 0.2s; }
   .ft__col a:hover { color: var(--fg); }
 
-  /* Um fio, nao a marca: a seta da IMAKERS ja aparece na logo logo acima.
+  /* Um fio, nao a marca: a seta da VOCIRE ja aparece na logo logo acima.
      Repetida como divisor, ela virava a terceira seta em poucos centimetros. */
   .ft__rule {
     height: 1px; border: 0; margin-block: var(--sp-8) var(--sp-6);

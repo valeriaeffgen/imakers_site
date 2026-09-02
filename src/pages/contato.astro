@@ -16,7 +16,7 @@ const usaNetlify = !SITE.formEndpoint;
 const action = SITE.formEndpoint || '/obrigado';
 ---
 <Base
-  title="Fale com a IMAKERS — solicite uma conversa de Discovery"
+  title="Fale com a VOCIRE — solicite uma conversa de Discovery"
   description="Conte o que você já construiu, o que oferece e onde a operação trava hoje. Vamos identificar o próximo passo para transformar atenção em uma estrutura própria."
   path="/contato"
   image="/og/contato.png"
@@ -24,7 +24,7 @@ const action = SITE.formEndpoint || '/obrigado';
   schema={[
     {
       '@type': 'ContactPage',
-      name: 'Contato IMAKERS',
+      name: 'Contato VOCIRE',
       description: 'Solicitação de conversa de Discovery.',
     },
   ]}
@@ -39,7 +39,7 @@ const action = SITE.formEndpoint || '/obrigado';
         <p class="eyebrow">A próxima etapa da sua presença</p>
         <h1>Vamos entender o que pode ser construído.</h1>
         <p class="lede lede--wide">
-          Conte para a IMAKERS o que você já construiu, o que oferece e onde a sua operação trava hoje. Vamos
+          Conte para a VOCIRE o que você já construiu, o que oferece e onde a sua operação trava hoje. Vamos
           identificar o próximo passo mais claro para transformar atenção em uma estrutura própria.
         </p>
         <p class="c-micro">
@@ -131,7 +131,7 @@ const action = SITE.formEndpoint || '/obrigado';
           <label class="c-consent">
             <input type="checkbox" name="consentimento" required />
             <span>
-              Autorizo a IMAKERS a usar estas informações para preparar a conversa inicial, conforme a
+              Autorizo a VOCIRE a usar estas informações para preparar a conversa inicial, conforme a
               <a href="/politica-de-privacidade"> política de privacidade</a>.
             </span>
           </label>
@@ -174,7 +174,7 @@ const action = SITE.formEndpoint || '/obrigado';
         if (f) f.value = faixa;
         if (o) o.value = origem || 'autoleitura';
         if (note && noteText) {
-          noteText.textContent = 'Autoleitura concluída — faixa sugerida: IMAKERS ' + NOMES[faixa];
+          noteText.textContent = 'Autoleitura concluída — faixa sugerida: VOCIRE ' + NOMES[faixa];
           note.hidden = false;
         }
         const momento = { base: 0, capture: 2, commerce: 3, recurring: 4 }[faixa];

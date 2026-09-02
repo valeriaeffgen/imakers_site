@@ -5,7 +5,7 @@ import { CELL_W, CELL_H, POST_W, BLEED, GRID_W, GRID_H, COR, QUADROS, mosaico, s
 const LOGO = `
   <span class="logo">
     <span class="logo__mark">${seta(3)}</span>
-    <b>imakers</b>
+    <b>vocire</b>
   </span>`;
 
 function quadro(i) {
@@ -32,7 +32,7 @@ function quadro(i) {
            id="q${i + 1}" data-quadro="${i + 1}">
     <div class="mosaico" style="left:${BLEED - c * CELL_W}px; top:${-r * CELL_H}px">${mosaico()}</div>
     <div class="corpo">${partes.join('')}</div>
-    <span class="marca">imakers.com</span>
+    <span class="marca">vocire.com</span>
   </article>`;
 }
 
@@ -88,7 +88,11 @@ const html = `<!doctype html>
   .post[data-marca='base'] .marca { bottom: 104px; }
   .post--meio .marca { color: ${COR.lightSoft}; }
 
-  .logo { display: block; position: relative; width: 274px; padding-top: 72px; color: ${COR.light}; }
+  /* width max-content faz a marca ter exatamente a largura da palavra, seja
+     qual for o nome: a seta e posicionada em % dessa largura e acompanha
+     sozinha. Antes havia um valor fixo em px, medido para a palavra antiga.
+     (Sem crases neste comentario: o CSS vive dentro de um template literal.) */
+  .logo { display: block; position: relative; width: max-content; padding-top: 72px; color: ${COR.light}; }
   .logo__mark { position: absolute; top: 0; left: 10%; width: 80%; }
   .logo b { display: block; font-size: 84px; font-weight: 500; letter-spacing: -.033em; line-height: 1; }
 

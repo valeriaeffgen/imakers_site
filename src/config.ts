@@ -4,17 +4,17 @@
  */
 
 export const SITE = {
-  name: 'IMAKERS',
-  legalName: 'IMAKERS',
-  url: (import.meta.env.SITE as string) || 'https://imakers.com',
+  name: 'VOCIRE',
+  legalName: 'VOCIRE',
+  url: (import.meta.env.SITE as string) || 'https://vocire.com',
   locale: 'pt-BR',
   /** Promessa institucional. Aparece no title da home e no JSON-LD. */
   promise: 'Transformamos sua presenca digital em negocio.',
   promiseAccented: 'Transformamos sua presença digital em negócio.',
   tagline: 'Da atencao a operacao propria.',
   description:
-    'A IMAKERS constrói sites, ativos próprios, ferramentas e operação contínua para transformar a audiência que você criou nas redes em negócio.',
-  email: 'contato@imakers.com',
+    'A VOCIRE constrói sites, ativos próprios, ferramentas e operação contínua para transformar a audiência que você criou nas redes em negócio.',
+  email: 'contato@vocire.com',
   /** Somente digitos, formato internacional — usado no link do WhatsApp. */
   whatsapp: '',
   areaServed: 'BR',
@@ -41,9 +41,9 @@ export const NAV: { label: string; href: string; children?: { label: string; hre
     label: 'Método',
     href: '/metodo',
     children: [
-      { label: 'IMAKERS Discovery', href: '/discovery', note: 'Entender antes de construir.' },
-      { label: 'IMAKERS Launch', href: '/launch', note: 'Colocar a estrutura no ar.' },
-      { label: 'IMAKERS Engine', href: '/engine', note: 'Manter o negócio em movimento.' },
+      { label: 'VOCIRE Discovery', href: '/discovery', note: 'Entender antes de construir.' },
+      { label: 'VOCIRE Launch', href: '/launch', note: 'Colocar a estrutura no ar.' },
+      { label: 'VOCIRE Engine', href: '/engine', note: 'Manter o negócio em movimento.' },
     ],
   },
   {
@@ -83,7 +83,7 @@ export const FOOTER_NAV = [
     title: 'Comece',
     links: [
       { label: 'Autoleitura', href: '/autoleitura' },
-      { label: 'Falar com a IMAKERS', href: '/contato' },
+      { label: 'Falar com a VOCIRE', href: '/contato' },
       { label: 'Blog', href: '/blog' },
       { label: 'Perguntas frequentes', href: '/#faq' },
     ],

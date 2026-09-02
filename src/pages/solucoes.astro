@@ -26,29 +26,29 @@ const faq = [
     a: 'Os dois, com funções distintas. A ativação cobre Discovery, Launch e implantação. A recorrência cobre o Engine: manutenção, ativos próprios, dados e melhorias — dimensionada pela complexidade da faixa.',
   },
   {
-    q: 'A IMAKERS fica com o dinheiro das minhas vendas?',
-    a: 'Não. Você abre e mantém a conta no provedor de pagamento no seu CNPJ ou CPF, e recebe diretamente lá. A IMAKERS cobra apenas a própria ativação e o próprio Engine, por cobrança separada.',
+    q: 'A VOCIRE fica com o dinheiro das minhas vendas?',
+    a: 'Não. Você abre e mantém a conta no provedor de pagamento no seu CNPJ ou CPF, e recebe diretamente lá. A VOCIRE cobra apenas a própria ativação e o próprio Engine, por cobrança separada.',
   },
 ];
 ---
 <Base
-  title="Soluções IMAKERS — Base, Capture, Commerce e Recurring"
+  title="Soluções VOCIRE — Base, Capture, Commerce e Recurring"
   description="Cinco faixas de complexidade, do blog institucional ao ecossistema com checkout e assinaturas. Compare o que cada faixa inclui antes de decidir."
   path="/solucoes"
   image="/og/solucoes.png"
   breadcrumbs={crumbs}
   schema={[
-    itemListSchema('Faixas de solução IMAKERS', FAIXAS.map((f) => ({ name: f.nome, url: `/solucoes#${f.slug}`, description: f.resumo }))),
+    itemListSchema('Faixas de solução VOCIRE', FAIXAS.map((f) => ({ name: f.nome, url: `/solucoes#${f.slug}`, description: f.resumo }))),
     faqSchema(faq),
   ]}
 >
   <PageHero
     eyebrow="O que construímos"
     title="Comece simples.<br />Evolua quando o negócio pedir."
-    lede="A IMAKERS trabalha com faixas de complexidade, não com um preço único para qualquer site. Nem todo negócio precisa começar com pagamentos, assinaturas ou uma plataforma completa."
+    lede="A VOCIRE trabalha com faixas de complexidade, não com um preço único para qualquer site. Nem todo negócio precisa começar com pagamentos, assinaturas ou uma plataforma completa."
     crumbs={crumbs}
     cta={{ label: 'Descobrir minha faixa em 2 minutos', href: '/autoleitura' }}
-    secondary={{ label: 'Falar com a IMAKERS', href: '/contato' }}
+    secondary={{ label: 'Falar com a VOCIRE', href: '/contato' }}
   />
 
   <section class="section section--tight" aria-labelledby="faixas">
@@ -120,7 +120,7 @@ const faq = [
         </table>
       </div>
       <p class="subtle mnote">
-        Em nenhuma faixa a IMAKERS opera Instagram, TikTok, YouTube, LinkedIn ou outra rede sua. O máximo
+        Em nenhuma faixa a VOCIRE opera Instagram, TikTok, YouTube, LinkedIn ou outra rede sua. O máximo
         incluído é a <a href="/metodo">ponte editorial</a>.
       </p>
     </div>

@@ -1,9 +1,9 @@
 {
-  "name": "imakers-site",
+  "name": "vocire-site",
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "Site institucional da IMAKERS — transformamos sua presenca digital em negocio.",
+  "description": "Site institucional da VOCIRE — transformamos sua presenca digital em negocio.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

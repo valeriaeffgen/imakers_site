@@ -2,7 +2,7 @@
 import Squiggle from './Squiggle.astro';
 
 /**
- * Logo IMAKERS.
+ * Logo VOCIRE.
  * A palavra e texto real (nao imagem): fica nitida em qualquer tamanho, herda
  * a cor do contexto — o mesmo componente serve fundo claro e escuro — e o nome
  * da marca continua legivel para leitores de tela e para o Google.
@@ -19,11 +19,11 @@ const Tag = href ? 'a' : 'span';
 ---
 <Tag
   class={`logo ${cls}`}
-  {...href ? { href, 'aria-label': 'IMAKERS — página inicial' } : {}}
+  {...href ? { href, 'aria-label': 'VOCIRE — página inicial' } : {}}
   style={`--logo-size:${size}`}
 >
   <Squiggle class="logo__mark" color="var(--magenta)" />
-  <span class="logo__word">imakers</span>
+  <span class="logo__word">vocire</span>
 </Tag>
 
 <style>

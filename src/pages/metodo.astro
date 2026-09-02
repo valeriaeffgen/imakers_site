@@ -11,22 +11,22 @@ import { howToSchema, itemListSchema } from '../data/schema';
 const crumbs = [{ name: 'Método', href: '/metodo' }];
 ---
 <Base
-  title="Método IMAKERS: Discovery, Launch e Engine"
-  description="O circuito da IMAKERS em três etapas: Discovery encontra a oportunidade, Launch coloca a base própria no ar e Engine mantém o ecossistema em movimento."
+  title="Método VOCIRE: Discovery, Launch e Engine"
+  description="O circuito da VOCIRE em três etapas: Discovery encontra a oportunidade, Launch coloca a base própria no ar e Engine mantém o ecossistema em movimento."
   path="/metodo"
   image="/og/metodo.png"
   breadcrumbs={crumbs}
   schema={[
     howToSchema({
-      name: 'Método IMAKERS',
+      name: 'Método VOCIRE',
       description: 'Circuito de três etapas para transformar presença digital em operação própria.',
       steps: METODO.map((m) => ({ name: m.nome, text: `${m.frase} ${m.texto} ${m.fecho}` })),
     }),
-    itemListSchema('Etapas do método IMAKERS', METODO.map((m) => ({ name: m.nome, url: m.href, description: m.frase }))),
+    itemListSchema('Etapas do método VOCIRE', METODO.map((m) => ({ name: m.nome, url: m.href, description: m.frase }))),
   ]}
 >
   <PageHero
-    eyebrow="Método IMAKERS"
+    eyebrow="Método VOCIRE"
     title="Três etapas para transformar presença em operação."
     lede="Discovery encontra a oportunidade. Launch coloca a base no ar. Engine mantém o negócio em movimento. O cliente compra um circuito simples — não um pacote genérico."
     crumbs={crumbs}
@@ -53,7 +53,7 @@ const crumbs = [{ name: 'Método', href: '/metodo' }];
                 {m.entregas.map((e) => <li>{e}</li>)}
               </ul>
               <p class="etapa__res"><strong>Resultado:</strong> {m.resultado}</p>
-              <a href={m.href} class="link-arrow">Ver a etapa {m.nome.replace('IMAKERS ', '')} em detalhe<Arrow cls="" /></a>
+              <a href={m.href} class="link-arrow">Ver a etapa {m.nome.replace('VOCIRE ', '')} em detalhe<Arrow cls="" /></a>
             </div>
           </li>
         ))}
@@ -86,7 +86,7 @@ const crumbs = [{ name: 'Método', href: '/metodo' }];
         <p class="eyebrow">Limite de escopo</p>
         <h2 id="limite">A fronteira faz parte do método.</h2>
         <p class="lede lede--wide">
-          Em nenhuma etapa a IMAKERS opera Instagram, TikTok, YouTube, LinkedIn ou outra rede sua. O máximo
+          Em nenhuma etapa a VOCIRE opera Instagram, TikTok, YouTube, LinkedIn ou outra rede sua. O máximo
           incluído é a ponte editorial: temas, chamadas, CTAs, links e destinos para você publicar no seu estilo.
         </p>
         <Squiggle class="limite__sq" animate color="var(--accent)" />

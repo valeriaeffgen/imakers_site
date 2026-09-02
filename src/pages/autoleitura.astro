@@ -14,7 +14,7 @@ const faq = [
   },
   {
     q: 'Meus dados ficam salvos?',
-    a: 'Não. A autoleitura roda inteiramente no seu navegador: nenhuma resposta é enviada para a IMAKERS. Se você quiser continuar a conversa, o resultado pode ser levado para o formulário de contato e só nesse momento algo é enviado.',
+    a: 'Não. A autoleitura roda inteiramente no seu navegador: nenhuma resposta é enviada para a VOCIRE. Se você quiser continuar a conversa, o resultado pode ser levado para o formulário de contato e só nesse momento algo é enviado.',
   },
   {
     q: 'E se o resultado não parecer o meu caso?',
@@ -23,7 +23,7 @@ const faq = [
 ];
 ---
 <Base
-  title="Autoleitura IMAKERS — qual estrutura sua presença está pedindo?"
+  title="Autoleitura VOCIRE — qual estrutura sua presença está pedindo?"
   description="Seis perguntas, dois minutos e uma recomendação de faixa: Base, Capture, Commerce ou Recurring. Roda no seu navegador, sem cadastro e sem enviar nada."
   path="/autoleitura"
   image="/og/autoleitura.png"
@@ -115,7 +115,7 @@ const faq = [
               mesmo diagnóstico pode ser feito em conversa: descreva o que você já construiu e o que precisa
               acontecer depois que alguém encontra você.
             </p>
-            <a href="/contato" class="btn">Falar com a IMAKERS</a>
+            <a href="/contato" class="btn">Falar com a VOCIRE</a>
             <h3>As perguntas, caso você queira pensar antes</h3>
             <ol>
               {PERGUNTAS.map((p) => (
@@ -211,7 +211,7 @@ const faq = [
           const pct = Math.round((total[f] / somaTotal) * 100);
           return (
             '<div class="quiz__score' + (f === vencedora ? ' is-top' : '') + '">' +
-            '<span class="quiz__score-name">' + RESULTADOS[f].nome.replace('IMAKERS ', '') + '</span>' +
+            '<span class="quiz__score-name">' + RESULTADOS[f].nome.replace('VOCIRE ', '') + '</span>' +
             '<span class="quiz__score-track"><span class="quiz__score-fill" style="width:' + pct + '%"></span></span>' +
             '<span class="quiz__score-pct">' + pct + '%</span></div>'
           );

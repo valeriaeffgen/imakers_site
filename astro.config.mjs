@@ -6,7 +6,7 @@ import { rehypeWrapTables } from './scripts/rehype-wrap-tables.mjs';
 // O dominio final entra aqui (ou via a variavel de ambiente SITE_URL no deploy).
 // Ele e usado para gerar canonical, sitemap.xml, RSS e as URLs absolutas das
 // imagens de Open Graph — todos precisam de URL absoluta para funcionar.
-const SITE = process.env.SITE_URL || 'https://imakers.com';
+const SITE = process.env.SITE_URL || 'https://vocire.com';
 
 export default defineConfig({
   site: SITE,

@@ -30,8 +30,8 @@ await p.goto('file://' + new URL('./index.html', import.meta.url).pathname, { wa
 await p.evaluate(() => document.fonts.ready);
 await p.waitForTimeout(500);
 
-await p.pdf({ ...PAGINA, path: OUT + 'imakers-grade-9-quadros.pdf' });
-process.stdout.write('  imakers-grade-9-quadros.pdf (9 páginas)\n');
+await p.pdf({ ...PAGINA, path: OUT + 'vocire-grade-9-quadros.pdf' });
+process.stdout.write('  vocire-grade-9-quadros.pdf (9 páginas)\n');
 
 for (let i = 1; i <= QUADROS.length; i++) {
   const ordem = QUADROS.length + 1 - i;
