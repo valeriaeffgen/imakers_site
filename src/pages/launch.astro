@@ -20,7 +20,7 @@ const entregas = [
 ];
 
 const fases = [
-  { n: 'Fase C', t: 'Provisionamento', d: 'Você cria e verifica as contas necessárias e fornece as credenciais por canal seguro. A VOCIRE não pede chaves por e-mail nem guarda credenciais em planilha.' },
+  { n: 'Fase C', t: 'Provisionamento', d: 'Você cria e verifica as contas necessárias e fornece as credenciais por canal seguro. A Viceja não pede chaves por e-mail nem guarda credenciais em planilha.' },
   { n: 'Fase D', t: 'Construção', d: 'Páginas, produtos, formulários, webhooks, estados, regras de acesso, políticas, analytics e relatórios. Testes em ambiente de homologação ou com credenciais de teste.' },
   { n: 'Fase E', t: 'Homologação', d: 'Matriz de teste com pagamento aprovado e recusado, Pix pendente, boleto vencido, cartão parcelado, reembolso, webhook duplicado e inválido, assinatura renovada, falha e cancelamento.' },
   { n: 'Fase F', t: 'Produção assistida', d: 'Publicação acompanhada de perto: revisão do primeiro pedido real, validação de repasse, conferência de relatório e janela limitada de correções. Você aprova formalmente o início da operação.' },
@@ -47,7 +47,7 @@ const faq = [
   },
   {
     q: 'Quem fica com as contas e as credenciais?',
-    a: 'Você. Cada conta de provedor é aberta e mantida no seu CNPJ ou CPF. A VOCIRE integra usando credenciais protegidas no back-end, mas o dinheiro, o relacionamento financeiro e o histórico de recebimentos são seus.',
+    a: 'Você. Cada conta de provedor é aberta e mantida no seu CNPJ ou CPF. A Viceja integra usando credenciais protegidas no back-end, mas o dinheiro, o relacionamento financeiro e o histórico de recebimentos são seus.',
   },
   {
     q: 'Existe ajuste depois da publicação?',
@@ -56,14 +56,14 @@ const faq = [
 ];
 ---
 <Base
-  title="VOCIRE Launch — colocar a estrutura para funcionar"
-  description="A segunda etapa do método VOCIRE constrói o que o Discovery definiu: site, páginas, ativos, ferramentas e conversão — publicado, testado e medido."
+  title="Viceja Launch — colocar a estrutura para funcionar"
+  description="A segunda etapa do método Viceja constrói o que o Discovery definiu: site, páginas, ativos, ferramentas e conversão — publicado, testado e medido."
   path="/launch"
   image="/og/launch.png"
   breadcrumbs={crumbs}
   schema={[
     serviceSchema({
-      name: 'VOCIRE Launch',
+      name: 'Viceja Launch',
       description:
         'Construção e publicação do ecossistema próprio: site, páginas de oferta, ativos, formulários, integrações, mensuração e ponte editorial.',
       path: '/launch',
@@ -71,7 +71,7 @@ const faq = [
       offers: ['Site e landing pages', 'Primeiro ativo próprio', 'Fluxo de conversão', 'Mensuração', 'Integração de pagamentos'],
     }),
     howToSchema({
-      name: 'Fases de implantação do VOCIRE Launch',
+      name: 'Fases de implantação do Viceja Launch',
       description: 'Do provisionamento à produção assistida.',
       steps: fases.map((f) => ({ name: `${f.n} — ${f.t}`, text: f.d })),
     }),
@@ -80,7 +80,7 @@ const faq = [
 >
   <PageHero
     eyebrow="Etapa 2 do circuito"
-    title="VOCIRE Launch:<br />colocar a estrutura para funcionar."
+    title="Viceja Launch:<br />colocar a estrutura para funcionar."
     lede="Construímos o ecossistema definido no Discovery — site, páginas, ativos, ferramentas, integrações e caminhos de conversão. O Launch termina com uma operação publicada, testada e pronta para receber a audiência que você já está construindo."
     crumbs={crumbs}
     cta={{ label: 'Quero ativar minha base própria', href: '/contato' }}
@@ -158,7 +158,7 @@ const faq = [
         </div>
       ))}
       <p>
-        Depois da publicação, a operação continua no <a href="/engine">VOCIRE Engine</a> — a etapa que
+        Depois da publicação, a operação continua no <a href="/engine">Viceja Engine</a> — a etapa que
         mantém os ativos, os dados e as oportunidades em movimento.
       </p>
     </div>

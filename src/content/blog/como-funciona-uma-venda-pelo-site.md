@@ -97,4 +97,4 @@ Uma decisão estrutural, que vale mais que qualquer detalhe técnico: **a conta 
 
 Quem constrói o sistema integra usando credenciais protegidas no back-end, mas o dinheiro, o relacionamento financeiro e o histórico de recebimentos pertencem a você. Estruturas em que um intermediário recebe primeiro e repassa depois envolvem risco regulatório, fiscal e contratual que raramente compensa antes de existir volume — e nunca deveriam ser adotadas por conveniência de implementação.
 
-É assim que a VOCIRE trabalha nas faixas [Commerce e Recurring](/pagamentos).
+É assim que a Viceja trabalha nas faixas [Commerce e Recurring](/pagamentos).

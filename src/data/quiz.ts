@@ -1,5 +1,5 @@
 /**
- * Autoleitura VOCIRE — o diagnostico curto que abre o funil.
+ * Autoleitura Viceja — o diagnostico curto que abre o funil.
  * Cada alternativa distribui pontos entre as faixas; a faixa com mais pontos
  * vira a recomendacao. Tudo roda no navegador: nada e enviado a lugar nenhum.
  */
@@ -90,7 +90,7 @@ export const RESULTADOS: Record<
   { nome: string; frase: string; diagnostico: string; primeiros: string[]; href: string }
 > = {
   base: {
-    nome: 'VOCIRE Base',
+    nome: 'Viceja Base',
     frase: 'Sua prioridade é ter uma casa própria antes de vender por ela.',
     diagnostico:
       'O que falta agora não é checkout — é um lugar próprio que explique quem você é, organize o que você oferece e responda as dúvidas que hoje chegam por mensagem. Começar por pagamento seria construir o telhado antes da parede.',
@@ -103,7 +103,7 @@ export const RESULTADOS: Record<
     href: '/solucoes#base',
   },
   capture: {
-    nome: 'VOCIRE Capture',
+    nome: 'Viceja Capture',
     frase: 'Sua prioridade é transformar audiência em base própria.',
     diagnostico:
       'Você já gera interesse, mas ele evapora. O próximo passo é criar motivos legítimos para alguém deixar um contato — e uma estrutura que organize esses contatos em vez de deixá-los espalhados em conversas.',
@@ -116,7 +116,7 @@ export const RESULTADOS: Record<
     href: '/solucoes#capture',
   },
   commerce: {
-    nome: 'VOCIRE Commerce',
+    nome: 'Viceja Commerce',
     frase: 'Sua prioridade é vender diretamente pelo site.',
     diagnostico:
       'Você já tem oferta e demanda, mas o dinheiro entra por fora. Colocar a venda no site exige mais do que um botão: pedido, evento confirmado, entrega, reembolso e um relatório em que você possa confiar.',
@@ -129,7 +129,7 @@ export const RESULTADOS: Record<
     href: '/solucoes#commerce',
   },
   recurring: {
-    nome: 'VOCIRE Recurring',
+    nome: 'Viceja Recurring',
     frase: 'Sua prioridade é sustentar receita recorrente e acesso contínuo.',
     diagnostico:
       'Assinatura não é uma venda repetida: é um ciclo de vida. Cobrança que falha, acesso que precisa cair, plano que muda, cliente que volta. Essa lógica precisa estar no sistema, baseada em eventos confirmados do provedor.',

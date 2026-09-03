@@ -8,7 +8,7 @@ export const GET: APIRoute = async (context) => {
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );
   return rss({
-    title: 'Blog VOCIRE',
+    title: 'Blog Viceja',
     description: 'Ideias para transformar atenção em operação própria.',
     site: context.site ?? SITE.url,
     trailingSlash: false,

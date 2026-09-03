@@ -15,18 +15,18 @@ const fmt = (d: Date) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: 
 const crumbs = [{ name: 'Blog', href: '/blog' }];
 ---
 <Base
-  title="Blog VOCIRE — ideias para transformar atenção em operação"
+  title="Blog Viceja — ideias para transformar atenção em operação"
   description="Artigos sobre presença digital, ativos próprios, conversão, pagamentos e operação de ecossistemas digitais. Sem fórmula, sem promessa de faturamento garantido."
   path="/blog"
   image="/og/blog.png"
   breadcrumbs={crumbs}
   schema={[
-    { '@type': 'Blog', name: 'Blog VOCIRE', description: 'Ideias para transformar atenção em operação própria.' },
-    itemListSchema('Artigos do blog VOCIRE', posts.map((p) => ({ name: p.data.title, url: `/blog/${p.id}`, description: p.data.description }))),
+    { '@type': 'Blog', name: 'Blog Viceja', description: 'Ideias para transformar atenção em operação própria.' },
+    itemListSchema('Artigos do blog Viceja', posts.map((p) => ({ name: p.data.title, url: `/blog/${p.id}`, description: p.data.description }))),
   ]}
 >
   <PageHero
-    eyebrow="Blog VOCIRE"
+    eyebrow="Blog Viceja"
     title="Ideias para transformar atenção em operação própria."
     lede="Escrevemos sobre o que acontece depois do clique: estrutura, ativos, conversão, pagamentos e operação. Sem fórmula, sem urgência artificial e sem promessa de faturamento garantido."
     crumbs={crumbs}

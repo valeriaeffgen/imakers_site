@@ -1,5 +1,5 @@
 /**
- * Conteudo estruturado da VOCIRE.
+ * Conteudo estruturado da Viceja.
  * Tudo que aparece em mais de uma pagina vive aqui — as paginas so renderizam.
  * Fonte: Business Blueprint, Plano operacional e Copy da landing page.
  */
@@ -57,7 +57,7 @@ export const METODO = [
   {
     id: 'discovery',
     etapa: 'Etapa 1',
-    nome: 'VOCIRE Discovery',
+    nome: 'Viceja Discovery',
     frase: 'Entender antes de construir.',
     texto:
       'Mapeamos o que você já tem, quem você quer alcançar, o que pode oferecer e qual estrutura faz sentido para o momento do seu negócio.',
@@ -77,7 +77,7 @@ export const METODO = [
   {
     id: 'launch',
     etapa: 'Etapa 2',
-    nome: 'VOCIRE Launch',
+    nome: 'Viceja Launch',
     frase: 'Colocar a estrutura para funcionar.',
     texto:
       'Construímos o ecossistema definido no Discovery: site, páginas, ativos, ferramentas, integrações e caminhos de conversão.',
@@ -97,7 +97,7 @@ export const METODO = [
   {
     id: 'engine',
     etapa: 'Etapa 3',
-    nome: 'VOCIRE Engine',
+    nome: 'Viceja Engine',
     frase: 'Fazer o negócio continuar evoluindo.',
     texto:
       'Mantemos e desenvolvemos os ativos próprios, observamos o comportamento da operação, acompanhamos oportunidades e ajustamos os pontos que impedem a jornada de avançar.',
@@ -162,7 +162,7 @@ export const PERFIS = [
 export const FAIXAS = [
   {
     slug: 'base',
-    nome: 'VOCIRE Base',
+    nome: 'Viceja Base',
     complexidade: 1,
     resumo: 'Blog, páginas institucionais e conteúdo próprio, sem cobrança no site.',
     para: 'Quem precisa de uma casa própria antes de vender por ela.',
@@ -178,7 +178,7 @@ export const FAIXAS = [
   },
   {
     slug: 'capture',
-    nome: 'VOCIRE Capture',
+    nome: 'Viceja Capture',
     complexidade: 2,
     destaque: true,
     resumo: 'Blog, formulários, quiz, guia ou e-book, captura e relacionamento.',
@@ -195,7 +195,7 @@ export const FAIXAS = [
   },
   {
     slug: 'commerce',
-    nome: 'VOCIRE Commerce',
+    nome: 'Viceja Commerce',
     complexidade: 3,
     resumo: 'Venda avulsa de produtos, serviços, ingressos ou materiais digitais.',
     para: 'A primeira faixa em que entra dinheiro pelo site.',
@@ -212,7 +212,7 @@ export const FAIXAS = [
   },
   {
     slug: 'recurring',
-    nome: 'VOCIRE Recurring',
+    nome: 'Viceja Recurring',
     complexidade: 4,
     resumo: 'Assinaturas, planos, pagamentos recorrentes, acesso e inadimplência.',
     para: 'Clubes, comunidades pagas, programas contínuos e planos mensais.',
@@ -228,7 +228,7 @@ export const FAIXAS = [
   },
   {
     slug: 'platform',
-    nome: 'VOCIRE Platform',
+    nome: 'Viceja Platform',
     complexidade: 5,
     futuro: true,
     resumo: 'Vários recebedores, marketplace, split, regras de repasse ou operação customizada.',
@@ -304,13 +304,13 @@ export const ATIVOS = [
 /* ---------- Fluxo de uma venda ------------------------------------------ */
 export const FLUXO_VENDA = [
   { momento: '1. Oferta', acao: 'Exibir produto, serviço, preço, condições e política de compra.', dono: 'Cliente' },
-  { momento: '2. Checkout', acao: 'Criar sessão, preferência ou cobrança no provedor.', dono: 'VOCIRE' },
+  { momento: '2. Checkout', acao: 'Criar sessão, preferência ou cobrança no provedor.', dono: 'Viceja' },
   { momento: '3. Pagamento', acao: 'Provedor processa Pix, boleto ou cartão.', dono: 'Provedor' },
-  { momento: '4. Webhook', acao: 'Receber, validar, persistir e normalizar o evento.', dono: 'VOCIRE' },
-  { momento: '5. Pedido', acao: 'Atualizar status do pedido e liberar a próxima ação.', dono: 'VOCIRE' },
-  { momento: '6. Entrega', acao: 'Liberar material, agenda, acesso ou instrução de atendimento.', dono: 'Cliente e VOCIRE' },
+  { momento: '4. Webhook', acao: 'Receber, validar, persistir e normalizar o evento.', dono: 'Viceja' },
+  { momento: '5. Pedido', acao: 'Atualizar status do pedido e liberar a próxima ação.', dono: 'Viceja' },
+  { momento: '6. Entrega', acao: 'Liberar material, agenda, acesso ou instrução de atendimento.', dono: 'Cliente e Viceja' },
   { momento: '7. Recebimento', acao: 'Provedor libera o valor na conta do cliente.', dono: 'Provedor e cliente' },
-  { momento: '8. Conciliação', acao: 'Comparar venda, taxa, saldo líquido, repasse e extrato.', dono: 'VOCIRE e contador' },
+  { momento: '8. Conciliação', acao: 'Comparar venda, taxa, saldo líquido, repasse e extrato.', dono: 'Viceja e contador' },
 ];
 
 /* ---------- Provedores de pagamento ------------------------------------- */
@@ -348,15 +348,15 @@ export const PROVEDORES = [
 /* ---------- FAQ --------------------------------------------------------- */
 export const FAQ = [
   {
-    q: 'A VOCIRE administra meu Instagram ou YouTube?',
-    a: 'Não. Você continua responsável pela sua voz, pelo seu estilo e pela publicação nas redes. A VOCIRE constrói o site, os ativos próprios, as ferramentas e os destinos para onde você pode conduzir sua audiência.',
+    q: 'A Viceja administra meu Instagram ou YouTube?',
+    a: 'Não. Você continua responsável pela sua voz, pelo seu estilo e pela publicação nas redes. A Viceja constrói o site, os ativos próprios, as ferramentas e os destinos para onde você pode conduzir sua audiência.',
   },
   {
     q: 'Eu preciso já ter uma grande audiência?',
     a: 'Não. O ponto de partida pode ser uma audiência pequena, uma oferta em construção ou uma oportunidade clara. O Discovery ajuda a entender o que faz sentido construir agora, sem começar por uma estrutura maior do que o negócio consegue sustentar.',
   },
   {
-    q: 'A VOCIRE cria os conteúdos para as redes?',
+    q: 'A Viceja cria os conteúdos para as redes?',
     a: 'Não operamos redes sociais nem produzimos artes para publicação. Podemos criar a ponte editorial: temas, textos de apoio, chamadas, CTAs, links e conteúdos próprios que ajudam a aprofundar o que você publica.',
   },
   {
@@ -364,12 +364,12 @@ export const FAQ = [
     a: 'A operação pode incluir blog, quizzes, e-books, guias, checklists, avaliações, páginas, newsletters, bibliotecas de conteúdo e ferramentas de captura. A escolha depende da oportunidade e da jornada do negócio.',
   },
   {
-    q: 'A VOCIRE pode integrar pagamentos?',
-    a: 'Sim, quando o projeto envolve vendas. O checkout e o recebimento ficam vinculados à conta do cliente no provedor escolhido. A VOCIRE constrói e acompanha a integração, os pedidos, os eventos e os relatórios conforme o escopo contratado.',
+    q: 'A Viceja pode integrar pagamentos?',
+    a: 'Sim, quando o projeto envolve vendas. O checkout e o recebimento ficam vinculados à conta do cliente no provedor escolhido. A Viceja constrói e acompanha a integração, os pedidos, os eventos e os relatórios conforme o escopo contratado.',
   },
   {
     q: 'Como funciona o preço?',
-    a: 'A VOCIRE trabalha com uma ativação inicial e uma recorrência compatível com a complexidade da operação. A ativação cobre Discovery, Launch e implantação. A recorrência cobre o Engine, a manutenção, os ativos próprios, os dados e as melhorias previstas no escopo.',
+    a: 'A Viceja trabalha com uma ativação inicial e uma recorrência compatível com a complexidade da operação. A ativação cobre Discovery, Launch e implantação. A recorrência cobre o Engine, a manutenção, os ativos próprios, os dados e as melhorias previstas no escopo.',
   },
   {
     q: 'O que é o Engine?',

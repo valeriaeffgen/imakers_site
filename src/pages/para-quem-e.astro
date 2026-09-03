@@ -27,7 +27,7 @@ const naoEPara = [
 const faq = [
   {
     q: 'Preciso ter uma audiência grande?',
-    a: 'Não. O ponto de partida pode ser uma audiência pequena, uma oferta em construção ou uma oportunidade clara. O que precisa existir é algo legítimo para oferecer — a VOCIRE não promete criar um negócio do zero para quem ainda não tem isso.',
+    a: 'Não. O ponto de partida pode ser uma audiência pequena, uma oferta em construção ou uma oportunidade clara. O que precisa existir é algo legítimo para oferecer — a Viceja não promete criar um negócio do zero para quem ainda não tem isso.',
   },
   {
     q: 'Sou um negócio local. Faz sentido?',
@@ -40,23 +40,23 @@ const faq = [
 ];
 ---
 <Base
-  title="Para quem é a VOCIRE — perfis e momentos de negócio"
+  title="Para quem é a Viceja — perfis e momentos de negócio"
   description="Especialistas, criadores, negócios locais e marcas autorais que já produzem conteúdo e precisam de estrutura própria de oferta, captação e receita."
   path="/para-quem-e"
   image="/og/para-quem-e.png"
   breadcrumbs={crumbs}
   schema={[
-    itemListSchema('Perfis atendidos pela VOCIRE', PERFIS.map((p) => ({ name: p.nome, url: `/para-quem-e#${p.slug}`, description: p.dor }))),
+    itemListSchema('Perfis atendidos pela Viceja', PERFIS.map((p) => ({ name: p.nome, url: `/para-quem-e#${p.slug}`, description: p.dor }))),
     faqSchema(faq),
   ]}
 >
   <PageHero
     eyebrow="Para quem é"
     title="Para quem já tem algo para dizer — e agora precisa de uma estrutura para crescer."
-    lede="O cliente ideal da VOCIRE tem uma competência, um serviço ou um conhecimento real, algum conteúdo público, vontade de monetizar e disponibilidade para participar das decisões."
+    lede="O cliente ideal da Viceja tem uma competência, um serviço ou um conhecimento real, algum conteúdo público, vontade de monetizar e disponibilidade para participar das decisões."
     crumbs={crumbs}
     cta={{ label: 'Descobrir o meu caminho', href: '/autoleitura' }}
-    secondary={{ label: 'Falar com a VOCIRE', href: '/contato' }}
+    secondary={{ label: 'Falar com a Viceja', href: '/contato' }}
   />
 
   <section class="section section--tight" aria-labelledby="perfis">
@@ -73,7 +73,7 @@ const faq = [
             <span class="pill pill--accent">Costuma começar em {p.faixa}</span>
             <h3>{p.nome}</h3>
             <p>{p.dor}</p>
-            <h4 class="perfil__sub">A VOCIRE pode construir</h4>
+            <h4 class="perfil__sub">A Viceja pode construir</h4>
             <ul role="list" class="tags">{p.constroi.map((c) => <li>{c}</li>)}</ul>
             <a href={`/solucoes#${p.faixa.toLowerCase()}`} class="link-arrow">Ver a faixa {p.faixa}<Arrow cls="" /></a>
           </article>
@@ -87,7 +87,7 @@ const faq = [
       <SectionHead
         eyebrow="Público prioritário"
         title="Quem reconhece o problema mais rápido."
-        lede="A promessa da VOCIRE pode ser ampla, mas o foco inicial é quem já produz conteúdo ou tem alguma audiência e ainda não tem um sistema próprio de aquisição e relacionamento."
+        lede="A promessa da Viceja pode ser ampla, mas o foco inicial é quem já produz conteúdo ou tem alguma audiência e ainda não tem um sistema próprio de aquisição e relacionamento."
       />
       <p class="visually-hidden" id="publicos">Públicos prioritários</p>
       <div class="table-scroll reveal ptable">
@@ -107,13 +107,13 @@ const faq = [
     <div class="wrap two-col">
       <div class="two-col__copy">
         <p class="eyebrow">Honestidade de escopo</p>
-        <h2 id="naoe">Para quem a VOCIRE não é.</h2>
+        <h2 id="naoe">Para quem a Viceja não é.</h2>
         <p class="lede lede--wide">
           Dizer não é parte do posicionamento. Se o que você procura está nesta lista, existe gente melhor
           preparada para isso — e o resultado será melhor para os dois lados.
         </p>
         <p class="muted">
-          Você continua sendo a voz da sua rede. A VOCIRE constrói o negócio por trás dela.
+          Você continua sendo a voz da sua rede. A Viceja constrói o negócio por trás dela.
         </p>
       </div>
       <div class="panel reveal">
@@ -136,7 +136,7 @@ const faq = [
     title="Descubra em dois minutos qual estrutura a sua presença está pedindo."
     text="A autoleitura devolve uma recomendação de faixa e os primeiros ativos a construir — sem cadastro obrigatório."
     primary={{ label: 'Fazer a autoleitura', href: '/autoleitura' }}
-    secondary={{ label: 'Falar com a VOCIRE', href: '/contato' }}
+    secondary={{ label: 'Falar com a Viceja', href: '/contato' }}
   />
 </Base>
 

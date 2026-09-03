@@ -4,7 +4,7 @@ import { SITE } from '../config';
 /** Gerado a partir do dominio configurado, para nunca ficar dessincronizado. */
 export const GET: APIRoute = ({ site }) => {
   const origin = (site ?? new URL(SITE.url)).origin;
-  const body = `# VOCIRE — robots.txt
+  const body = `# Viceja — robots.txt
 User-agent: *
 Allow: /
 
