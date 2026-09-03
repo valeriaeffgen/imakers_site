@@ -44,7 +44,7 @@ p, h1, h2, h3, h4, li { overflow-wrap: break-word; }
   --accent-contrast: #ffffff;
 
   /* Tipografia fluida */
-  --font-display: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Quicksand', 'Trebuchet MS', ui-rounded, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, monospace;
 
@@ -103,7 +103,7 @@ body {
   background: var(--bg);
   font-variant-ligatures: common-ligatures;
 }
-h1, h2, h3, h4, .display {
+h1, h2, h3, h4, h5, h6, .display {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.08;
@@ -148,7 +148,7 @@ strong { font-weight: 650; color: var(--fg); }
   display: inline-flex; align-items: center; gap: 0.55em;
   font-family: var(--font-display);
   font-size: var(--step--2); font-weight: 700;
-  letter-spacing: 0.16em; text-transform: uppercase;
+  letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--accent);
 }
 .eyebrow::before {
@@ -240,7 +240,7 @@ caption { text-align: left; padding: var(--sp-4) var(--sp-5) 0; color: var(--fg-
 th, td { text-align: left; padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 thead th {
   font-family: var(--font-display); font-size: var(--step--2); font-weight: 700;
-  letter-spacing: 0.09em; text-transform: uppercase; color: var(--fg-subtle);
+  letter-spacing: 0.07em; text-transform: uppercase; color: var(--fg-subtle);
   background: var(--bg-2); white-space: nowrap;
 }
 tbody tr:last-child td { border-bottom: 0; }

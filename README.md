@@ -113,7 +113,7 @@ Primeiro carregamento da home: **~130 KB** (HTML com CSS inlinado + duas fontes)
 com **2 KB de JavaScript** — só o prefetch do Astro. Nenhuma imagem no HTML: a
 identidade visual é SVG inline.
 
-- Fontes **auto-hospedadas** (Figtree e Inter variáveis, subset latino) com `preload`
+- Fontes **auto-hospedadas** (Quicksand e Inter variáveis, subset latino) com `preload`
   e `font-display: swap`. Nada de Google Fonts: menos uma conexão no caminho crítico e
   nenhum IP de visitante enviado a terceiros — o que também simplifica a LGPD.
 - CSS crítico inlinado pelo Astro; zero framework de UI.
