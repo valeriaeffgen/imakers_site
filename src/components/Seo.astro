@@ -56,6 +56,10 @@ const organization = {
   '@type': 'Organization',
   '@id': orgId,
   name: SITE.name,
+  /* A marca e escrita em minusculo no logo e em capitular na prosa. O
+     alternateName diz ao buscador que as duas grafias sao a mesma entidade —
+     util enquanto a marca e nova e ainda nao tem autoridade acumulada. */
+  alternateName: SITE.name.toLowerCase(),
   legalName: SITE.legalName,
   url: base.origin,
   slogan: SITE.promiseAccented,

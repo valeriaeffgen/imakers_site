@@ -40,11 +40,11 @@ const html = `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <style>
   @font-face {
-    font-family: 'Figtree'; font-style: normal; font-weight: 300 900; font-display: block;
-    src: url('figtree-var-latin.woff2') format('woff2');
+    font-family: 'Quicksand'; font-style: normal; font-weight: 300 700; font-display: block;
+    src: url('quicksand-var-latin.woff2') format('woff2');
   }
   * { box-sizing: border-box; margin: 0; }
-  body { background: #444; font-family: 'Figtree', sans-serif; -webkit-font-smoothing: antialiased; }
+  body { background: #444; font-family: 'Quicksand', sans-serif; -webkit-font-smoothing: antialiased; }
   .folha { display: flex; flex-wrap: wrap; gap: 24px; padding: 24px; width: ${POST_W * 3 + 24 * 4}px; }
 
   .post {
