@@ -5,7 +5,7 @@ import { CELL_W, CELL_H, POST_W, BLEED, GRID_W, GRID_H, COR, QUADROS, mosaico, s
 const LOGO = `
   <span class="logo">
     <span class="logo__mark">${seta(3)}</span>
-    <b>vocire</b>
+    <b>viceja</b>
   </span>`;
 
 function quadro(i) {
@@ -32,7 +32,7 @@ function quadro(i) {
            id="q${i + 1}" data-quadro="${i + 1}">
     <div class="mosaico" style="left:${BLEED - c * CELL_W}px; top:${-r * CELL_H}px">${mosaico()}</div>
     <div class="corpo">${partes.join('')}</div>
-    <span class="marca">vocire.com</span>
+    <span class="marca">viceja.com</span>
   </article>`;
 }
 

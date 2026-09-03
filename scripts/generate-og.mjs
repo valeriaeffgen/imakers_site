@@ -15,7 +15,7 @@ const OUT = path.join(root, 'public', 'og');
 
 const MAGENTA = '#ec1b8d';
 /** Aparece no rodape da imagem social. Troque junto com o dominio real. */
-const DOMAIN = process.env.SITE_DOMAIN || 'vocire.com';
+const DOMAIN = process.env.SITE_DOMAIN || 'viceja.com';
 const FONT = "Figtree Light, Figtree, DejaVu Sans, sans-serif";
 
 /** Caminhos exatos da marca, reaproveitados do componente Squiggle.astro. */
@@ -71,7 +71,7 @@ function wordmark({ x, y, size, color = '#ffffff', markColor = MAGENTA }) {
   const markW = wordW * 0.8;
   return `${squiggle({ x: x + wordW * 0.1, y: y - size * 1.62, w: markW, color: markColor, stroke: size * 0.1 })}
     <text x="${x}" y="${y}" font-family="${FONT}" font-size="${size}" font-weight="500"
-      letter-spacing="${-size * 0.028}" fill="${color}">vocire</text>`;
+      letter-spacing="${-size * 0.028}" fill="${color}">viceja</text>`;
 }
 
 /* ---------- Imagem social 1200x630 -------------------------------------- */
@@ -144,17 +144,17 @@ function logoSvg() {
 /* ---------- Manifesto de paginas ---------------------------------------- */
 const PAGES = [
   { file: 'default', kicker: 'Da atenção à operação própria', title: 'Transformamos sua presença digital em negócio.' },
-  { file: 'metodo', kicker: 'Método VOCIRE', title: 'Discovery, Launch e Engine: três etapas para transformar presença em operação.' },
-  { file: 'discovery', kicker: 'Etapa 1', title: 'VOCIRE Discovery: entender antes de construir.' },
-  { file: 'launch', kicker: 'Etapa 2', title: 'VOCIRE Launch: colocar a estrutura para funcionar.' },
-  { file: 'engine', kicker: 'Etapa 3', title: 'VOCIRE Engine: fazer o negócio continuar evoluindo.' },
+  { file: 'metodo', kicker: 'Método Viceja', title: 'Discovery, Launch e Engine: três etapas para transformar presença em operação.' },
+  { file: 'discovery', kicker: 'Etapa 1', title: 'Viceja Discovery: entender antes de construir.' },
+  { file: 'launch', kicker: 'Etapa 2', title: 'Viceja Launch: colocar a estrutura para funcionar.' },
+  { file: 'engine', kicker: 'Etapa 3', title: 'Viceja Engine: fazer o negócio continuar evoluindo.' },
   { file: 'solucoes', kicker: 'O que construímos', title: 'Comece simples. Evolua quando o negócio pedir.' },
   { file: 'ativos-proprios', kicker: 'Ativos próprios', title: 'Conteúdos e ferramentas que continuam trabalhando depois da publicação.' },
   { file: 'pagamentos', kicker: 'Pagamentos', title: 'Checkout, pedidos, assinaturas e conciliação — no seu nome.' },
   { file: 'para-quem-e', kicker: 'Para quem é', title: 'Para quem já tem algo para dizer e precisa de estrutura para crescer.' },
   { file: 'autoleitura', kicker: 'Autoleitura', title: 'Descubra em 2 minutos qual estrutura sua presença está pedindo.' },
   { file: 'contato', kicker: 'Vamos conversar', title: 'Conte o que você já construiu. Mostramos o próximo passo.' },
-  { file: 'blog', kicker: 'Blog VOCIRE', title: 'Ideias para transformar atenção em operação própria.' },
+  { file: 'blog', kicker: 'Blog Viceja', title: 'Ideias para transformar atenção em operação própria.' },
   // Artigos do blog — o campo `og` do frontmatter aponta para estes arquivos.
   { file: 'blog-clique', kicker: 'Estratégia', title: 'Sua audiência clica. E aí, para onde ela vai?' },
   { file: 'blog-ativos', kicker: 'Ativos próprios', title: 'Um guia bem feito trabalha por meses. Um post, por horas.' },

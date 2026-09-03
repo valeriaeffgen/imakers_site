@@ -1,5 +1,5 @@
 /**
- * A grade da VOCIRE para o Instagram — conceito "A ponte".
+ * A grade da Viceja para o Instagram — conceito "A ponte".
  *
  * Geometria (confirmada no formato atual do Instagram):
  *   célula da grade do perfil ... 1012 × 1350  (3:4)

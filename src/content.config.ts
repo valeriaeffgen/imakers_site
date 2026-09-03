@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * Blog VOCIRE.
+ * Blog Viceja.
  * Cada artigo declara os metadados que alimentam o SEO da pagina, o card do
  * indice, o RSS e o JSON-LD de Article — em um lugar so.
  */

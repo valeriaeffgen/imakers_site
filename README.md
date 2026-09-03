@@ -1,6 +1,6 @@
-# Site VOCIRE
+# Site Viceja
 
-Site institucional da VOCIRE — *transformamos sua presença digital em negócio*.
+Site institucional da Viceja — *transformamos sua presença digital em negócio*.
 Construído em [Astro](https://astro.build) como site estático, com foco em SEO técnico,
 performance e acessibilidade.
 
@@ -32,7 +32,7 @@ Requer Node 20 ou superior.
 | `/solucoes` | As cinco faixas de complexidade + matriz de escopo |
 | `/ativos-proprios` | Catálogo de ativos editoriais e funcionais |
 | `/pagamentos` | Checkout, webhooks, fluxo de venda, provedores e RACI |
-| `/para-quem-e` | Quatro perfis + para quem a VOCIRE **não** é |
+| `/para-quem-e` | Quatro perfis + para quem a Viceja **não** é |
 | `/autoleitura` | Quiz de diagnóstico que recomenda uma faixa |
 | `/contato` | Formulário de solicitação de Discovery |
 | `/blog` + `/blog/*` | Blog com quatro artigos iniciais |
@@ -51,8 +51,8 @@ nenhuma resposta é enviada ou salva.
 Três coisas precisam ser preenchidas em **`src/config.ts`**:
 
 ```ts
-url:    'https://vocire.com',   // domínio real — alimenta canonical, sitemap, RSS e og:image
-email:  'contato@vocire.com',   // e-mail de contato exibido no site
+url:    'https://viceja.com',   // domínio real — alimenta canonical, sitemap, RSS e og:image
+email:  'contato@viceja.com',   // e-mail de contato exibido no site
 social: { instagram: '', linkedin: '', youtube: '' },  // vira `sameAs` no JSON-LD
 ```
 
@@ -83,7 +83,7 @@ Em outro host, publique a pasta `dist/`. Duas exigências: servir `/contato` a p
 O domínio também pode vir do ambiente:
 
 ```bash
-SITE_URL=https://vocire.com npm run build
+SITE_URL=https://viceja.com npm run build
 ```
 
 ---

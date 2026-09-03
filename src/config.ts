@@ -4,25 +4,36 @@
  */
 
 export const SITE = {
-  name: 'VOCIRE',
-  legalName: 'VOCIRE',
-  url: (import.meta.env.SITE as string) || 'https://vocire.com',
+  name: 'Viceja',
+  legalName: 'Viceja',
+  url: (import.meta.env.SITE as string) || 'https://viceja.com',
   locale: 'pt-BR',
   /** Promessa institucional. Aparece no title da home e no JSON-LD. */
   promise: 'Transformamos sua presenca digital em negocio.',
   promiseAccented: 'Transformamos sua presença digital em negócio.',
   tagline: 'Da atencao a operacao propria.',
   description:
-    'A VOCIRE constrói sites, ativos próprios, ferramentas e operação contínua para transformar a audiência que você criou nas redes em negócio.',
-  email: 'contato@vocire.com',
+    'A Viceja constrói sites, ativos próprios, ferramentas e operação contínua para transformar a audiência que você criou nas redes em negócio.',
+  email: 'contato@viceja.com',
   /** Somente digitos, formato internacional — usado no link do WhatsApp. */
   whatsapp: '',
   areaServed: 'BR',
   founded: '2026',
+  /**
+   * URLs completas dos perfis — e nao os arrobas. Este objeto alimenta o
+   * sameAs do JSON-LD, que exige URL absoluta para ligar site e perfis a
+   * mesma entidade. Deixe vazio o que ainda nao existe: o Seo.astro filtra.
+   */
   social: {
-    instagram: '',
+    instagram: 'https://www.instagram.com/viceja.vc',
+    youtube: 'https://www.youtube.com/@viceja',
     linkedin: '',
-    youtube: '',
+  },
+  /** Os arrobas, para exibicao em texto. Mantenha em sincronia com social. */
+  handles: {
+    instagram: '@viceja.vc',
+    youtube: '@viceja',
+    linkedin: '',
   },
   /**
    * Endpoint do formulario de contato.
@@ -41,9 +52,9 @@ export const NAV: { label: string; href: string; children?: { label: string; hre
     label: 'Método',
     href: '/metodo',
     children: [
-      { label: 'VOCIRE Discovery', href: '/discovery', note: 'Entender antes de construir.' },
-      { label: 'VOCIRE Launch', href: '/launch', note: 'Colocar a estrutura no ar.' },
-      { label: 'VOCIRE Engine', href: '/engine', note: 'Manter o negócio em movimento.' },
+      { label: 'Viceja Discovery', href: '/discovery', note: 'Entender antes de construir.' },
+      { label: 'Viceja Launch', href: '/launch', note: 'Colocar a estrutura no ar.' },
+      { label: 'Viceja Engine', href: '/engine', note: 'Manter o negócio em movimento.' },
     ],
   },
   {
@@ -83,7 +94,7 @@ export const FOOTER_NAV = [
     title: 'Comece',
     links: [
       { label: 'Autoleitura', href: '/autoleitura' },
-      { label: 'Falar com a VOCIRE', href: '/contato' },
+      { label: 'Falar com a Viceja', href: '/contato' },
       { label: 'Blog', href: '/blog' },
       { label: 'Perguntas frequentes', href: '/#faq' },
     ],
