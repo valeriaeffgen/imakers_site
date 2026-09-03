@@ -70,11 +70,20 @@ mostrarem o endereço certo (ou defina `SITE_DOMAIN` no ambiente).
 
 ## Deploy
 
-O site é estático: qualquer host serve. Já vêm configurados:
+O site é estático: qualquer host serve. **A produção está na Vercel**, em
+`viceja.com`.
 
-- **Netlify** — `netlify.toml` + `public/_headers` (segurança e cache). O formulário
-  funciona sem back-end via Netlify Forms.
-- **Vercel** — `vercel.json` com `cleanUrls`.
+- **Vercel** (em uso) — `vercel.json`: `cleanUrls`, cabeçalhos de segurança,
+  cache longo para fontes, bundles e imagens sociais, e `X-Robots-Tag: noindex`
+  em qualquer host `*.vercel.app`, para o domínio provisório não competir com o
+  definitivo no índice de busca.
+- **Netlify / Cloudflare Pages** — `netlify.toml` + `public/_headers`, mantidos
+  como alternativa. Não são lidos pela Vercel.
+
+> **Atenção ao formulário de contato.** Sem `SITE.formEndpoint` preenchido, o
+> formulário depende de **Netlify Forms**, que só existe na Netlify. Na Vercel
+> ele faz um POST para uma página estática e **os dados se perdem**. Enquanto
+> `formEndpoint` estiver vazio, o site em produção não recebe contato nenhum.
 
 Em outro host, publique a pasta `dist/`. Duas exigências: servir `/contato` a partir de
 `contato.html` (extensionless) e não adicionar barra no final — o site usa
