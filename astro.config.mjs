@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 import { remarkReadingTime } from './scripts/remark-reading-time.mjs';
 import { rehypeWrapTables } from './scripts/rehype-wrap-tables.mjs';
 
@@ -10,6 +11,10 @@ const SITE = process.env.SITE_URL || 'https://viceja.com';
 
 export default defineConfig({
   site: SITE,
+  output: 'server',
+  adapter: vercel({
+    webAnalytics: { enabled: true }
+  }),
   trailingSlash: 'never',
   build: { format: 'file', inlineStylesheets: 'auto' },
   integrations: [
